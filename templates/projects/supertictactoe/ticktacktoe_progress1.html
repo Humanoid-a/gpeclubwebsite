@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <script src="{%  static 'assets/js/color-modes.js' %}"></script>
+
+    <meta charset="UTF-8">
+    <title>SuperTicTacToe</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'basestyles.css' %}" rel="stylesheet">
+    <link href="{% static 'projects/supertictactoe/tictactoestyles.css' %}" rel="stylesheet">
+
+    <script>
+        function blockClickEvent(eventid)
+        {
+            alert(eventid);
+        }
+    </script>
+
+</head>
+<body>
+
+<main>
+    <div id="tttcontainer">
+        <div id="tttgrid">
+        {% for bigblock in blocks %}
+            <div id="tttgrid">
+
+                 {% for block in bigblock %}
+                     <div onclick="blockClickEvent('{{ block }}')">
+                         <svg width="100%" height ="100%">
+                             <rect width="100%" height = '100%' fill="#FFFFFF"></rect>
+                         </svg>
+                     </div>
+                {% endfor %}
+
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

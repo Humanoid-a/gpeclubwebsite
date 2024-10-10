@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+      {% load static %}
+      <script src="{%  static 'assets/js/color-modes.js' %}"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <!--<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">-->
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>GPE Club</title>
+      <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
+    <!--link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/heroes/"-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'basestyles.css' %}" rel="stylesheet">
+      <link href="{% static 'projects/supertictactoe/tictactoestyles.css' %}" rel="stylesheet">
+      <!-- Custom styles for this template -->
+      <link href="{% static 'heroes.css' %}" rel="stylesheet">
+
+    <style>
+        .whiteCover
+        {
+            opacity:0.8;
+            background:white;
+            width:100%;
+            height:100%;
+            margin-top:-100%;
+        }
+        .maxSize
+        {
+            width:100%;
+            height:100%;
+        }
+    </style>
+
+    
+
+      <script>
+          var in_game = false;
+          var xturn = true;
+          var grid = [];
+          for(var i = 0; i < 81; i++)
+          {
+              grid[i] = 0;
+          }
+          var biggrid = [];
+          for(var i =0; i < 9; i++)
+          {
+              biggrid[i] = 0;
+          }
+
+          function getTurnTag()
+          {
+              if(xturn)
+              {
+                  return 'x';
+              }
+              else{
+                  return 'circle';
+              }
+          }
+
+          function checkForDraw()
+          {
+              for(let i = 0; i < 9; i++)
+              {
+                  if(biggrid[i] != 0)
+                  {
+                      continue;
+                  }
+                  for(let j = 0; j < 9; j++)
+                  {
+                      if(grid[i*9+j] == 0)
+                      {
+                          return false;
+                      }
+                  }
+              }
+              return true;
+          }
+
+
+          function checkSmallBlock(blockid)
+          {
+              return checkBlock(blockid, grid);
+          }
+
+          function checkBigBlock()
+          {
+              return checkBlock(0, biggrid);
+          }
+
+          function checkBlock(blockid, grid)
+          {
+              var ldiaglast = blockid;
+              var ldiagpassed = true;
+              var rdiaglast = blockid+2;
+              var rdiagpassed = true;
+
+              for(let i = 0; i < 2; i++)
+              {
+                  if(grid[ldiaglast] != grid[ldiaglast + 4])
+                  {
+                      ldiagpassed = false;
+                  }
+                  ldiaglast += 4;
+                  if(grid[rdiaglast] != grid[rdiaglast + 2])
+                  {
+                      rdiagpassed = false;
+                  }
+                  rdiaglast += 2;
+              }
+
+              if(ldiagpassed && grid[ldiaglast] != 0)
+              {
+                  return grid[ldiaglast];
+              }
+              if(rdiagpassed && grid[rdiaglast] != 0)
+              {
+                  return grid[rdiaglast];
+              }
+
+              for(let i =0; i <3; i++)
+              {
+                  var row_last = blockid + i*3;
+                  var row_passed = true;
+                  var column_passed = true;
+                  var column_last = blockid + i;
+                  for(let j = 0; j < 2; j++)
+                  {
+                      if(grid[row_last] != grid[row_last+1])
+                      {
+                          row_passed = false;
+                      }
+                      row_last += 1;
+
+                      if(grid[column_last] != grid[column_last+3])
+                      {
+                          column_passed = false;
+                      }
+                      column_last += 3;
+                  }
+                  if((row_passed && grid[row_last] != 0))
+                  {
+                      return grid[row_last];
+                  }
+                  if(column_passed && grid[column_last] != 0)
+                  {
+                      return grid[column_last];
+                  }
+
+
+              }
+
+              return 0;
+          }
+
+
+          function blockClickEvent(eventid)
+          {
+              if(!in_game)
+              {
+                  startGame();
+              }
+
+              var nineties = parseInt(eventid[0]) * 9;
+              var gridID = nineties + parseInt(eventid[1]);
+              if(grid[gridID] != 0)
+              {
+                  return;
+              }
+
+              var img = document.getElementById('content' + eventid);
+              img.src='{% static 'projects/supertictactoe/' %}'+(xturn?'x':'circle')+'.png';
+              img.classList.remove('invisible');
+              grid[gridID] = xturn?1:2;
+              var ans = checkSmallBlock(nineties);
+              if(ans!=0)
+              {
+                  biggrid[nineties/9] = ans;
+
+
+                  //update ui
+                  var cover = document.getElementById('whiteCover'+eventid[0] + '0');
+                  cover.classList.remove('invisible');
+                  var coverimg = document.getElementById('whiteCoverIMG'+eventid[0] + '0');
+                  coverimg.src='{% static 'projects/supertictactoe/' %}' + (xturn?'x':'circle')+'.png';
+                  coverimg.classList.remove('invisible');
+
+                  var winner = checkBigBlock();
+                  if(winner != 0)
+                  {
+                      alert((winner==1)?'x wins':'o wins');
+                      endGame();
+                  }
+              }
+
+              xturn = !xturn;
+              var drawn = checkForDraw();
+              if(drawn)
+              {
+                  endGame();
+              }
+
+              document.getElementById('turnShower').textContent = (xturn?'X':'O');
+          }
+
+          function cleanBoard()
+          {
+              for(let i = 0; i < 9; i++)
+              {
+                  for(let j = 0; j < 9;j++)
+                  {
+                      var img = document.getElementById('content' + i.toString()+j.toString());
+                      img.classList.add('invisible');
+                      img.src='';
+                      grid[i*9+j] = 0;
+                  }
+
+                  var cover = document.getElementById('whiteCover'+i.toString() + '0');
+                  cover.classList.add('invisible');
+                  var coverimg = document.getElementById('whiteCoverIMG'+i.toString() + '0');
+                  coverimg.src='';
+                  coverimg.classList.add('invisible');
+                  biggrid[i] = 0;
+              }
+          }
+
+          function hideText(idPrefix,val)
+          {
+              var oppVal = ((val==1)?2:1);
+              var txt1 = document.getElementById(idPrefix+val.toString());
+              txt1.classList.add('visually-hidden');
+              var txt2 = document.getElementById(idPrefix+oppVal.toString());
+              txt2.classList.remove('visually-hidden');
+          }
+
+          function startGame()
+          {
+              in_game = true;
+              hideText('gameDescript', 1);
+          }
+
+          function endGame()
+          {
+              in_game = false;
+              cleanBoard();
+              hideText('gameDescript',2);
+          }
+
+
+      </script>
+
+  </head>
+  <body>
+
+
+
+
+<main>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <!--<use href="{% static 'imgs/logo.png' %}"/>-->
+                    <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+                </svg>
+                <span class="fs-4">GPE Club</span>
+            </a>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            </ul>
+        </header>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+<div class="px-4 pt-5 my-5 text-center border-bottom">
+<div style="display:flex; margin:0 auto; padding-left:10%; padding-right:10%;">
+
+    <div id="tttcontainer" style="display:inline-block; margin:0 auto;">
+        <div id="tttgrid" class = 'user-select-none'>
+            {% for bigblock in blocks %}
+                <div>
+                    <div id="tttgrid">
+                        {% for block in bigblock %}
+                            <div class = 'user-select-none' onclick="blockClickEvent('{{ block }}')" id="tttblock" >
+                                <img id="content{{ block }}" width="100%" height="100%" class="gridimg user-select-none"/>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class='whiteCover invisible user-select-none' id="whiteCover{{ bigblock.0 }}">
+                        <img id='whiteCoverIMG{{ bigblock.0 }}' class="user-select-none" width="100%" height="100%"/>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div style="display:inline-block; margin:0 auto;" id="gameDescript">
+        <div id = 'gameDescript1'>
+            <h2>how to play:</h2>
+            this is a big 9x9 grid with each 3x3 being a grid. try to take over 3 small grids in a row to win.
+            <hr/>
+            <button onclick="startGame()">Start</button>
+        </div>
+        <div id ='gameDescript2' class="visually-hidden">
+            <!--div style="display:inline; width:30%; height:30%;" class="container"-->
+            It is...
+                <h1 id="turnShower" style="display:flex;">X</h1>
+            <!--/div-->
+                <span style="display:inline;">
+                    's Turn
+                </span>
+        </div>
+    </div>
+</div>
+
+  </div>
+
+  <div class="b-example-divider"></div>
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+            </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+    </footer>
+</div>
+
+</main>
+
+
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
+</html>

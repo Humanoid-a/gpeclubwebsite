@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <script src="{%  static 'assets/js/color-modes.js' %}"></script>
+
+    <meta charset="UTF-8">
+    <title>SuperTicTacToe</title>
+
+    <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"-->
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'basestyles.css' %}" rel="stylesheet">
+    <link href="{% static 'projects/supertictactoe/tictactoestyles.css' %}" rel="stylesheet">
+
+    <style>
+        .whiteCover
+        {
+            opacity:0.8;
+            background:white;
+            width:100%;
+            height:100%;
+            margin-top:-100%;
+        }
+    </style>
+
+    <script>
+        var xturn = true;
+        var grid = [];
+        for(var i = 0; i < 81; i++)
+        {
+            grid[i] = 0;
+        }
+        var biggrid = [];
+        for(var i =0; i < 9; i++)
+        {
+            biggrid[i] = 0;
+        }
+
+        function getTurnTag()
+        {
+            if(xturn)
+            {
+                return 'x';
+            }
+            else{
+                return 'circle';
+            }
+        }
+
+        function checkSmallBlock(blockid)
+        {
+            return checkBlock(blockid, grid);
+        }
+
+        function checkBigBlock()
+        {
+            return checkBlock(0, biggrid);
+        }
+
+        function checkBlock(blockid, grid)
+        {
+            var ldiaglast = blockid;
+            var ldiagpassed = true;
+            var rdiaglast = blockid+2;
+            var rdiagpassed = true;
+
+            for(let i = 0; i < 2; i++)
+            {
+                if(grid[ldiaglast] != grid[ldiaglast + 4])
+                {
+                    ldiagpassed = false;
+                }
+                ldiaglast += 4;
+                if(grid[rdiaglast] != grid[rdiaglast + 2])
+                {
+                    rdiagpassed = false;
+                }
+                rdiaglast += 2;
+            }
+
+            if(ldiagpassed && grid[ldiaglast] != 0)
+            {
+                return grid[ldiaglast];
+            }
+            if(rdiagpassed && grid[rdiaglast] != 0)
+            {
+                return grid[rdiaglast];
+            }
+
+            for(let i =0; i <3; i++)
+            {
+                var row_last = blockid + i*3;
+                var row_passed = true;
+                var column_passed = true;
+                var column_last = blockid + i;
+                for(let j = 0; j < 2; j++)
+                {
+                    if(grid[row_last] != grid[row_last+1])
+                    {
+                        row_passed = false;
+                    }
+                    row_last += 1;
+
+                    if(grid[column_last] != grid[column_last+3])
+                    {
+                        column_passed = false;
+                    }
+                    column_last += 3;
+                }
+                if((row_passed && grid[row_last] != 0))
+                {
+                    return grid[row_last];
+                }
+                if(column_passed && grid[column_last] != 0)
+                {
+                    return grid[column_last];
+                }
+
+
+            }
+
+            return 0;
+        }
+
+
+        function blockClickEvent(eventid)
+        {
+            var nineties = parseInt(eventid[0]) * 9;
+            var gridID = nineties + parseInt(eventid[1]);
+            if(grid[gridID] != 0)
+            {
+                return;
+            }
+
+            var img = document.getElementById('content' + eventid);
+            img.classList.remove('invisible');
+            img.src='{% static 'projects/supertictactoe/' %}'+(xturn?'x':'circle')+'.png';
+            grid[gridID] = xturn?1:2;
+            var ans = checkSmallBlock(nineties);
+            if(ans!=0)
+            {
+                biggrid[nineties/9] = ans;
+
+
+                //update ui
+                var cover = document.getElementById('whiteCover'+eventid[0] + '0');
+                cover.classList.remove('invisible');
+                var coverimg = document.getElementById('whiteCoverIMG'+eventid[0] + '0');
+                coverimg.src='{% static 'projects/supertictactoe/' %}' + (xturn?'x':'circle')+'.png';
+            }
+
+            xturn = !xturn;
+        }
+    </script>
+
+</head>
+<body>
+
+<main>
+    <div id="tttcontainer">
+        <div id="tttgrid" class = 'user-select-none'>
+        {% for bigblock in blocks %}
+            <div>
+                <div id="tttgrid">
+                     {% for block in bigblock %}
+                         <div class = 'user-select-none' onclick="blockClickEvent('{{ block }}')" id="tttblock" >
+                                 <img id="content{{ block }}" width="100%" height="100%" class="gridimg user-select-none"/>
+                         </div>
+                    {% endfor %}
+                </div>
+                <div class='whiteCover invisible user-select-none' id="whiteCover{{ bigblock.0 }}">
+                    <img id='whiteCoverIMG{{ bigblock.0 }}' class="user-select-none" width="100%" height="100%"/>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

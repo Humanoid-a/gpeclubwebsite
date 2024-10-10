@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+      {% load static %}
+      <script src="{%  static 'assets/js/color-modes.js' %}"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>GPE Club</title>
+      <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'basestyles.css' %}" rel="stylesheet">
+
+    <style>
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'heroes.css' %}" rel="stylesheet">
+  </head>
+  <body>
+
+
+
+
+<main>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <!--<use href="{% static 'imgs/logo.png' %}"/>-->
+                    <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+                </svg>
+                <span class="fs-4">GPE Club</span>
+            </a>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="projects/search/" method="get">
+                <div style="display:flex;" class="">
+                    <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/>
+                    <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
+                </div>
+            </form>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+            </ul>
+        </header>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+
+  <h1 class="visually-hidden">Heroes examples</h1>
+
+  <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-4 fw-bold text-body-emphasis">Game Engineering Programming</h1>
+    <div class="col-lg-6 mx-auto">
+        <!--
+      <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+      -->
+        <p class="lead mb-4">
+            Hi ppl of gpe club. This is a random piece of text. LMAO. I will fill this in later with useful stuff. Good Days.
+        </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+        <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Projects</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Login</button>
+      </div>
+    </div>
+    <div class="overflow-hidden" style="max-height: 30vh;">
+      <div class="container px-5">
+        <img src="{% static 'imgs/mygame.png' %}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <div class="b-example-divider"></div>
+
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 Company, Inc</p>
+
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+            </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+    </footer>
+</div>
+
+</main>
+
+
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
+</html>
