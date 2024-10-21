@@ -11,3 +11,4 @@ class Project(models.Model):
     #project_cover = models.ImageField(null=True, upload_to='img/')
     project_cover = models.CharField(max_length=256, default='imgs/logo.png')
     project_description = models.TextField()
+

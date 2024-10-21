@@ -25,3 +25,13 @@ models.Project.objects.create(
     project_description='super tictactoe!',
     project_cover=project_cover_path('1.png'),
 )
+
+#photo1
+models.Project.objects.create(
+    project_id=0,
+    project_name='photo1',
+    project_url='projects/photo1/',
+    project_version='1.0.0',
+    project_description='Mamba',
+    project_cover=project_cover_path('1.png'),
+)
