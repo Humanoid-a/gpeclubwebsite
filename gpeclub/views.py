@@ -16,6 +16,9 @@ def header(request):
     return render(request,'header.html')
 
 import IndividualProjects.superticktacktoe.localviews as superttt
+import IndividualProjects.photo1.localviews as photo1
+
 def supertictactoe(request):
     return superttt.view_index(request)
-
+def photo1(request):
+    return photo1.view_index(request)
