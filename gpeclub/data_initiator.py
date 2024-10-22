@@ -35,3 +35,10 @@ models.Project.objects.create(
     project_description='Miniature world',
     project_cover=project_cover_path('2.png'),
 )
+
+
+"""
+python manage.py shell
+import gpeclub.data_initiator
+quit(
+"""

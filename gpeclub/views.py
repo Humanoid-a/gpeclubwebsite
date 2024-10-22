@@ -20,5 +20,6 @@ import IndividualProjects.photo1.localviews as photo1
 
 def supertictactoe(request):
     return superttt.view_index(request)
+
 def photo1(request):
-    return photo1.view_index(request)
+    return photo1
