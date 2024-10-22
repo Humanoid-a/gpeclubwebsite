@@ -29,9 +29,9 @@ models.Project.objects.create(
 #photo1
 models.Project.objects.create(
     project_id=0,
-    project_name='photo1',
+    project_name='Photo Album 1',
     project_url='projects/photo1/',
     project_version='1.0.0',
-    project_description='Mamba',
-    project_cover=project_cover_path('1.png'),
+    project_description='Miniature world',
+    project_cover=project_cover_path('2.png'),
 )

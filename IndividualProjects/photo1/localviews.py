@@ -8,7 +8,7 @@ from django.http import HttpResponse
 
 webtemplate = get_template('projects/photo1/index.html')
 
-
+"""
 render_context = {
     'blocks':list(map(lambda i: list(map(lambda j: str(i) + str(j), range(9))),range(9)))
 }
@@ -16,3 +16,4 @@ render_context = {
 
 def view_index(request):
     return HttpResponse(webtemplate.render(render_context))
+"""
