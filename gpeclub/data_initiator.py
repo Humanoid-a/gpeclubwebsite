@@ -36,9 +36,17 @@ models.Project.objects.create(
     project_cover=project_cover_path('2.png'),
 )
 
+models.Project.objects.create(
+    project_id=2,
+    project_name='Trigonomis',
+    project_url='projects/trigonomis/',
+    project_version='1.0.0',
+    project_description='GPE Interactive Presents',
+    project_cover=project_cover_path('3.png'),
+)
 
 """
 python manage.py shell
 import gpeclub.data_initiator
-quit(
+quit()
 """

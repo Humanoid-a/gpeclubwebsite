@@ -17,9 +17,13 @@ def header(request):
 
 import IndividualProjects.superticktacktoe.localviews as superttt
 import IndividualProjects.photo1.localviews as photo1
+import IndividualProjects.trigonomis.localviews as trigonomis1
 
 def supertictactoe(request):
     return superttt.view_index(request)
 
 def photo(request):
     return photo1.view_index(request)
+
+def trigonomis(request):
+    return trigonomis1.view_index(request)
