@@ -27,33 +27,33 @@
 
 
 <main>
-<div class="shadow" style="width:100%;">
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <!--<use href="{% static 'imgs/logo.png' %}"/>-->
-                    <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
-                </svg>
-                <span class="fs-4">GPE Club</span>
-            </a>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="projects/search/" method="get">
-                <div style="display:flex;" class="">
-                    <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/>
-                    <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
-                </div>
-            </form>
-
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="projects/search/" class="nav-link">Projects</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-            </ul>
-        </header>
+    <div class="shadow" style="width:100%;">
+        <div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32">
+                        <!--<use href="{% static 'imgs/logo.png' %}"/>-->
+                        <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+                    </svg>
+                    <span class="fs-4">GPE Club</span>
+                </a>
+    
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="projects/search/" method="get">
+                    <div style="display:flex;" class="">
+                        <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
+                        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/>
+                        <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
+                    </div>
+                </form>
+    
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="projects/search/" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="templates/about.html" class="nav-link">About</a></li>
+                </ul>
+            </header>
+        </div>
     </div>
-</div>
 
 
      <div class="px-4 pt-5 my-5 text-center border-bottom">
@@ -97,9 +97,9 @@
 
         <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+            <li class="nav-item"><a href="" class="nav-link px-2 text-body-secondary">Features</a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            <li class="nav-item"><a href="templates/about.html" class="nav-link px-2 text-body-secondary">About</a></li>
         </ul>
     </footer>
 </div>

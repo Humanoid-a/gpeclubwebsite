@@ -15,15 +15,18 @@ def index(request):
 def header(request):
     return render(request,'header.html')
 
+def about(request):
+    return render(request,'about.html')
+
 import IndividualProjects.superticktacktoe.localviews as superttt
-import IndividualProjects.photo1.localviews as photo1
+import IndividualProjects.photo1.localviews as photo
 import IndividualProjects.trigonomis.localviews as trigonomis1
 
 def supertictactoe(request):
     return superttt.view_index(request)
 
-def photo(request):
-    return photo1.view_index(request)
+def photo1(request):
+    return photo.view_index(request)
 
 def trigonomis(request):
     return trigonomis1.view_index(request)
