@@ -11,5 +11,6 @@ urlpatterns = [
     path('projects/photo1/', views.photo1, name="photo1"),
     path('projects/trigonomis/', views.trigonomis, name="trigonomis"),
 
-    path('templates/about.html', views.about, name="about"),
+    path('projects/about/', views.about, name="about"),
+    path('projects/school/', views.school, name="school"),
 ]
