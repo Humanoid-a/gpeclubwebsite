@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render
+from datetime import datetime
 
 
 def index(request):
@@ -26,7 +27,11 @@ def supertictactoe(request):
     return superttt.view_index(request)
 
 def photo1(request):
-    return photo.view_index(request)
+    return render(request,'projects/photo1/index.html')
 
 def trigonomis(request):
-    return trigonomis1.view_index(request)
+    return render(request,'projects/trigonomis/index.html')
+
+def index(request):
+    current_date = datetime.now()
+    return render(request, 'index.html', {'current_date': current_date})
