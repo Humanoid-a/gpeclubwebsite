@@ -51,7 +51,7 @@ models.Project.objects.create(
     project_url='projects/invective/',
     project_version='1.0.0',
     project_description='By Will | Week 1',
-    project_cover=project_cover_path('4.png'),
+    project_cover=project_cover_path('4.jpg'),
 )
 
 """
