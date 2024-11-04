@@ -38,6 +38,9 @@ def photo1(request):
 def trigonomis(request):
     return render(request,'projects/trigonomis/index.html')
 
+def invective(request):
+    return render(request,'projects/invective/index.html')
+
 def index(request):
     current_date = datetime.now()
     return render(request, 'index.html', {'current_date': current_date})

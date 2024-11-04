@@ -45,6 +45,15 @@ models.Project.objects.create(
     project_cover=project_cover_path('3.png'),
 )
 
+models.Project.objects.create(
+    project_id=3,
+    project_name='Invective',
+    project_url='projects/invective/',
+    project_version='1.0.0',
+    project_description='By Will | Week 1',
+    project_cover=project_cover_path('4.png'),
+)
+
 """
 python manage.py shell
 import gpeclub.data_initiator

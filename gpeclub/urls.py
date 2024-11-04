@@ -10,6 +10,7 @@ urlpatterns = [
     path('projects/supertictactoe/', views.supertictactoe, name="supertictactoe"),
     path('projects/photo1/', views.photo1, name="photo1"),
     path('projects/trigonomis/', views.trigonomis, name="trigonomis"),
+    path('projects/invective/', views.invective, name="invective"),
 
     path('projects/about/', views.about, name="about"),
     path('projects/school/', views.school, name="school"),
