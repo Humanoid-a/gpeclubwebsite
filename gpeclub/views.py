@@ -20,9 +20,11 @@ def header(request):
 def about(request):
     return render(request,'about.html')
 
+from django.shortcuts import render
 def school(request):
     current_date = datetime.now()
-    return render(request, 'school.html', {'current_date': current_date})
+    login_response = request.session.get('login_response', 'No response')
+    return render(request, 'school.html', {'current_date': current_date, 'login_response': login_response})
 
 
 import IndividualProjects.superticktacktoe.localviews as superttt
@@ -44,3 +46,5 @@ def invective(request):
 def index(request):
     current_date = datetime.now()
     return render(request, 'index.html', {'current_date': current_date})
+
+
