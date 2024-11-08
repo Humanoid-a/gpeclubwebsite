@@ -10,129 +10,169 @@ body {
 }
 li {
 	/* 清除li元素前面的项目符号 */
-	list-style: none;
+	list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
+ul {
+	/* 清除li元素前面的项目符号 */
+	list-style: none !important;
+
+}
+ol {
+	/* 清除li元素前面的项目符号 */
+	list-style: none !important;
+
+}
+
+
 a {
 	/* 清除a元素的下划线 */
-	text-decoration: none;
-	color: #000;
+	text-decoration: none !important;
+
 }
-.navbar {
-	width: 100%;
-	height: 70px;
-	background-color: #fff;
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #222529;
+    --text-color: #ffffff;
+  }
+}
+
+.navbar1 {
+
+	width: 100% !important;
+	height: 70px !important;
+	background-color: var(--background-color) !important;
 	/* 盒子阴影 */
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
 }
-.navbar .nav {
-	width: 1200px;
-	height: 100%;
+.navbar1 .nav1 {
+	width: 1200px !important;
+	height: 100% !important;
 	/* 让元素自动水平居中 */
-	margin: 0 auto;
+	margin: 0 auto !important;
+
 }
-.navbar .nav ul {
+.navbar1 .nav1 ul {
+
 	/* 相对定位 */
-	position: relative;
+	position: relative !important;
 	/* 弹性布局 */
-	display: flex;
+	display: flex !important;
 	/* 让子元素平均分配宽度 */
-	justify-content: space-around;
-	width: 100%;
-	height: 100%;
+	justify-content: space-around !important;
+	width: 100% !important;
+	height: 100% !important;
+	margin: 0 !important;
+    padding: 0 !important;
 }
-.navbar .nav ul > li {
-	width: 100%;
-	height: 100%;
+.navbar1 .nav1 ul > li {
+	width: 100% !important;
+	height: 100% !important;
+
 }
-.navbar .nav ul > li > a {
+.navbar1 .nav1 ul > li > a {
 	/* 因为a元素是行内元素 必须将其转为行内块或者块级才能设置宽度和高度 */
-	display: block;
-	width: 100%;
-	height: 100%;
-	line-height: 70px;
-	text-align: center;
+	display: block !important;
+
+	width: 100% !important;
+	height: 100% !important;
+	line-height: 70px !important;
+	text-align: center !important;
+	color: var(--text-color) !important;
+	margin: 0 !important;
 }
-.navbar .nav ul > li ol {
-	width: 100%;
-	background-color: #fff;
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+.navbar1 .nav1 ul > li ol {
+	margin: auto 0 !important;
+	width: 100% !important;
+	background-color: var(--background-color) !important;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2) !important;
 	/* 让盒子先沿着y轴缩放到0 也就是隐藏了 */
-	transform: scaleY(0);
+	transform: scaleY(0) !important;
 	/* 我们需要将盒子从上面滑动下来 设置一下缩放的中心点即可 设置到最上面的中间位置 */
-	transform-origin: 50% 0;
+	transform-origin: 50% 0 !important;
 	/* 设置过渡 */
-	transition: all 0.6s;
+	transition: all 0.6s !important;
+    padding: 0 !important;
 }
-.navbar .nav ul > li ol li {
-	height: 70px;
-	border-bottom: 1px solid rgb(245, 245, 245);
+.navbar1 .nav1 ul > li ol li {
+	height: 70px !important;
+	border-bottom: 1px solid var(--background-color) !important;
 }
-.navbar .nav ul > li ol li a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	line-height: 70px;
-	text-align: center;
+.navbar1 .nav1 ul > li ol li a {
+	display: block !important;
+	width: 100% !important;
+	height: 100% !important;
+	line-height: 70px ;
+	text-align: center !important;
+	color: var(--text-color) !important;
+
 }
-.navbar .nav ul > li ol li:hover {
-	background-color: rgba(0, 0, 0, 0.03);
+.navbar1 .nav1 ul > li ol li:hover {
+	background-color: rgba(0, 0, 0, 0.03) !important;
 }
-.navbar .nav ul > li:hover ol {
-	transform: scaleY(1);
+.navbar1 .nav1 ul > li:hover ol {
+	transform: scaleY(1) !important;
 }
 /* 现在可以设置线条了 */
-.navbar .nav ul .underline {
+.navbar1 .nav1 ul .underline {
 	/* 绝对定位 */
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 240px;
-	height: 6px;
+	position: absolute !important;
+	bottom: 0 !important;
+	left: 0 !important;
+	width: 240px !important;
+	height: 6px !important;
 	/* 设置一下盒子的左上角和右上角的圆角 */
-	border-top-left-radius: 6px;
-	border-top-right-radius: 6px;
-	background-color: #cc3333;
+	border-top-left-radius: 6px !important;
+	border-top-right-radius: 6px !important;
+	background-color: #cc3333 !important;
 	/* 加过渡 */
-	transition: all 0.5s;
+	transition: all 0.5s !important;
 	/* 现在有个小问题 我们一起看看 ne
   /* 就是这个问题 这个线条有点影响鼠标移入li这个效果 */
 	/* 这个属性就可以解决这个问题 就貌似这个元素你能看见 但是鼠标是点击不到了 现在鼠标放到线条也没事了 */
-	pointer-events: none;
+	pointer-events: none !important;
 }
-.navbar .nav ul .underline::before {
-	content: "";
+.navbar1 .nav1 ul .underline::before {
+	content: "" !important;
 	/* 利用::before伪元素设置三角 */
-	position: absolute;
-	top: -10px;
+	position: absolute !important;
+	top: -10px !important;
 	/* calc方法自动计算数值 让盒子居中 */
-	left: calc(50% - 9px);
-	width: 18px;
-	height: 10px;
+	left: calc(50% - 9px) !important;
+	width: 18px !important;
+	height: 10px !important;
 	/* inherit可以继承父元素的属性值 */
-	background-color: inherit;
+	background-color: inherit !important;
 	/* 各位小伙伴可能对着属性比较陌生 我简单说一下这句话如何生成了三角形 这个属性可以绘制图案 polygon这个属性只需要提供最少三个点 就可以将三个点连接到一起 然后绘制一个图案  两个点的坐标位置(x,y) 0 100% 这个点就是说在x轴上为0px 在y轴是100% 就是盒子的高度 x轴的方向是向右 y轴的方向是向下 那么我们设置了三个点 然后将三个点连起来刚好绘制出一个三角形 不明白的小伙伴可以在纸上画一下 画出来就理解了 */
-	clip-path: polygon(0 100%, 50% 0, 100% 100%);
+	clip-path: polygon(0 100%, 50% 0, 100% 100%) !important;
 }
-.navbar .nav ul > li:nth-child(2):hover ~ .underline {
-	left: 240px;
-	background-color: #ff9933;
+.navbar1 .nav1 ul > li:nth-child(2):hover ~ .underline {
+	left: 240px !important;
+	background-color: #ff9933 !important;
 }
 /* 重复以上操作 */
-.navbar .nav ul > li:nth-child(3):hover ~ .underline {
-	left: 480px;
-	background-color: #339933;
+.navbar1 .nav1 ul > li:nth-child(3):hover ~ .underline {
+	left: 480px !important;
+	background-color: #339933 !important;
 }
-.navbar .nav ul > li:nth-child(4):hover ~ .underline {
-	left: 720px;
-	background-color: #0099cc;
+.navbar1 .nav1 ul > li:nth-child(4):hover ~ .underline {
+	left: 720px !important;
+	background-color: #0099cc !important;
 }
-.navbar .nav ul > li:nth-child(5):hover ~ .underline {
-	left: 960px;
-	background-color: #9966cc;
+.navbar1 .nav1 ul > li:nth-child(5):hover ~ .underline {
+	left: 960px !important;
+	background-color: #9966cc !important;
 }
 body{
 	font-family: 得意黑;
-	text-shadow:4px 4px 8px #4278bf;
+	/* text-shadow:4px 4px 8px #4278bf; */
 }
 
 p,h3 {
@@ -253,6 +293,7 @@ h1,h2,table,.top {
 	width: 3500px;
 	height: 500px;
 	transition: all 0.5s;
+
 }
 
 .tab_Content ul li {
@@ -409,7 +450,7 @@ h1,h2,table,.top {
 }
 
 
-.container {
+.container1 {
 	width: 530px;
 	height: 160px;
 	padding: 30px;
@@ -419,12 +460,12 @@ h1,h2,table,.top {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
 }
 
-.container h1 {
+.container1 h1 {
 	font-size: 18px;
 	color: var(--greatColor);
 }
 
-.container .appraise {
+.container1 .appraise {
 	display: flex;
 	/* 元素两端对齐 */
 	justify-content: space-between;
@@ -433,20 +474,20 @@ h1,h2,table,.top {
 	margin-top: 30px;
 }
 
-.container .appraise .icon {
+.container1 .appraise .icon {
 	overflow: hidden;
 	width: 40px;
 	height: 40px;
 }
 
-.container .appraise .icon .icon-list {
+.container1 .appraise .icon .icon-list {
 	/* 取消li前面的小黑点 */
 	list-style: none;
 	/* 过渡看自己加不加 */
 	transition: all 0.5s;
 }
 
-.container .appraise .icon .icon-list li {
+.container1 .appraise .icon .icon-list li {
 	/* 溢出隐藏 */
 	overflow: hidden;
 	/* 相对定位 */
@@ -458,22 +499,22 @@ h1,h2,table,.top {
 	border: 4px solid var(--badColor);
 }
 
-.container .appraise .icon .icon-list li::before,
-.container .appraise .icon .icon-list li::after {
+.container1 .appraise .icon .icon-list li::before,
+.container1 .appraise .icon .icon-list li::after {
 	content: "";
 	/* 绝对定位 */
 	position: absolute;
 }
 
 /* 封装一下嘴的样式 start */
-.container .appraise .icon .icon-list li .mouth {
+.container1 .appraise .icon .icon-list li .mouth {
 	position: absolute;
 	left: 6px;
 	width: 20px;
 	height: 16px;
 	border-radius: 50%;
 }
-.container .appraise .icon .icon-list li .mouth::before {
+.container1 .appraise .icon .icon-list li .mouth::before {
 	content: "";
 	position: absolute;
 	width: 20px;
@@ -484,8 +525,8 @@ h1,h2,table,.top {
 
 /* 表情1 start */
 /* 眉毛 start */
-.container .appraise .icon .icon-list .icon-bad .eyebrow,
-.container .appraise .icon .icon-list .icon-bad .eyebrow::before {
+.container1 .appraise .icon .icon-list .icon-bad .eyebrow,
+.container1 .appraise .icon .icon-list .icon-bad .eyebrow::before {
 	/* 绝对定位 */
 	position: absolute;
 	top: 6px;
@@ -498,7 +539,7 @@ h1,h2,table,.top {
 	/* 旋转 */
 	transform: rotate(-12deg);
 }
-.container .appraise .icon .icon-list .icon-bad .eyebrow::before {
+.container1 .appraise .icon .icon-list .icon-bad .eyebrow::before {
 	content: "";
 	top: 0;
 	left: 14px;
@@ -506,7 +547,7 @@ h1,h2,table,.top {
 }
 /* 眉毛 end */
 /* 眼睛 start */
-.container .appraise .icon .icon-list .icon-bad::before {
+.container1 .appraise .icon .icon-list .icon-bad::before {
 	top: 10px;
 	left: 8px;
 	border-radius: 50%;
@@ -515,11 +556,11 @@ h1,h2,table,.top {
 }
 /* 眼睛 end */
 /* 嘴 start */
-.container .appraise .icon .icon-list .icon-bad .mouth {
+.container1 .appraise .icon .icon-list .icon-bad .mouth {
 	bottom: -4px;
 	border: 2px solid var(--badColor);
 }
-.container .appraise .icon .icon-list .icon-bad .mouth::before {
+.container1 .appraise .icon .icon-list .icon-bad .mouth::before {
 	left: -2px;
 	bottom: -2px;
 }
@@ -527,11 +568,11 @@ h1,h2,table,.top {
 /* 表情1 end */
 
 /* 表情2 start */
-.container .appraise .icon .icon-list .icon-ok {
+.container1 .appraise .icon .icon-list .icon-ok {
 	border-color: var(--okColor);
 }
 /* 眼睛 start */
-.container .appraise .icon .icon-list .icon-ok::before {
+.container1 .appraise .icon .icon-list .icon-ok::before {
 	top: 6px;
 	left: 6px;
 	border-radius: 50%;
@@ -540,7 +581,7 @@ h1,h2,table,.top {
 }
 /* 眼睛 end */
 /* 嘴 start */
-.container .appraise .icon .icon-list .icon-ok::after {
+.container1 .appraise .icon .icon-list .icon-ok::after {
 	bottom: 6px;
 	right: 6px;
 	width: 12px;
@@ -552,11 +593,11 @@ h1,h2,table,.top {
 /* 表情2 end */
 
 /* 表情3 start */
-.container .appraise .icon .icon-list .icon-good {
+.container1 .appraise .icon .icon-list .icon-good {
 	border-color: var(--goodColor);
 }
 /* 眼睛 start */
-.container .appraise .icon .icon-list .icon-good::before {
+.container1 .appraise .icon .icon-list .icon-good::before {
 	top: 8px;
 	left: 6px;
 	border-radius: 50%;
@@ -567,11 +608,11 @@ h1,h2,table,.top {
 }
 /* 眼睛 end */
 /* 嘴 start */
-.container .appraise .icon .icon-list .icon-good .mouth {
+.container1 .appraise .icon .icon-list .icon-good .mouth {
 	bottom: 4px;
 	border: 2px solid var(--goodColor);
 }
-.container .appraise .icon .icon-list .icon-good .mouth::before {
+.container1 .appraise .icon .icon-list .icon-good .mouth::before {
 	left: -2px;
 	top: -2px;
 }
@@ -579,12 +620,12 @@ h1,h2,table,.top {
 /* 表情3 end */
 
 /* 表情4 start */
-.container .appraise .icon .icon-list .icon-great {
+.container1 .appraise .icon .icon-list .icon-great {
 	border-color: var(--greatColor);
 }
 /* 眼睛 start */
-.container .appraise .icon .icon-list .icon-great::before,
-.container .appraise .icon .icon-list .icon-great::after {
+.container1 .appraise .icon .icon-list .icon-great::before,
+.container1 .appraise .icon .icon-list .icon-great::after {
 	top: 6px;
 	left: 6px;
 	width: 9px;
@@ -605,12 +646,12 @@ h1,h2,table,.top {
 	);
 	z-index: 88;
 }
-.container .appraise .icon .icon-list .icon-great::after {
+.container1 .appraise .icon .icon-list .icon-great::after {
 	left: 17px;
 }
 /* 眼睛 end */
 /* 嘴 start */
-.container .appraise .icon .icon-list .icon-great .mouth {
+.container1 .appraise .icon .icon-list .icon-great .mouth {
 	bottom: 4px;
 	background-color: var(--greatColor);
 }
@@ -618,7 +659,7 @@ h1,h2,table,.top {
 /* 表情4 end */
 
 /* 滑动条 start */
-.container .appraise input {
+.container1 .appraise input {
 	/* 取消元素的原有样式 */
 	-webkit-appearance: none;
 	width: 390px;
@@ -628,7 +669,7 @@ h1,h2,table,.top {
 /* 滑动条 end */
 
 /* 滑动块 start */
-.container .appraise input::-webkit-slider-thumb {
+.container1 .appraise input::-webkit-slider-thumb {
 	-webkit-appearance: none;
 	width: 30px;
 	height: 30px;
