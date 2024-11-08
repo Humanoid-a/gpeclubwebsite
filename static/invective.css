@@ -1,0 +1,1008 @@
+* {
+	/* 页面初始化 清除元素的内外边距 */
+	padding: 0;
+	margin: 0;
+}
+body {
+	/* 宽度占浏览器可视区域的高度 */
+	width: 100vm;
+	background-color: #f2f2f2;
+}
+li {
+	/* 清除li元素前面的项目符号 */
+	list-style: none;
+}
+a {
+	/* 清除a元素的下划线 */
+	text-decoration: none;
+	color: #000;
+}
+.navbar {
+	width: 100%;
+	height: 70px;
+	background-color: #fff;
+	/* 盒子阴影 */
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.navbar .nav {
+	width: 1200px;
+	height: 100%;
+	/* 让元素自动水平居中 */
+	margin: 0 auto;
+}
+.navbar .nav ul {
+	/* 相对定位 */
+	position: relative;
+	/* 弹性布局 */
+	display: flex;
+	/* 让子元素平均分配宽度 */
+	justify-content: space-around;
+	width: 100%;
+	height: 100%;
+}
+.navbar .nav ul > li {
+	width: 100%;
+	height: 100%;
+}
+.navbar .nav ul > li > a {
+	/* 因为a元素是行内元素 必须将其转为行内块或者块级才能设置宽度和高度 */
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 70px;
+	text-align: center;
+}
+.navbar .nav ul > li ol {
+	width: 100%;
+	background-color: #fff;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+	/* 让盒子先沿着y轴缩放到0 也就是隐藏了 */
+	transform: scaleY(0);
+	/* 我们需要将盒子从上面滑动下来 设置一下缩放的中心点即可 设置到最上面的中间位置 */
+	transform-origin: 50% 0;
+	/* 设置过渡 */
+	transition: all 0.6s;
+}
+.navbar .nav ul > li ol li {
+	height: 70px;
+	border-bottom: 1px solid rgb(245, 245, 245);
+}
+.navbar .nav ul > li ol li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 70px;
+	text-align: center;
+}
+.navbar .nav ul > li ol li:hover {
+	background-color: rgba(0, 0, 0, 0.03);
+}
+.navbar .nav ul > li:hover ol {
+	transform: scaleY(1);
+}
+/* 现在可以设置线条了 */
+.navbar .nav ul .underline {
+	/* 绝对定位 */
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 240px;
+	height: 6px;
+	/* 设置一下盒子的左上角和右上角的圆角 */
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	background-color: #cc3333;
+	/* 加过渡 */
+	transition: all 0.5s;
+	/* 现在有个小问题 我们一起看看 ne
+  /* 就是这个问题 这个线条有点影响鼠标移入li这个效果 */
+	/* 这个属性就可以解决这个问题 就貌似这个元素你能看见 但是鼠标是点击不到了 现在鼠标放到线条也没事了 */
+	pointer-events: none;
+}
+.navbar .nav ul .underline::before {
+	content: "";
+	/* 利用::before伪元素设置三角 */
+	position: absolute;
+	top: -10px;
+	/* calc方法自动计算数值 让盒子居中 */
+	left: calc(50% - 9px);
+	width: 18px;
+	height: 10px;
+	/* inherit可以继承父元素的属性值 */
+	background-color: inherit;
+	/* 各位小伙伴可能对着属性比较陌生 我简单说一下这句话如何生成了三角形 这个属性可以绘制图案 polygon这个属性只需要提供最少三个点 就可以将三个点连接到一起 然后绘制一个图案  两个点的坐标位置(x,y) 0 100% 这个点就是说在x轴上为0px 在y轴是100% 就是盒子的高度 x轴的方向是向右 y轴的方向是向下 那么我们设置了三个点 然后将三个点连起来刚好绘制出一个三角形 不明白的小伙伴可以在纸上画一下 画出来就理解了 */
+	clip-path: polygon(0 100%, 50% 0, 100% 100%);
+}
+.navbar .nav ul > li:nth-child(2):hover ~ .underline {
+	left: 240px;
+	background-color: #ff9933;
+}
+/* 重复以上操作 */
+.navbar .nav ul > li:nth-child(3):hover ~ .underline {
+	left: 480px;
+	background-color: #339933;
+}
+.navbar .nav ul > li:nth-child(4):hover ~ .underline {
+	left: 720px;
+	background-color: #0099cc;
+}
+.navbar .nav ul > li:nth-child(5):hover ~ .underline {
+	left: 960px;
+	background-color: #9966cc;
+}
+body{
+	font-family: 得意黑;
+	text-shadow:4px 4px 8px #4278bf;
+}
+
+p,h3 {
+	animation-duration: 3s;
+	animation-name: slidein;
+}
+h1{
+	font-size: 50px;
+}
+p {
+	font-size: 24px;
+}
+
+h3{
+	font-size: 40px;
+	font-family: "Chill Bitmap 7px";
+}
+
+@keyframes slidein {
+	from {
+		margin-left: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-left: 0%;
+		width: 100%;
+	}
+}
+
+img {
+	animation-duration: 3s;
+	animation-name: slidein;
+}
+
+@keyframes slidein {
+	from {
+		margin-left: 100%;
+	}
+
+	to {
+		margin-left: 0%;
+	}
+}
+.small-block {
+	overflow: scroll;
+}
+h1,h2,table,.top {
+	animation-duration: 3s;
+	animation-name: scroll-down;
+}
+
+@keyframes scroll-down {
+	from {
+		margin-right: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-right: 0%;
+		width: 100%;
+	}
+
+}
+.box {
+	-webkit-transition:width 2s, height 2s,
+	background-color 2s, -webkit-transform 2s;
+	transition:width 2s, height 2s, background-color 2s, transform 2s;
+}
+.box:hover {
+	transform:scale(150%);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	gap: 24px
+}
+
+
+.tab_Content {
+	width: 800px;
+	height: 500px;
+	color: #607291;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.tab_Content input {
+	display: none;
+}
+
+.tab_Content label {
+	float: left;
+	width: 266px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: 700;
+	text-align: center;
+	font-size: 14px;
+	background-color: #e5e9ea;
+	transition: all 0.3s;
+}
+
+.tab_Content label img {
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	margin-top: -5px;
+}
+
+.tab_Content label:hover {
+	background-color: #fff;
+}
+
+.tab_Content ul {
+	clear: both;
+	width: 3500px;
+	height: 500px;
+	transition: all 0.5s;
+}
+
+.tab_Content ul li {
+	float: left;
+	list-style-type: none;
+	width: 700px;
+	height: 100%;
+	padding: 40px;
+}
+
+.tab_Content ul li img {
+	float: left;
+	width: 130px;
+	height: 130px;
+	margin-right: 20px;
+}
+
+.tab_Content ul li p {
+	/* 文字溢出隐藏 */
+	/* 超出内容显示为省略号 */
+	/* 将对象作为弹性伸缩盒子模型显示 */
+	display: -webkit-box;
+	/* 从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式） */
+	-webkit-box-orient: vertical;
+	/* 这个属性不是css的规范属性，需要组合上面两个属性，表示显示的行数。 */
+	-webkit-line-clamp: 3;
+	margin-top: 20px;
+}
+
+.tab_Content #tab_list1:checked~ul {
+	margin-left: 0;
+}
+
+.tab_Content #tab_list2:checked~ul {
+	margin-left: -800px;
+}
+
+.tab_Content #tab_list3:checked~ul {
+	margin-left: -1575px;
+}
+
+.tab_Content #tab_list1:checked~label[for="tab_list1"] {
+	background-color: #fff;
+}
+
+.tab_Content #tab_list2:checked~label[for="tab_list2"] {
+	background-color: #fff;
+}
+
+.tab_Content #tab_list3:checked~label[for="tab_list3"] {
+	background-color: #fff;
+}
+
+.tab_Content #tab_list11:checked~ul {
+	margin-left: 0;
+}
+
+.tab_Content #tab_list22:checked~ul {
+	margin-left: -800px;
+}
+.tab_Content #tab_list11:checked~label[for="tab_list1"] {
+	background-color: #fff;
+}
+
+.tab_Content #tab_list22:checked~label[for="tab_list2"] {
+	background-color: #fff;
+}
+
+.button {
+	/* 弹性布局 让页面元素垂直+水平居中 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* 让子元素垂直排列 */
+	flex-direction: column;
+	/* 宽度占浏览器可视窗口总宽度 高度占浏览器可视区域总高度 */
+	width: 100px;
+	height: 100px;
+}
+.button a {
+	/* 相对定位 */
+	left: 370px;
+	position: relative;
+	/* 将a这个行内元素转为块级元素不然无法设置宽和高 */
+	display: block;
+	width: 140px;
+	height: 60px;
+	/* 行高 */
+	line-height: 60px;
+	text-align: center;
+	margin: 40px;
+	color: aqua;
+	font-size: 20px;
+	/* 取消下划线 */
+	text-decoration: none;
+	/* 加一下一些过渡事件 */
+	transition: all 0.3s ease-in-out;
+	/* 重头戏来了,改变各个元素的颜色,一句话就能搞定 */
+	/* hue-rotate是颜色滤镜 可以加不同的度数来改变颜色
+  这里我们用了calc自动计算的方法,还有var函数来调用我们给每一个a设置的不同的属性值1~5,然后分别乘以60度,就能够分别得到不同的度数 */
+	filter: hue-rotate(calc(var(--i) * 60deg));
+}
+.button a::before,
+.button a::after {
+	/* 将两个伪元素的相同部分写在一起 */
+	content: "";
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border: 2px solid aqua;
+	/* 最后的.3s是延迟时间 */
+	transition: all 0.3s ease-in-out 0.3s;
+}
+.button a::before {
+	top: 0;
+	left: 0;
+	/* 删除左边的伪元素的右和下边框 */
+	border-right: 0;
+	border-bottom: 0;
+}
+.button a::after {
+	right: 0;
+	bottom: 0;
+	/* 删除右边的伪元素的上边和左边的边框 */
+	border-top: 0;
+	border-left: 0;
+}
+.button a:hover {
+	background-color: aqua;
+	color: #000;
+	/* 加个发光效果和下面的倒影 */
+	/* 模糊度加到了50px */
+	box-shadow: 0 0 50px aqua;
+	/* below 是下倒影 1px是倒影的元素相隔的距离 最后是个渐变的颜色 */
+	-webkit-box-reflect: below 1px
+	linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+	/* 设置一下以上属性的延迟时间 */
+	transition-delay: 0.4s;
+}
+/* 在设置两条线的变化 总体来说四条各个方向的 只需要改变一下两个伪元素的宽度和高度 */
+.button a:hover::before,
+.button a:hover::after {
+	width: 138px;
+	height: 58px;
+	transition-delay: 0s;
+}
+
+:root {
+	--bgColor: #ebf4ff;
+	--badColor: #ff5722;
+	--okColor: #ff9800;
+	--goodColor: #36d896;
+	--greatColor: #3f51b5;
+}
+
+
+.container {
+	width: 530px;
+	height: 160px;
+	padding: 30px;
+	border-radius: 20px;
+	background-color: #fff;
+	/* 阴影 */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.container h1 {
+	font-size: 18px;
+	color: var(--greatColor);
+}
+
+.container .appraise {
+	display: flex;
+	/* 元素两端对齐 */
+	justify-content: space-between;
+	align-items: center;
+	height: 40px;
+	margin-top: 30px;
+}
+
+.container .appraise .icon {
+	overflow: hidden;
+	width: 40px;
+	height: 40px;
+}
+
+.container .appraise .icon .icon-list {
+	/* 取消li前面的小黑点 */
+	list-style: none;
+	/* 过渡看自己加不加 */
+	transition: all 0.5s;
+}
+
+.container .appraise .icon .icon-list li {
+	/* 溢出隐藏 */
+	overflow: hidden;
+	/* 相对定位 */
+	position: relative;
+	width: 40px;
+	height: 40px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	border: 4px solid var(--badColor);
+}
+
+.container .appraise .icon .icon-list li::before,
+.container .appraise .icon .icon-list li::after {
+	content: "";
+	/* 绝对定位 */
+	position: absolute;
+}
+
+/* 封装一下嘴的样式 start */
+.container .appraise .icon .icon-list li .mouth {
+	position: absolute;
+	left: 6px;
+	width: 20px;
+	height: 16px;
+	border-radius: 50%;
+}
+.container .appraise .icon .icon-list li .mouth::before {
+	content: "";
+	position: absolute;
+	width: 20px;
+	height: 8px;
+	background-color: #fff;
+}
+/* 封装一下嘴的样式 end */
+
+/* 表情1 start */
+/* 眉毛 start */
+.container .appraise .icon .icon-list .icon-bad .eyebrow,
+.container .appraise .icon .icon-list .icon-bad .eyebrow::before {
+	/* 绝对定位 */
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 8px;
+	height: 3px;
+	/* 圆角 */
+	border-radius: 3px;
+	background-color: var(--badColor);
+	/* 旋转 */
+	transform: rotate(-12deg);
+}
+.container .appraise .icon .icon-list .icon-bad .eyebrow::before {
+	content: "";
+	top: 0;
+	left: 14px;
+	transform: rotate(20deg);
+}
+/* 眉毛 end */
+/* 眼睛 start */
+.container .appraise .icon .icon-list .icon-bad::before {
+	top: 10px;
+	left: 8px;
+	border-radius: 50%;
+	border: 2px solid var(--badColor);
+	box-shadow: 12px 0 0 var(--badColor);
+}
+/* 眼睛 end */
+/* 嘴 start */
+.container .appraise .icon .icon-list .icon-bad .mouth {
+	bottom: -4px;
+	border: 2px solid var(--badColor);
+}
+.container .appraise .icon .icon-list .icon-bad .mouth::before {
+	left: -2px;
+	bottom: -2px;
+}
+/* 嘴 end */
+/* 表情1 end */
+
+/* 表情2 start */
+.container .appraise .icon .icon-list .icon-ok {
+	border-color: var(--okColor);
+}
+/* 眼睛 start */
+.container .appraise .icon .icon-list .icon-ok::before {
+	top: 6px;
+	left: 6px;
+	border-radius: 50%;
+	border: 3px solid var(--okColor);
+	box-shadow: 14px 0 0 var(--okColor);
+}
+/* 眼睛 end */
+/* 嘴 start */
+.container .appraise .icon .icon-list .icon-ok::after {
+	bottom: 6px;
+	right: 6px;
+	width: 12px;
+	height: 3px;
+	border-radius: 3px;
+	background-color: var(--okColor);
+}
+/* 嘴 end */
+/* 表情2 end */
+
+/* 表情3 start */
+.container .appraise .icon .icon-list .icon-good {
+	border-color: var(--goodColor);
+}
+/* 眼睛 start */
+.container .appraise .icon .icon-list .icon-good::before {
+	top: 8px;
+	left: 6px;
+	border-radius: 50%;
+	border: 3px solid var(--goodColor);
+	box-shadow: 14px 0 0 var(--goodColor);
+	/* 眼睛被堵了 提高眼睛的层叠顺序 */
+	z-index: 66;
+}
+/* 眼睛 end */
+/* 嘴 start */
+.container .appraise .icon .icon-list .icon-good .mouth {
+	bottom: 4px;
+	border: 2px solid var(--goodColor);
+}
+.container .appraise .icon .icon-list .icon-good .mouth::before {
+	left: -2px;
+	top: -2px;
+}
+/* 嘴 end */
+/* 表情3 end */
+
+/* 表情4 start */
+.container .appraise .icon .icon-list .icon-great {
+	border-color: var(--greatColor);
+}
+/* 眼睛 start */
+.container .appraise .icon .icon-list .icon-great::before,
+.container .appraise .icon .icon-list .icon-great::after {
+	top: 6px;
+	left: 6px;
+	width: 9px;
+	height: 9px;
+	background-color: var(--greatColor);
+	/* 绘制五角星 */
+	clip-path: polygon(
+			50% 0,
+			61% 35%,
+			98% 35%,
+			68% 57%,
+			79% 91%,
+			50% 70%,
+			21% 91%,
+			32% 57%,
+			2% 35%,
+			39% 35%
+	);
+	z-index: 88;
+}
+.container .appraise .icon .icon-list .icon-great::after {
+	left: 17px;
+}
+/* 眼睛 end */
+/* 嘴 start */
+.container .appraise .icon .icon-list .icon-great .mouth {
+	bottom: 4px;
+	background-color: var(--greatColor);
+}
+/* 嘴 end */
+/* 表情4 end */
+
+/* 滑动条 start */
+.container .appraise input {
+	/* 取消元素的原有样式 */
+	-webkit-appearance: none;
+	width: 390px;
+	height: 16px;
+	border-radius: 16px;
+}
+/* 滑动条 end */
+
+/* 滑动块 start */
+.container .appraise input::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 7px solid #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	/* 鼠标移入变小手 */
+	cursor: pointer;
+}
+/* 滑动块 end */
+
+
+.box2 {
+	/* 相对定位 */
+	position: relative;
+	width: 800px;
+	height: 450px;
+	/* 背景图片 */
+	background: url(../images/NTR1.jpg);
+	/* 背景图片自适应宽和高 */
+	background-size: contain;
+	/* 溢出隐藏 */
+	overflow: hidden;
+}
+
+.box2::before {
+	/* 利用伪元素做文字说明 */
+	content: 'Nuclear thermal rocket';
+	/* 绝对定位 */
+	position: absolute;
+	top: -450px;
+	left: 0;
+	width: 800px;
+	height: 450px;
+	/* 行高 让文字垂直居中 */
+	line-height: 450px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	/* 背景颜色 a代表背景颜色不透明度 */
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.box2:hover::before {
+	top: 0;
+	/* 动画 名称   时长 */
+	animation: dropdown 2s;
+}
+
+/* 下面定义下降动画 */
+@keyframes dropdown {
+	0% {
+		top: -450px;
+	}
+
+	5% {
+		top: 0;
+	}
+
+	10% {
+		top: -30px;
+	}
+
+	20% {
+		top: 0;
+	}
+
+	30% {
+		top: -20px;
+	}
+
+	40% {
+		top: 0;
+	}
+
+	50% {
+		top: -15px;
+	}
+
+	60% {
+		top: 0;
+	}
+
+	70% {
+		top: -10px;
+	}
+
+	80% {
+		top: 0;
+	}
+
+	90% {
+		top: -5px;
+	}
+
+	100% {
+		top: 0;
+	}
+}
+
+.box3 {
+	/* 相对定位 */
+	position: relative;
+	width: 800px;
+	height: 800px;
+	/* 背景图片 */
+	background: url(../images/launchwindows.jpg);
+	/* 背景图片自适应宽和高 */
+	background-size: cover;
+	/* 溢出隐藏 */
+	overflow: hidden;
+}
+
+.box3::before {
+	/* 利用伪元素做文字说明 */
+	content: 'Cartoon About Launch Windows';
+	/* 绝对定位 */
+	position: absolute;
+	top: -800px;
+	left: 0px;
+	width: 800px;
+	height: 800px;
+	/* 行高 让文字垂直居中 */
+	line-height: 800px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	/* 背景颜色 a代表背景颜色不透明度 */
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.box3:hover::before {
+	top: 0;
+	/* 动画 名称   时长 */
+	animation: dropdown 2s;
+}
+
+.box4 {
+	/* 相对定位 */
+	position: relative;
+	width: 800px;
+	height: 446px;
+	/* 背景图片 */
+	background: url(../images/NTR2.webp);
+	/* 背景图片自适应宽和高 */
+	background-size: contain;
+	/* 溢出隐藏 */
+	overflow: hidden;
+}
+
+.box4::before {
+	/* 利用伪元素做文字说明 */
+	content: 'An artist’s interpretation of NTR';
+	/* 绝对定位 */
+	position: absolute;
+	top: -800px;
+	left: 0px;
+	width: 800px;
+	height: 446px;
+	/* 行高 让文字垂直居中 */
+	line-height: 446px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	/* 背景颜色 a代表背景颜色不透明度 */
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.box4:hover::before {
+	top: 0;
+	/* 动画 名称   时长 */
+	animation: dropdown 2s;
+}
+
+.box5 {
+	/* 相对定位 */
+	position: relative;
+	width: 800px;
+	height: 449px;
+	/* 背景图片 */
+	background: url(../images/Marsbase.jpg);
+	/* 背景图片自适应宽和高 */
+	background-size: cover;
+	/* 溢出隐藏 */
+	overflow: hidden;
+}
+
+.box5::before {
+	/* 利用伪元素做文字说明 */
+	content: 'A Concept Map of Mars Base';
+	/* 绝对定位 */
+	position: absolute;
+	top: -800px;
+	left: 0px;
+	width: 800px;
+	height: 449px;
+	/* 行高 让文字垂直居中 */
+	line-height: 446px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	/* 背景颜色 a代表背景颜色不透明度 */
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.box5:hover::before {
+	top: 0;
+	/* 动画 名称   时长 */
+	animation: dropdown 2s;
+}
+
+
+.box6 {
+	/* 相对定位 */
+	position: relative;
+	width: 800px;
+	height: 540px;
+	/* 背景图片 */
+	background: url(../images/part.jpg);
+	/* 背景图片自适应宽和高 */
+	background-size: cover;
+	/* 溢出隐藏 */
+	overflow: hidden;
+}
+
+.box6::before {
+	/* 利用伪元素做文字说明 */
+	content: 'A Simplified Process of the Plan';
+	/* 绝对定位 */
+	position: absolute;
+	top: -800px;
+	left: 0px;
+	width: 800px;
+	height: 540px;
+	/* 行高 让文字垂直居中 */
+	line-height: 540px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	/* 背景颜色 a代表背景颜色不透明度 */
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.box6:hover::before {
+	top: 0;
+	/* 动画 名称   时长 */
+	animation: dropdown 2s;
+}
+
+
+.box7 {
+	/* 相对定位 */
+	position: relative;
+	width: 800px;
+	height: 528px;
+	/* 背景图片 */
+	background: url(../images/radio.jpg);
+	/* 背景图片自适应宽和高 */
+	background-size: cover;
+	/* 溢出隐藏 */
+	overflow: hidden;
+}
+
+.box7::before {
+	/* 利用伪元素做文字说明 */
+	content: 'Radioactive Materials';
+	/* 绝对定位 */
+	position: absolute;
+	top: -800px;
+	left: 0px;
+	width: 800px;
+	height: 540px;
+	/* 行高 让文字垂直居中 */
+	line-height: 540px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	/* 背景颜色 a代表背景颜色不透明度 */
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.box7:hover::before {
+	top: 0;
+	/* 动画 名称   时长 */
+	animation: dropdown 2s;
+}
+
+
+.box8 {
+	/* 相对定位 */
+	position: relative;
+	width: 800px;
+	height: 528px;
+	/* 背景图片 */
+	background: url(../images/obligation.jpg);
+	/* 背景图片自适应宽和高 */
+	background-size: cover;
+	/* 溢出隐藏 */
+	overflow: hidden;
+}
+
+.box8::before {
+	/* 利用伪元素做文字说明 */
+	content: 'Obligations';
+	/* 绝对定位 */
+	position: absolute;
+	top: -800px;
+	left: 0px;
+	width: 800px;
+	height: 540px;
+	/* 行高 让文字垂直居中 */
+	line-height: 540px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	/* 背景颜色 a代表背景颜色不透明度 */
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.box8:hover::before {
+	top: 0;
+	/* 动画 名称   时长 */
+	animation: dropdown 2s;
+}
+
+.barrage {
+	width: 800px;
+}
+
+/* 视频部分 start */
+.barrage .video {
+	/* 相对定位 */
+	position: relative;
+	width: 100%;
+}
+.barrage .video video {
+	width: 100%;
+}
+.barrage .video canvas {
+	/* 绝对定位 */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+/* 视频部分 end */
+
+/* 发送弹幕部分 start */
+.barrage .submit {
+	display: flex;
+	width: 100%;
+	height: 40px;
+}
+.barrage .submit input {
+	/* 清除form表单元素自带的轮廓 */
+	outline: 0;
+	width: 500px;
+	padding: 10px;
+	border: 1px solid #e7e7e7;
+}
+.barrage .submit button {
+	outline: 0;
+	border: 0;
+	width: 100px;
+	color: #fff;
+	background: linear-gradient(45deg, #016eff 70%, #1296ea);
+	/* 鼠标变小手 */
+	cursor: pointer;
+}
+/* 按钮点击后的样式 */
+.barrage .submit .btn_active {
+	color: #bbb;
+	background: #e7e7e7;
+	/* 鼠标变禁止点击状态 */
+	cursor: not-allowed;
+}
+/* 发送弹幕部分 end */

@@ -12,10 +12,15 @@
       <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
     <!--link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/heroes/"-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'invective.css' %}" rel="stylesheet">
+
+    <!-- <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet"> -->
     <link href="{% static 'basestyles.css' %}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="{% static 'heroes.css' %}" rel="stylesheet">
+
+
     <style>
         .whiteCover
         {
@@ -56,11 +61,178 @@
                 </ul>
             </header>
         </div>
-        <div class="b-example-divider"></div>
-        <div class="px-4 pt-5 my-5 text-center border-bottom">
-            <h1>Invective</h1>
-        </div>
-        <div class="b-example-divider"></div>
+
+        <a name="0"></a>
+		<div class="navbar">
+			<div class="nav">
+				<ul>
+					<li>
+						<a href="#1">Definition</a>
+					</li>
+					<li>
+						<a href="#2">Examples</a>
+						<ol>
+							<li><a href="#2.1">Efficiency</a></li>
+							<li><a href="#2.2">Flexibility</a></li>
+						</ol>
+					</li>
+					<li>
+						<a href="#3">Realife Usage</a>
+						<ol>
+							<li><a href="#3.1">A long history</a></li>
+							<li><a href="#3.2">Advance these years</a></li>
+						</ol>
+					</li>
+					<li>
+						<a href="#4">Practice Questions</a>
+						<ol>
+							<li><a href="#4.1">MCQ 1</a></li>
+							<li><a href="#4.2">MCQ 2</a></li>
+						</ol>
+					</li>
+					<li>
+						<a href="#5">Conclusion</a>
+						<ol>
+							<li><a href="#5.1">Risks</a></li>
+							<li><a href="#5.2">Humanities</a></li>
+						</ol>
+					</li>
+					<li class="underline"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="grid">
+			<div class="columb1">
+			</div>
+			<div class="column2">
+				<a name="1"></a>
+				<h1 align="middle" style="padding-top: 50px">First, what is invective?</h1>
+				<p style="padding-top:25px">NTR stands for the nuclear thermal rocket. Just like its name, NTR is powered by nuclear power. It can be either nuclear fission, which we already realized; or nuclear fusion, which we still are researching on it. In nuclear fission, the neutrons hit the unstable atomic nuclei and form a chain reaction. In an NTR, there are gases like hydrogen. It's heated by nuclear fission, which creates a high temperature and pressure. Then the gas will escape through the rocket nozzle and produce thrust. </p>
+				<div class="box2"></div>
+				<a name="2"></a>
+				<h1 align="middle" style="padding-top: 50px" style="padding-bottom:25px">The other possible choices compare to NTR</h1>
+				<a name="2.1"></a>
+				<div class="tab_Content">
+					<input type="radio" name="tab_list" id="tab_list1" checked />
+					<input type="radio" name="tab_list" id="tab_list2" />
+					<input type="radio" name="tab_list" id="tab_list3" />
+					<input type="radio" name="tab_list" id="tab_list4" />
+					<input type="radio" name="tab_list" id="tab_list5" />
+					<label for="tab_list1">
+						<img src="images/chemical.jpg" alt="" />
+						Chemical Rocket</label
+					>
+					<label for="tab_list2">
+						<img src="images/electric.jpg" alt="" />
+						Electric Propulsion</label
+					>
+					<label for="tab_list3">
+						<img src="images/solar.jpg" alt="" />
+						Solar Sail</label
+					>
+
+					<ul>
+						<li>
+							<img src="images/chemical.jpg" alt="" class="box"/>
+							<h2>Chemical Rocket</h2>
+							<p>
+								Chemical rockets divide into two types, solid-fueled and liquid-fueled. In both cases, a chemical reaction is employed to produce a very hot, highly pressurized gas inside a combustion chamber. And escape through the rocket nozzle to produce thrust. It has a similar principle with NTR on the way to produce thrust, but the way to produce the heated gas is different. One is using nuclear fission/fusion, one is using chemical fuel. Compared to NTR, the chemical rocket has a greater thrust and a lower efficiency. NTR has almost twice the efficiency compared to chemical rockets. When both rockets have a similar size, NTR can save more fuel during the journey.</p>
+						</li>
+						<li>
+							<img src="images/electric.jpg" alt="" class="box"/>
+							<h2>Electric Propulsion</h2>
+							<p>
+								The principle of electric propulsion is using charged particles and accelerating them using electric field. Then fire the propellant like xenon and transfer a very small amount of momentum. Electric propulsion is powered by solar cells, effectively making them solar-powered, and requiring very little propellant. Compared to NTR, it has a higher fuel efficiency. But the cost of the extreme fuel efficiency is the low thrust. At now, we only can use it to drive satellite and attitude control. Which our goal is to send people to Mars. 							</p>
+						</li>
+						<li>
+							<img src="images/solar.jpg" alt="" class="box"/>
+							<h2>Solar Sail</h2>
+							<p>
+								Solar sail is a type of rocket that uses the sun's energy, which is very "green". It's because of the conservation of momentum. That the photon's momentum has been transferred to the sail and makes the spaceship move. The energy the spaceship gets is based on the distance from the sun and the area of the solar sail. Compared to the NTR, obviously, it is the most fuel-efficient. Because it doesn’t even need fuel. But it has the same problem with electric propulsion, which is the thrust is too small. At least based on the technology now.
+							</p>
+						</li>
+					</ul>
+				</div>
+				<a name="2.2"></a>
+				<p style="padding-top:25px">Compared to the rocket types above, NTR finds a balance between efficiency and enough thrust. So, NTR is the best rocket choice compared to other rocket types in efficiency. And it makes the journey more flexible. </p>
+				<p style="padding-top:25px">For chemical rockets, the fuel is too heavy. So, the rocket only can launch during launch windows. The only launch window for a crewed chemical rocket trip to Mars is when the Earth and Mars’s orbits are ideally aligned, which only happens once every 26 months. But for NTR, there’s no launch windows. Because of its efficiency. It can let NTR have more time preparing. If having launch window, we only can lunch in specific times. If we missed, we need to wait for next time. So, it causes our time to be short. We must finish in the launch window. If not, we need to wait for the next time. Many problems may be ignored for finish on time. But NTR don't have lunch windows. In result, we'll have more time preparing the launch without delay. </p>
+				<div class="box3" ></div>
+				<p style="padding-top:25px">On the other hand, because of the fuel efficiency, NTR can save more fuels during the journey. So, whenever in the trip, NTR will always have enough fuels to course reversal. Many times, we can do nothing if we had an accident in space travel. Because the fuel is being calculated exactly enough to reach the destination. So if an accident happens, we don't have the fuel to return to Earth and solve it. Especially for that long journey of Mars exploration. For chemical rockets, the fuel is just enough to go to Mars. Not even having the fuel to come back to Earth. But for NTR, its efficiency helps. At every time, we will have enough fuel for course reversal and don't need to worry about lack of fuel. </p>
+				<p style="padding-top:25px">The two examples above all shows the benefits of NTR’s efficiency on the Mars exploration. But the benefits of NTR is not only more efficient, but is the closest to realize compares to the rockets except chemical rockets. It makes the NTR more reliable.</p>
+				<a name="3"></a>
+				<h1 align="middle" style="padding-top: 50px">NTR is Close to Realize</h1>
+				<a name="3.1"></a>
+				<p style="padding-top: 25px">We have a long history of studying NTR. The first tests of nuclear rockets started in 1955 with Project Rover at the Los Alamos Scientific Laboratory. It first miniaturizes the reactors enough to be able to put them on a rocket. Later in the late 1960s, NASA set up the Nuclear Engine for Rocket Vehicle Application program, or NERVA, developing the technologies of NTR. And the tests were very successful. After the 1970s, NASA stopped the research of NTR. Because Mars is too far from us at that time. NASA is more like to develop a space shuttle, which can recycle and is cheaper, instead of the NTR. </p>
+				<div class="tab_Content">
+					<input type="radio" name="tab_list" id="tab_list11" checked />
+					<input type="radio" name="tab_list" id="tab_list22" />
+					<label for="tab_list11">
+						<img src="images/electric.jpg" alt="" />
+						Electric Propulsion</label
+					>
+					<label for="tab_list22">
+						<img src="images/solar.jpg" alt="" />
+						Solar Sail</label
+					>
+
+					<ul>
+						<li>
+							<img src="images/electric.jpg" alt="" class="box"/>
+							<h2>Electric Propulsion's Progress</h2>
+							<p>
+								Actually, we already tested the electric propulsion. And it can work. But, it still is very far away from having the thrust getting to Mars. For example, we already tested the electric propulsion on SMART-1, the Bepi-Colombo mission, etc. But they're all probes. Which is much lesser in mass compares to the spaceship that can reach Mars. Even the Lunar Gateway project the future is still maintaining its speed but not speeding up. Maybe it can't realize at all because of its principle. Even it can, we had a long way to reach.
+							</p>
+						</li>
+						<li>
+							<img src="images/solar.jpg" alt="" class="box"/>
+							<h2>Solar Sail's Progress</h2>
+							<p>
+								Similar to the situation of electric propulsion, we can realize it. But based on our technology now, we still don't have the technology to power a spaceship. Like the IKAROS spacecraft and lightsail2, all prove that we have the technology to build and run solar sails. But, it doesn't mean that we can use it in Mars exploration. For example, on Earth, the power received from sunlight is about 1.3 kW per square meter. Which is very, very few. On the other hand, the technology uses laser solar sails. But it is even farther. So, we still need decades to increase the thrust of solar sails.
+							</p>
+						</li>
+					</ul>
+				</div>
+				<a name="3.2"></a>
+				<p style="padding-top: 25px">In these years, because of the renaissance of space discovery, more and more new technologies in space discovery were up-to-date. Including the NTR.  In 2019, US Congress approved $125 million dollars in funding for the development of nuclear thermal propulsion rockets. In 2021, NASA and the DoE awarded three contracts worth approximately $5 million each to US companies to design reactors for NTR. </p>
+				<div class="box4" ></div>
+				<p style="padding-top: 25px">Now, our focus is to minimize the reactor and low-enriched uranium for fuel. For the technology of minimizing the reactor, we even have the development to shrink the reactor to an adult's size. Maybe even smaller. If we can have this improvement, we can have more space have things to maintain life such as food, water, etc. On the other hand, low-enriched uranium can make the NTR safer. Because uranium's radioactive, it's very easy to reveal and causes health issues. In space and on Mars, there are no such hospitals to cure. Even on Earth, there's no solution yet. But low-enriched uranium can reduce the damage at most. So, it let us move a big step forward to safe NTR. </p>
+				<a name="4"></a>
+				<h1 align="middle" style="padding-top: 50px">How Do NTR Help the Exploration</h1>
+				<a name="4.1"></a>
+				<p style="padding-top: 25px">NTR is not only beneficial in the trip but also in the exploration. One example is fuel. For the normal chemical rocket, its fuel can't be a power source and can only be fuel for the rocket. But for the nuclear thermal rocket, the fuel has a new use. Which is a power source in the Mars base. It can save expensive space in rockets by having fewer instruments for power and bringing more materials that would help the exploration much. So, the nuclear thermal rocket's fuel is multi-use and can benefit exploration very much.</p>
+				<div class="box5" ></div>
+				<p style="padding-top: 25px">On the other hand, the efficiency of the NTR will also help the exploration very much. Because it can save more fuel. For normal chemical rockets, the fuel is just enough to get to Mars. For coming back, you need to make fuel on Mars or wait for the next rocket. But NTR is different. The fuel is enough. We can save more mass that carries useless materials for the mission, which is fuel. And have more mass use in real important part, which is things necessary for the exploration on Mars. </p>
+				<div class="box6" ></div>
+				<a name="4.2"></a>
+				<p style="padding-top: 25px">So, what’s the best way to go to Mars? The usual way to space discovering is to launch the rocket in a whole part. It is the same when it comes and when it back. Although it saves a lot of work, which saves more concepts, it can't fully utilize the potential of the nuclear thermal rocket. We can’t use its benefit of efficiency at the most. So, we can have some new ways. Like launch by modules. It can let the mission more flexible. It is basically using different types and parts of rockets to collaborate together. You can build freely to achieve your goal easier. And it can save more money. In this case, we will send 3 nuclear thermal rockets from Earth. In the space, they will work together and be complementary. In total, the mass is lesser than a whole rocket. So we can save more money on fuel, structure, and many things else related to mass.</p>
+				<a name="5"></a>
+				<h1 align="middle" style="padding-top: 50px">End</h1>
+				<a name="5.1"></a>
+				<p style="padding-top: 25px">Although NTR has many benefits, we still can’t ignore its disadvantages. Which is highly radioactive and has unknown reliability in space.<br>For highly radioactive, it is because of the fuel of NTR. Because NTR is using uranium for fuel. And it brings a risk to the NTR. Which the radiative material is easy to divulge. For the chemical rockets, if the lunch failed, maybe only an explosion. But for the NTR, it maybe becomes a disaster. Because of the radioactive of the uranium. It'll cause very dangerous diseases that can hardly cure. Sometimes even can't cure for now. Also, we need to put effort to protect astronauts from radiation. But thankfully, we already have research on low-enriched uranium. It can help reduce radiation. </p>
+				<div class="box7" ></div>
+				<p style="padding-top: 25px">For unknown reliability, we haven’t tested any NTR in space yet. We only tested on the ground before, not in space. So, for the NTR to actually use in the mission, we still need to do more tests on it in space. Because we can't just use theory to predict, if the mission fails, it will even affect politics and economics. Like what happened in the US at the beginning of the space race. So, we still need to do more tests. But it is still very close to us. Shown by the massive research these years about NTR.</p>
+				<a name="5.2"></a>
+				<div class="box8" ></div>
+
+				<p style="padding-top: 25px">So, how does it connects to humanities? I think the choice of NTR but not chemical rocket is a representation of the concept “universe of obligation” Basically, it is the choice between mature and new, less risk and low risk. In history, there are many choices like it. But the answer was always the mature one. It is because of the universe of obligation. New means more risk. In this case, if you are the leader, the benefits of NTR won’t affect you very much. The efficiency mostly affects the spaceman. And he has 0 relationships with you. He is in the outer circle of your universe of obligation. But the risk matters your wage and job. If the launch fails, you will have a huge responsibility for it. Obviously, you and your boss are in the inner circle. As a result, many people will choose the chemical rocket. Because you have more obligation to yourself’s job and wage than the spaceman. Yet the technology still needs development. So, there must be many people that put humankind in the inner circle of the universe of obligation. They’re the real hero. </p>
+				<h1 style="padding-top: 50px" align="middle">Abstract Video</h1>
+				<div class="barrage">
+					<div class="video">
+						<video src="./images/A.mp4" controls></video>
+						<canvas width="800px"></canvas>
+					</div>
+					<div class="submit">
+						<input type="text" placeholder="Say something(Although only u can see it)" />
+						<button>Send</button>
+					</div>
+				</div>
+				<script src="js/index.js"></script>
+				<h3 style="padding-top: 100px" align="middle">By Will</h3>
+				<div class="button">
+					<a href="#0" style="--i: 1">Back To Top</a>
+				</div>
+			</div>
+		</div>
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
