@@ -30,6 +30,22 @@ a {
 	/* 清除a元素的下划线 */
 	text-decoration: none !important;
 
+
+
+}
+
+/* Example CSS to style the image */
+.img1-parent{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.img1 {
+    width: 100% !important; /* Make the image responsive */
+    max-width: 600px !important; /* Set a maximum width */
+    height: auto !important; /* Maintain aspect ratio */
+	border-radius: 15px !important;
+	align-self: center;
 }
 
 :root {
@@ -252,6 +268,25 @@ h1,h2,table,.top {
 	gap: 24px
 }
 
+.parent-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px; /* Example height */
+}
+
+.button-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Example height */
+}
+
+.highlight1 {
+    background-color: yellow !important; /* Highlight background color */
+    color: black !important; /* Text color */
+    font-weight: bold !important; /* Optional: make the text bold */
+}
 
 .tab_Content {
 	width: 800px;
@@ -259,6 +294,7 @@ h1,h2,table,.top {
 	color: #607291;
 	background-color: #fff;
 	overflow: hidden;
+	border-radius: 15px !important;
 }
 
 .tab_Content input {
@@ -328,11 +364,11 @@ h1,h2,table,.top {
 }
 
 .tab_Content #tab_list2:checked~ul {
-	margin-left: -800px;
+	margin-left: -700px;
 }
 
 .tab_Content #tab_list3:checked~ul {
-	margin-left: -1575px;
+	margin-left: -1400px;
 }
 
 .tab_Content #tab_list1:checked~label[for="tab_list1"] {
@@ -352,7 +388,7 @@ h1,h2,table,.top {
 }
 
 .tab_Content #tab_list22:checked~ul {
-	margin-left: -800px;
+	margin-left: -700px;
 }
 .tab_Content #tab_list11:checked~label[for="tab_list1"] {
 	background-color: #fff;
@@ -364,81 +400,167 @@ h1,h2,table,.top {
 
 .button {
 	/* 弹性布局 让页面元素垂直+水平居中 */
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
 	/* 让子元素垂直排列 */
-	flex-direction: column;
+	flex-direction: column !important;
 	/* 宽度占浏览器可视窗口总宽度 高度占浏览器可视区域总高度 */
-	width: 100px;
-	height: 100px;
+	width: 100px !important;
+	height: 100px !important;
 }
 .button a {
 	/* 相对定位 */
-	left: 370px;
-	position: relative;
+
+	position: relative !important;
 	/* 将a这个行内元素转为块级元素不然无法设置宽和高 */
-	display: block;
-	width: 140px;
-	height: 60px;
+	display: block !important;
+	width: 140px !important;
+	height: 60px !important;
 	/* 行高 */
-	line-height: 60px;
-	text-align: center;
-	margin: 40px;
-	color: aqua;
-	font-size: 20px;
+	line-height: 60px !important;
+	text-align: center !important;
+	margin: 40px !important;
+	color: #ffffff !important;
+	font-size: 20px !important;
 	/* 取消下划线 */
-	text-decoration: none;
+	text-decoration: none !important;
 	/* 加一下一些过渡事件 */
-	transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out !important;
 	/* 重头戏来了,改变各个元素的颜色,一句话就能搞定 */
 	/* hue-rotate是颜色滤镜 可以加不同的度数来改变颜色
   这里我们用了calc自动计算的方法,还有var函数来调用我们给每一个a设置的不同的属性值1~5,然后分别乘以60度,就能够分别得到不同的度数 */
-	filter: hue-rotate(calc(var(--i) * 60deg));
+	filter: hue-rotate(calc(var(--i) * 60deg)) !important;
 }
 .button a::before,
 .button a::after {
 	/* 将两个伪元素的相同部分写在一起 */
-	content: "";
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	border: 2px solid aqua;
+	content: "" !important;
+	position: absolute !important;
+	width: 20px !important;
+	height: 20px !important;
+	border: 2px solid #ffffff !important;
 	/* 最后的.3s是延迟时间 */
-	transition: all 0.3s ease-in-out 0.3s;
+	transition: all 0.3s ease-in-out 0.3s !important;
 }
 .button a::before {
-	top: 0;
-	left: 0;
+	top: 0 !important;
+	left: 0 !important;
 	/* 删除左边的伪元素的右和下边框 */
-	border-right: 0;
-	border-bottom: 0;
+	border-right: 0 !important;
+	border-bottom: 0 !important;
 }
 .button a::after {
-	right: 0;
-	bottom: 0;
+	right: 0 !important;
+	bottom: 0 !important;
 	/* 删除右边的伪元素的上边和左边的边框 */
-	border-top: 0;
-	border-left: 0;
+	border-top: 0 !important;
+	border-left: 0 !important;
 }
 .button a:hover {
-	background-color: aqua;
-	color: #000;
+	background-color: #ffffff !important;
+	color: #000 !important;
 	/* 加个发光效果和下面的倒影 */
 	/* 模糊度加到了50px */
-	box-shadow: 0 0 50px aqua;
+	box-shadow: 0 0 50px #ffffff !important;
 	/* below 是下倒影 1px是倒影的元素相隔的距离 最后是个渐变的颜色 */
 	-webkit-box-reflect: below 1px
-	linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+	linear-gradient(transparent, rgba(0, 0, 0, 0.3)) !important;
 	/* 设置一下以上属性的延迟时间 */
-	transition-delay: 0.4s;
+	transition-delay: 0.4s !important;
 }
 /* 在设置两条线的变化 总体来说四条各个方向的 只需要改变一下两个伪元素的宽度和高度 */
 .button a:hover::before,
 .button a:hover::after {
-	width: 138px;
-	height: 58px;
-	transition-delay: 0s;
+	width: 138px !important;
+	height: 58px !important;
+	transition-delay: 0s !important;
+}
+
+
+
+
+
+.button1 {
+	/* 弹性布局 让页面元素垂直+水平居中 */
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	/* 让子元素垂直排列 */
+	flex-direction: column !important;
+	/* 宽度占浏览器可视窗口总宽度 高度占浏览器可视区域总高度 */
+	width: 100px !important;
+	height: 100px !important;
+	position: fixed;
+	right: 8vw;
+	bottom: 10vh;
+}
+.button1 a {
+	/* 相对定位 */
+
+	position: relative !important;
+	/* 将a这个行内元素转为块级元素不然无法设置宽和高 */
+	display: block !important;
+	width: 140px !important;
+	height: 60px !important;
+	/* 行高 */
+	line-height: 60px !important;
+	text-align: center !important;
+	margin: 40px !important;
+	color: aqua !important;
+	font-size: 20px !important;
+	/* 取消下划线 */
+	text-decoration: none !important;
+	/* 加一下一些过渡事件 */
+	transition: all 0.3s ease-in-out !important;
+	/* 重头戏来了,改变各个元素的颜色,一句话就能搞定 */
+	/* hue-rotate是颜色滤镜 可以加不同的度数来改变颜色
+  这里我们用了calc自动计算的方法,还有var函数来调用我们给每一个a设置的不同的属性值1~5,然后分别乘以60度,就能够分别得到不同的度数 */
+	filter: hue-rotate(calc(var(--i) * 60deg)) !important;
+}
+.button1 a::before,
+.button1 a::after {
+	/* 将两个伪元素的相同部分写在一起 */
+	content: "" !important;
+	position: absolute !important;
+	width: 20px !important;
+	height: 20px !important;
+	border: 2px solid aqua !important;
+	/* 最后的.3s是延迟时间 */
+	transition: all 0.3s ease-in-out 0.3s !important;
+}
+.button1 a::before {
+	top: 0 !important;
+	left: 0 !important;
+	/* 删除左边的伪元素的右和下边框 */
+	border-right: 0 !important;
+	border-bottom: 0 !important;
+}
+.button1 a::after {
+	right: 0 !important;
+	bottom: 0 !important;
+	/* 删除右边的伪元素的上边和左边的边框 */
+	border-top: 0 !important;
+	border-left: 0 !important;
+}
+.button1 a:hover {
+	background-color: aqua !important;
+	color: #000 !important;
+	/* 加个发光效果和下面的倒影 */
+	/* 模糊度加到了50px */
+	box-shadow: 0 0 50px aqua !important;
+	/* below 是下倒影 1px是倒影的元素相隔的距离 最后是个渐变的颜色 */
+	-webkit-box-reflect: below 1px
+	linear-gradient(transparent, rgba(0, 0, 0, 0.3)) !important;
+	/* 设置一下以上属性的延迟时间 */
+	transition-delay: 0.4s !important;
+}
+/* 在设置两条线的变化 总体来说四条各个方向的 只需要改变一下两个伪元素的宽度和高度 */
+.button1 a:hover::before,
+.button1 a:hover::after {
+	width: 138px !important;
+	height: 58px !important;
+	transition-delay: 0s !important;
 }
 
 :root {
