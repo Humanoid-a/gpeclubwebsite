@@ -39,13 +39,22 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	-webkit-transition:width 2s, height 2s,
+	background-color 2s, -webkit-transform 2s !important;
+	transition:width 2s, height 2s, background-color 2s, transform 2s !important;
 }
 .img1 {
     width: 100% !important; /* Make the image responsive */
     max-width: 600px !important; /* Set a maximum width */
     height: auto !important; /* Maintain aspect ratio */
 	border-radius: 15px !important;
-	align-self: center;
+	align-self: center !important;
+
+
+}
+.img1-parent:hover {
+	transform:scale(150%) !important;
 }
 
 :root {
