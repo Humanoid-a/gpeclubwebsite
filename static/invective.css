@@ -430,7 +430,7 @@ h1,h2,table,.top {
 	line-height: 60px !important;
 	text-align: center !important;
 	margin: 40px !important;
-	color: #ffffff !important;
+	color: var(--text-color) !important;
 	font-size: 20px !important;
 	/* 取消下划线 */
 	text-decoration: none !important;
@@ -448,7 +448,7 @@ h1,h2,table,.top {
 	position: absolute !important;
 	width: 20px !important;
 	height: 20px !important;
-	border: 2px solid #ffffff !important;
+	border: 2px solid var(--text-color) !important;
 	/* 最后的.3s是延迟时间 */
 	transition: all 0.3s ease-in-out 0.3s !important;
 }
@@ -467,11 +467,11 @@ h1,h2,table,.top {
 	border-left: 0 !important;
 }
 .button a:hover {
-	background-color: #ffffff !important;
-	color: #000 !important;
+	background-color: var(--text-color) !important;
+	color: var(--background-color) !important;
 	/* 加个发光效果和下面的倒影 */
 	/* 模糊度加到了50px */
-	box-shadow: 0 0 50px #ffffff !important;
+	box-shadow: 0 0 50px var(--text-color) !important;
 	/* below 是下倒影 1px是倒影的元素相隔的距离 最后是个渐变的颜色 */
 	-webkit-box-reflect: below 1px
 	linear-gradient(transparent, rgba(0, 0, 0, 0.3)) !important;
