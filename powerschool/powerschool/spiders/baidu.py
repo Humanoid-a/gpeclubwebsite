@@ -1,10 +1,11 @@
 import scrapy
 
 
-class BaiduspiderSpider(scrapy.Spider):
-    name = "baiduSpider"
+class BaiduSpider(scrapy.Spider):
+    name = "baidu"
     allowed_domains = ["baidu.com"]
     start_urls = ["https://baidu.com"]
 
     def parse(self, response):
+        print(response)
         pass

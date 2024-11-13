@@ -71,18 +71,7 @@ class PowerschoolDownloaderMiddleware:
     def process_request(self, request, spider):
         # Called for each request that goes through the downloader
         # middleware.
-        import requests
-        login_url = 'https://power.this.edu.cn/public/home.html'
-        login_data = {
-            'username': 'test',
-            'password': 'test'
-        }
-        response = requests.post(login_url, data=login_data)
-        if response.status_code == 200:
-            request.session['login_response'] = response.text
-        else:
-            request.session['login_response'] = 'error'
-        return None
+
         # Must either:
         # - return None: continue processing this request
         # - or return a Response object
