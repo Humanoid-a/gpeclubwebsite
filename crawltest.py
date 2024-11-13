@@ -1,3 +1,3 @@
 import powerschool.pslcrawler as pslcrawler
 
-pslcrawler('ENTER YOUR USERNAME', 'ENTER YOUR PWD')
+pslcrawler.crawl_account('ENTER YOUR USERNAME', 'ENTER YOUR PWD')
