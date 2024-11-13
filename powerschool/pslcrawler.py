@@ -1,6 +1,10 @@
+#import sys,os
+
+#sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
-from powerschool.spiders import psl # Replace with your spider
+from powerschool.powerschool.spiders import psl
 
 
 def crawl_account(username, pwd):
