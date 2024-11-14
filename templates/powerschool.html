@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <!--<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">-->
     <meta name="generator" content="Hugo 0.122.0">
-    <title>THIS info</title>
+    <title>PowerSchool</title>
       <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
     <!--link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/heroes/"-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -60,19 +60,7 @@
         <div class="px-4 pt-5 my-5 text-center border-bottom">
             <h1 style="padding-bottom: 50px">Date: {{current_date}}</h1>
             <h3>Powerschool Login</h3>
-            <form method="POST" action="../powerschool/">
-                {% csrf_token %}
-                <label for="usr">Username: </label>
-                <input type="text" id="usr" name="usr">
-                <br/>
-                <label for="pw" style="padding-top: 15px; padding-bottom: 15px">Password:</label>
-                <input type="password" id="pw" name="pw">
-                <br/>
-                <input type="submit" value="Login">
-                <br/>
-                <input type="checkbox" id="ck" name="ck">
-                <label for="ck">Remember Me</label>
-            </form>
+            
         </div>
 
         <div class="b-example-divider"></div>
@@ -97,27 +85,7 @@
   </main>
 
 <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
-<<script>
-function submitForm() {
-    var username = document.getElementById('usr').value;
-    var password = document.getElementById('pw').value;
-    fetch('../run-crawltest/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': '{{ csrf_token }}'
-        },
-        body: JSON.stringify({ usr: username, pw: password })
-    }).then(response => response.json())
-      .then(data => {
-          if (data.success) {
-              window.location.href = '/dashboard';
-          } else {
-              alert('Login failed: ' + data.error);
-          }
-      });
-}
-</script>
+
 
 </body>
 </html>

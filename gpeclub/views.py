@@ -23,8 +23,7 @@ def about(request):
 from django.shortcuts import render
 def school(request):
     current_date = datetime.now()
-    login_response = request.session.get('login_response', 'No response')
-    return render(request, 'school.html', {'current_date': current_date, 'login_response': login_response})
+    return render(request, 'school.html', {'current_date': current_date} )
 
 
 import IndividualProjects.superticktacktoe.localviews as superttt
@@ -47,4 +46,24 @@ def index(request):
     current_date = datetime.now()
     return render(request, 'index.html', {'current_date': current_date})
 
+def powerschool(request):
+    return render(request, 'powerschool.html')
 
+
+from django.http import JsonResponse
+import subprocess
+import json
+
+def run_crawltest(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        username = data.get('usr')
+        password = data.get('pw')
+
+        result = subprocess.run(['python', '../../crawltest.py', username, password], capture_output=True, text=True)
+
+        if result.returncode == 0:
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'error': result.stderr})
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})

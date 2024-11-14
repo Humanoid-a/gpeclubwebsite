@@ -9,3 +9,6 @@ class CourseData(object):
 
 def callback_course(course: CourseData):
     print(course)
+
+    with open('../crawled.txt', 'a') as f:
+        f.write(f"{course}\n")
