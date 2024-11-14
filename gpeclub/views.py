@@ -49,10 +49,10 @@ def index(request):
 def powerschool(request):
     return render(request, 'powerschool.html')
 
-
+from django.shortcuts import render
 from django.http import JsonResponse
-import subprocess
 import json
+from powerschool.pslcrawler import crawl_account
 
 def run_crawltest(request):
     if request.method == 'POST':
@@ -60,10 +60,9 @@ def run_crawltest(request):
         username = data.get('usr')
         password = data.get('pw')
 
-        result = subprocess.run(['python', '../../crawltest.py', username, password], capture_output=True, text=True)
-
-        if result.returncode == 0:
+        try:
+            crawl_account(username, password)
             return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'error': result.stderr})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
     return JsonResponse({'success': False, 'error': 'Invalid request method'})

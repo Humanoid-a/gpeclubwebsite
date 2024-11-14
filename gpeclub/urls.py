@@ -15,5 +15,5 @@ urlpatterns = [
     path('projects/about/', views.about, name="about"),
     path('projects/school/', views.school, name="school"),
     path('projects/powerschool/', views.powerschool, name="powerschool"),
-    path('run_crawltest/', views.run_crawltest, name="run_crawltest"),
+    path('projects/run_crawltest/', views.run_crawltest, name="run_crawltest"),
 ]

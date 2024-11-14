@@ -12,5 +12,8 @@ if __name__ == "__main__":
     username = sys.argv[1]
     password = sys.argv[2]
 
-    pslcrawler.crawl_account(username, password)
-
+    try:
+        pslcrawler.crawl_account(username, password)
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)

@@ -60,7 +60,7 @@
         <div class="px-4 pt-5 my-5 text-center border-bottom">
             <h1 style="padding-bottom: 50px">Date: {{current_date}}</h1>
             <h3>Powerschool Login</h3>
-            <form method="POST" action="../powerschool/">
+            <form method="POST" action="../powerschool/" onsubmit="submitForm(event)">
                 {% csrf_token %}
                 <label for="usr">Username: </label>
                 <input type="text" id="usr" name="usr">
@@ -98,10 +98,11 @@
 
 <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script>
-function submitForm() {
+function submitForm(event) {
+    event.preventDefault();
     var username = document.getElementById('usr').value;
     var password = document.getElementById('pw').value;
-    fetch('../run-crawltest/', {
+    fetch('../run_crawltest/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -111,7 +112,8 @@ function submitForm() {
     }).then(response => response.json())
       .then(data => {
           if (data.success) {
-              window.location.href = '/dashboard';
+              window.location.href = '../powerschool';
+              alert('Login successful');
           } else {
               alert('Login failed: ' + data.error);
           }
