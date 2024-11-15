@@ -1,0 +1,943 @@
+* {
+	/* 页面初始化 清除元素的内外边距 */
+	padding: 0;
+	margin: 0;
+}
+body {
+	/* 宽度占浏览器可视区域的高度 */
+	width: 100vm;
+	background-color: #f2f2f2;
+}
+li {
+	/* 清除li元素前面的项目符号 */
+	list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+ul {
+	/* 清除li元素前面的项目符号 */
+	list-style: none !important;
+
+}
+ol {
+	/* 清除li元素前面的项目符号 */
+	list-style: none !important;
+
+}
+
+
+a {
+	/* 清除a元素的下划线 */
+	text-decoration: none !important;
+
+
+
+}
+
+/* Example CSS to style the image */
+.img1-parent{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	-webkit-transition:width 2s, height 2s,
+	background-color 2s, -webkit-transform 2s !important;
+	transition:width 2s, height 2s, background-color 2s, transform 2s !important;
+}
+.img1 {
+    width: 100% !important; /* Make the image responsive */
+    max-width: 600px !important; /* Set a maximum width */
+    height: auto !important; /* Maintain aspect ratio */
+	border-radius: 15px !important;
+	align-self: center !important;
+
+
+}
+.img1:hover {
+	transform:scale(125%) !important;
+}
+
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #222529;
+    --text-color: #ffffff;
+  }
+}
+
+.navbar1 {
+
+	width: 100% !important;
+	height: 70px !important;
+	background-color: var(--background-color) !important;
+	/* 盒子阴影 */
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+}
+.navbar1 .nav1 {
+	width: 1200px !important;
+	height: 100% !important;
+	/* 让元素自动水平居中 */
+	margin: 0 auto !important;
+
+}
+.navbar1 .nav1 ul {
+
+	/* 相对定位 */
+	position: relative !important;
+	/* 弹性布局 */
+	display: flex !important;
+	/* 让子元素平均分配宽度 */
+	justify-content: space-around !important;
+	width: 100% !important;
+	height: 100% !important;
+	margin: 0 !important;
+    padding: 0 !important;
+}
+.navbar1 .nav1 ul > li {
+	width: 100% !important;
+	height: 100% !important;
+
+}
+.navbar1 .nav1 ul > li > a {
+	/* 因为a元素是行内元素 必须将其转为行内块或者块级才能设置宽度和高度 */
+	display: block !important;
+
+	width: 100% !important;
+	height: 100% !important;
+	line-height: 70px !important;
+	text-align: center !important;
+	color: var(--text-color) !important;
+	margin: 0 !important;
+}
+.navbar1 .nav1 ul > li ol {
+	margin: auto 0 !important;
+	width: 100% !important;
+	background-color: var(--background-color) !important;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2) !important;
+	/* 让盒子先沿着y轴缩放到0 也就是隐藏了 */
+	transform: scaleY(0) !important;
+	/* 我们需要将盒子从上面滑动下来 设置一下缩放的中心点即可 设置到最上面的中间位置 */
+	transform-origin: 50% 0 !important;
+	/* 设置过渡 */
+	transition: all 0.6s !important;
+    padding: 0 !important;
+}
+.navbar1 .nav1 ul > li ol li {
+	height: 70px !important;
+	border-bottom: 1px solid var(--background-color) !important;
+}
+.navbar1 .nav1 ul > li ol li a {
+	display: block !important;
+	width: 100% !important;
+	height: 100% !important;
+	line-height: 70px ;
+	text-align: center !important;
+	color: var(--text-color) !important;
+
+}
+.navbar1 .nav1 ul > li ol li:hover {
+	background-color: rgba(0, 0, 0, 0.03) !important;
+}
+.navbar1 .nav1 ul > li:hover ol {
+	transform: scaleY(1) !important;
+}
+/* 现在可以设置线条了 */
+.navbar1 .nav1 ul .underline {
+	/* 绝对定位 */
+	position: absolute !important;
+	bottom: 0 !important;
+	left: 0 !important;
+	width: 240px !important;
+	height: 6px !important;
+	/* 设置一下盒子的左上角和右上角的圆角 */
+	border-top-left-radius: 6px !important;
+	border-top-right-radius: 6px !important;
+	background-color: #cc3333 !important;
+	/* 加过渡 */
+	transition: all 0.5s !important;
+	/* 现在有个小问题 我们一起看看 ne
+  /* 就是这个问题 这个线条有点影响鼠标移入li这个效果 */
+	/* 这个属性就可以解决这个问题 就貌似这个元素你能看见 但是鼠标是点击不到了 现在鼠标放到线条也没事了 */
+	pointer-events: none !important;
+}
+.navbar1 .nav1 ul .underline::before {
+	content: "" !important;
+	/* 利用::before伪元素设置三角 */
+	position: absolute !important;
+	top: -10px !important;
+	/* calc方法自动计算数值 让盒子居中 */
+	left: calc(50% - 9px) !important;
+	width: 18px !important;
+	height: 10px !important;
+	/* inherit可以继承父元素的属性值 */
+	background-color: inherit !important;
+	/* 各位小伙伴可能对着属性比较陌生 我简单说一下这句话如何生成了三角形 这个属性可以绘制图案 polygon这个属性只需要提供最少三个点 就可以将三个点连接到一起 然后绘制一个图案  两个点的坐标位置(x,y) 0 100% 这个点就是说在x轴上为0px 在y轴是100% 就是盒子的高度 x轴的方向是向右 y轴的方向是向下 那么我们设置了三个点 然后将三个点连起来刚好绘制出一个三角形 不明白的小伙伴可以在纸上画一下 画出来就理解了 */
+	clip-path: polygon(0 100%, 50% 0, 100% 100%) !important;
+}
+.navbar1 .nav1 ul > li:nth-child(2):hover ~ .underline {
+	left: 240px !important;
+	background-color: #ff9933 !important;
+}
+/* 重复以上操作 */
+.navbar1 .nav1 ul > li:nth-child(3):hover ~ .underline {
+	left: 480px !important;
+	background-color: #339933 !important;
+}
+.navbar1 .nav1 ul > li:nth-child(4):hover ~ .underline {
+	left: 720px !important;
+	background-color: #0099cc !important;
+}
+.navbar1 .nav1 ul > li:nth-child(5):hover ~ .underline {
+	left: 960px !important;
+	background-color: #9966cc !important;
+}
+body{
+	font-family: 得意黑;
+	/* text-shadow:4px 4px 8px #4278bf; */
+}
+
+h1{
+	font-size: 50px;
+}
+p {
+	font-size: 24px;
+}
+
+h3{
+	font-size: 40px;
+	font-family: "Chill Bitmap 7px";
+}
+
+@keyframes slidein {
+	from {
+		margin-left: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-left: 0%;
+		width: 100%;
+	}
+}
+
+
+@keyframes slidein {
+	from {
+		margin-left: 100%;
+	}
+
+	to {
+		margin-left: 0%;
+	}
+}
+.small-block {
+	overflow: scroll;
+}
+@keyframes scroll-down {
+	from {
+		margin-right: 100%;
+		width: 300%;
+	}
+
+	to {
+		margin-right: 0%;
+		width: 100%;
+	}
+
+}
+.box {
+	-webkit-transition:width 2s, height 2s,
+	background-color 2s, -webkit-transform 2s;
+	transition:width 2s, height 2s, background-color 2s, transform 2s;
+}
+.box:hover {
+	transform:scale(150%);
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr;
+	gap: 24px
+}
+
+.parent-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px; /* Example height */
+}
+
+.button-container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Example height */
+}
+
+.highlight1 {
+    background-color: yellow !important; /* Highlight background color */
+    color: black !important; /* Text color */
+    font-weight: bold !important; /* Optional: make the text bold */
+}
+
+.tab_Content {
+	width: 800px;
+	height: 500px;
+	color: #607291;
+	background-color: #fff;
+	overflow: hidden;
+	border-radius: 15px !important;
+}
+
+.tab_Content input {
+	display: none;
+}
+
+.tab_Content label {
+	float: left;
+	width: 266px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: 700;
+	text-align: center;
+	font-size: 14px;
+	background-color: #e5e9ea;
+	transition: all 0.3s;
+}
+
+.tab_Content label img {
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	margin-top: -5px;
+}
+
+.tab_Content label:hover {
+	background-color: #fff;
+}
+
+.tab_Content ul {
+	clear: both;
+	width: 3500px;
+	height: 500px;
+	transition: all 0.5s;
+
+}
+
+.tab_Content ul li {
+	float: left;
+	list-style-type: none;
+	width: 700px;
+	height: 100%;
+	padding: 40px;
+}
+
+.tab_Content ul li img {
+	float: left;
+	width: 130px;
+	height: 130px;
+	margin-right: 20px;
+}
+
+.tab_Content ul li p {
+	/* 文字溢出隐藏 */
+	/* 超出内容显示为省略号 */
+	/* 将对象作为弹性伸缩盒子模型显示 */
+	display: -webkit-box;
+	/* 从上到下垂直排列子元素（设置伸缩盒子的子元素排列方式） */
+	-webkit-box-orient: vertical;
+	/* 这个属性不是css的规范属性，需要组合上面两个属性，表示显示的行数。 */
+	-webkit-line-clamp: 3;
+	margin-top: 20px;
+}
+
+.tab_Content #tab_list1:checked~ul {
+	margin-left: 0;
+}
+
+.tab_Content #tab_list2:checked~ul {
+	margin-left: -700px;
+}
+
+.tab_Content #tab_list3:checked~ul {
+	margin-left: -1400px;
+}
+
+.tab_Content #tab_list1:checked~label[for="tab_list1"] {
+	background-color: #fff;
+}
+
+.tab_Content #tab_list2:checked~label[for="tab_list2"] {
+	background-color: #fff;
+}
+
+.tab_Content #tab_list3:checked~label[for="tab_list3"] {
+	background-color: #fff;
+}
+
+.tab_Content #tab_list11:checked~ul {
+	margin-left: 0;
+}
+
+.tab_Content #tab_list22:checked~ul {
+	margin-left: -700px;
+}
+.tab_Content #tab_list11:checked~label[for="tab_list1"] {
+	background-color: #fff;
+}
+
+.tab_Content #tab_list22:checked~label[for="tab_list2"] {
+	background-color: #fff;
+}
+
+.button {
+	/* 弹性布局 让页面元素垂直+水平居中 */
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	/* 让子元素垂直排列 */
+	flex-direction: column !important;
+	/* 宽度占浏览器可视窗口总宽度 高度占浏览器可视区域总高度 */
+	width: 100px !important;
+	height: 100px !important;
+}
+.button a {
+	/* 相对定位 */
+
+	position: relative !important;
+	/* 将a这个行内元素转为块级元素不然无法设置宽和高 */
+	display: block !important;
+	width: 140px !important;
+	height: 60px !important;
+	/* 行高 */
+	line-height: 60px !important;
+	text-align: center !important;
+	margin: 40px !important;
+	color: var(--text-color) !important;
+	font-size: 20px !important;
+	/* 取消下划线 */
+	text-decoration: none !important;
+	/* 加一下一些过渡事件 */
+	transition: all 0.3s ease-in-out !important;
+	/* 重头戏来了,改变各个元素的颜色,一句话就能搞定 */
+	/* hue-rotate是颜色滤镜 可以加不同的度数来改变颜色
+  这里我们用了calc自动计算的方法,还有var函数来调用我们给每一个a设置的不同的属性值1~5,然后分别乘以60度,就能够分别得到不同的度数 */
+	filter: hue-rotate(calc(var(--i) * 60deg)) !important;
+}
+.button a::before,
+.button a::after {
+	/* 将两个伪元素的相同部分写在一起 */
+	content: "" !important;
+	position: absolute !important;
+	width: 20px !important;
+	height: 20px !important;
+	border: 2px solid var(--text-color) !important;
+	/* 最后的.3s是延迟时间 */
+	transition: all 0.3s ease-in-out 0.3s !important;
+}
+.button a::before {
+	top: 0 !important;
+	left: 0 !important;
+	/* 删除左边的伪元素的右和下边框 */
+	border-right: 0 !important;
+	border-bottom: 0 !important;
+}
+.button a::after {
+	right: 0 !important;
+	bottom: 0 !important;
+	/* 删除右边的伪元素的上边和左边的边框 */
+	border-top: 0 !important;
+	border-left: 0 !important;
+}
+.button a:hover {
+	background-color: var(--text-color) !important;
+	color: var(--background-color) !important;
+	/* 加个发光效果和下面的倒影 */
+	/* 模糊度加到了50px */
+	box-shadow: 0 0 50px var(--text-color) !important;
+	/* below 是下倒影 1px是倒影的元素相隔的距离 最后是个渐变的颜色 */
+	-webkit-box-reflect: below 1px
+	linear-gradient(transparent, rgba(0, 0, 0, 0.3)) !important;
+	/* 设置一下以上属性的延迟时间 */
+	transition-delay: 0.4s !important;
+}
+/* 在设置两条线的变化 总体来说四条各个方向的 只需要改变一下两个伪元素的宽度和高度 */
+.button a:hover::before,
+.button a:hover::after {
+	width: 138px !important;
+	height: 58px !important;
+	transition-delay: 0s !important;
+}
+
+
+
+
+
+.button1 {
+	/* 弹性布局 让页面元素垂直+水平居中 */
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	/* 让子元素垂直排列 */
+	flex-direction: column !important;
+	/* 宽度占浏览器可视窗口总宽度 高度占浏览器可视区域总高度 */
+	width: 100px !important;
+	height: 100px !important;
+	position: fixed;
+	right: 8vw;
+	bottom: 10vh;
+}
+.button1 a {
+	/* 相对定位 */
+
+	position: relative !important;
+	/* 将a这个行内元素转为块级元素不然无法设置宽和高 */
+	display: block !important;
+	width: 140px !important;
+	height: 60px !important;
+	/* 行高 */
+	line-height: 60px !important;
+	text-align: center !important;
+	margin: 40px !important;
+	color: aqua !important;
+	font-size: 20px !important;
+	/* 取消下划线 */
+	text-decoration: none !important;
+	/* 加一下一些过渡事件 */
+	transition: all 0.3s ease-in-out !important;
+	/* 重头戏来了,改变各个元素的颜色,一句话就能搞定 */
+	/* hue-rotate是颜色滤镜 可以加不同的度数来改变颜色
+  这里我们用了calc自动计算的方法,还有var函数来调用我们给每一个a设置的不同的属性值1~5,然后分别乘以60度,就能够分别得到不同的度数 */
+	filter: hue-rotate(calc(var(--i) * 60deg)) !important;
+}
+.button1 a::before,
+.button1 a::after {
+	/* 将两个伪元素的相同部分写在一起 */
+	content: "" !important;
+	position: absolute !important;
+	width: 20px !important;
+	height: 20px !important;
+	border: 2px solid aqua !important;
+	/* 最后的.3s是延迟时间 */
+	transition: all 0.3s ease-in-out 0.3s !important;
+}
+.button1 a::before {
+	top: 0 !important;
+	left: 0 !important;
+	/* 删除左边的伪元素的右和下边框 */
+	border-right: 0 !important;
+	border-bottom: 0 !important;
+}
+.button1 a::after {
+	right: 0 !important;
+	bottom: 0 !important;
+	/* 删除右边的伪元素的上边和左边的边框 */
+	border-top: 0 !important;
+	border-left: 0 !important;
+}
+.button1 a:hover {
+	background-color: aqua !important;
+	color: #000 !important;
+	/* 加个发光效果和下面的倒影 */
+	/* 模糊度加到了50px */
+	box-shadow: 0 0 50px aqua !important;
+	/* below 是下倒影 1px是倒影的元素相隔的距离 最后是个渐变的颜色 */
+	-webkit-box-reflect: below 1px
+	linear-gradient(transparent, rgba(0, 0, 0, 0.3)) !important;
+	/* 设置一下以上属性的延迟时间 */
+	transition-delay: 0.4s !important;
+}
+/* 在设置两条线的变化 总体来说四条各个方向的 只需要改变一下两个伪元素的宽度和高度 */
+.button1 a:hover::before,
+.button1 a:hover::after {
+	width: 138px !important;
+	height: 58px !important;
+	transition-delay: 0s !important;
+}
+
+:root {
+	--bgColor: #ebf4ff;
+	--badColor: #ff5722;
+	--okColor: #ff9800;
+	--goodColor: #36d896;
+	--greatColor: #3f51b5;
+}
+
+
+.container1 {
+	width: 530px;
+	height: 160px;
+	padding: 30px;
+	border-radius: 20px;
+	background-color: #fff;
+	/* 阴影 */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.container1 h1 {
+	font-size: 18px;
+	color: var(--greatColor);
+}
+
+.container1 .appraise {
+	display: flex;
+	/* 元素两端对齐 */
+	justify-content: space-between;
+	align-items: center;
+	height: 40px;
+	margin-top: 30px;
+}
+
+.container1 .appraise .icon {
+	overflow: hidden;
+	width: 40px;
+	height: 40px;
+}
+
+.container1 .appraise .icon .icon-list {
+	/* 取消li前面的小黑点 */
+	list-style: none;
+	/* 过渡看自己加不加 */
+	transition: all 0.5s;
+}
+
+.container1 .appraise .icon .icon-list li {
+	/* 溢出隐藏 */
+	overflow: hidden;
+	/* 相对定位 */
+	position: relative;
+	width: 40px;
+	height: 40px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	border: 4px solid var(--badColor);
+}
+
+.container1 .appraise .icon .icon-list li::before,
+.container1 .appraise .icon .icon-list li::after {
+	content: "";
+	/* 绝对定位 */
+	position: absolute;
+}
+
+/* 封装一下嘴的样式 start */
+.container1 .appraise .icon .icon-list li .mouth {
+	position: absolute;
+	left: 6px;
+	width: 20px;
+	height: 16px;
+	border-radius: 50%;
+}
+.container1 .appraise .icon .icon-list li .mouth::before {
+	content: "";
+	position: absolute;
+	width: 20px;
+	height: 8px;
+	background-color: #fff;
+}
+/* 封装一下嘴的样式 end */
+
+/* 表情1 start */
+/* 眉毛 start */
+.container1 .appraise .icon .icon-list .icon-bad .eyebrow,
+.container1 .appraise .icon .icon-list .icon-bad .eyebrow::before {
+	/* 绝对定位 */
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 8px;
+	height: 3px;
+	/* 圆角 */
+	border-radius: 3px;
+	background-color: var(--badColor);
+	/* 旋转 */
+	transform: rotate(-12deg);
+}
+.container1 .appraise .icon .icon-list .icon-bad .eyebrow::before {
+	content: "";
+	top: 0;
+	left: 14px;
+	transform: rotate(20deg);
+}
+/* 眉毛 end */
+/* 眼睛 start */
+.container1 .appraise .icon .icon-list .icon-bad::before {
+	top: 10px;
+	left: 8px;
+	border-radius: 50%;
+	border: 2px solid var(--badColor);
+	box-shadow: 12px 0 0 var(--badColor);
+}
+/* 眼睛 end */
+/* 嘴 start */
+.container1 .appraise .icon .icon-list .icon-bad .mouth {
+	bottom: -4px;
+	border: 2px solid var(--badColor);
+}
+.container1 .appraise .icon .icon-list .icon-bad .mouth::before {
+	left: -2px;
+	bottom: -2px;
+}
+/* 嘴 end */
+/* 表情1 end */
+
+/* 表情2 start */
+.container1 .appraise .icon .icon-list .icon-ok {
+	border-color: var(--okColor);
+}
+/* 眼睛 start */
+.container1 .appraise .icon .icon-list .icon-ok::before {
+	top: 6px;
+	left: 6px;
+	border-radius: 50%;
+	border: 3px solid var(--okColor);
+	box-shadow: 14px 0 0 var(--okColor);
+}
+/* 眼睛 end */
+/* 嘴 start */
+.container1 .appraise .icon .icon-list .icon-ok::after {
+	bottom: 6px;
+	right: 6px;
+	width: 12px;
+	height: 3px;
+	border-radius: 3px;
+	background-color: var(--okColor);
+}
+/* 嘴 end */
+/* 表情2 end */
+
+/* 表情3 start */
+.container1 .appraise .icon .icon-list .icon-good {
+	border-color: var(--goodColor);
+}
+/* 眼睛 start */
+.container1 .appraise .icon .icon-list .icon-good::before {
+	top: 8px;
+	left: 6px;
+	border-radius: 50%;
+	border: 3px solid var(--goodColor);
+	box-shadow: 14px 0 0 var(--goodColor);
+	/* 眼睛被堵了 提高眼睛的层叠顺序 */
+	z-index: 66;
+}
+/* 眼睛 end */
+/* 嘴 start */
+.container1 .appraise .icon .icon-list .icon-good .mouth {
+	bottom: 4px;
+	border: 2px solid var(--goodColor);
+}
+.container1 .appraise .icon .icon-list .icon-good .mouth::before {
+	left: -2px;
+	top: -2px;
+}
+/* 嘴 end */
+/* 表情3 end */
+
+/* 表情4 start */
+.container1 .appraise .icon .icon-list .icon-great {
+	border-color: var(--greatColor);
+}
+/* 眼睛 start */
+.container1 .appraise .icon .icon-list .icon-great::before,
+.container1 .appraise .icon .icon-list .icon-great::after {
+	top: 6px;
+	left: 6px;
+	width: 9px;
+	height: 9px;
+	background-color: var(--greatColor);
+	/* 绘制五角星 */
+	clip-path: polygon(
+			50% 0,
+			61% 35%,
+			98% 35%,
+			68% 57%,
+			79% 91%,
+			50% 70%,
+			21% 91%,
+			32% 57%,
+			2% 35%,
+			39% 35%
+	);
+	z-index: 88;
+}
+.container1 .appraise .icon .icon-list .icon-great::after {
+	left: 17px;
+}
+/* 眼睛 end */
+/* 嘴 start */
+.container1 .appraise .icon .icon-list .icon-great .mouth {
+	bottom: 4px;
+	background-color: var(--greatColor);
+}
+/* 嘴 end */
+/* 表情4 end */
+
+/* 滑动条 start */
+.container1 .appraise input {
+	/* 取消元素的原有样式 */
+	-webkit-appearance: none;
+	width: 390px;
+	height: 16px;
+	border-radius: 16px;
+}
+/* 滑动条 end */
+
+/* 滑动块 start */
+.container1 .appraise input::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 7px solid #fff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	/* 鼠标移入变小手 */
+	cursor: pointer;
+}
+/* 滑动块 end */
+
+
+.box2 {
+	/* 相对定位 */
+	position: relative;
+	width: 800px;
+	height: 450px;
+	/* 背景图片 */
+	background: url(../images/NTR1.jpg);
+	/* 背景图片自适应宽和高 */
+	background-size: contain;
+	/* 溢出隐藏 */
+	overflow: hidden;
+}
+
+.box2::before {
+	/* 利用伪元素做文字说明 */
+	content: 'Nuclear thermal rocket';
+	/* 绝对定位 */
+	position: absolute;
+	top: -450px;
+	left: 0;
+	width: 800px;
+	height: 450px;
+	/* 行高 让文字垂直居中 */
+	line-height: 450px;
+	text-align: center;
+	font-size: 30px;
+	color: #fff;
+	/* 背景颜色 a代表背景颜色不透明度 */
+	background-color: rgba(0, 0, 0, .2);
+}
+
+.box2:hover::before {
+	top: 0;
+	/* 动画 名称   时长 */
+	animation: dropdown 2s;
+}
+
+/* 下面定义下降动画 */
+@keyframes dropdown {
+	0% {
+		top: -450px;
+	}
+
+	5% {
+		top: 0;
+	}
+
+	10% {
+		top: -30px;
+	}
+
+	20% {
+		top: 0;
+	}
+
+	30% {
+		top: -20px;
+	}
+
+	40% {
+		top: 0;
+	}
+
+	50% {
+		top: -15px;
+	}
+
+	60% {
+		top: 0;
+	}
+
+	70% {
+		top: -10px;
+	}
+
+	80% {
+		top: 0;
+	}
+
+	90% {
+		top: -5px;
+	}
+
+	100% {
+		top: 0;
+	}
+}
+
+
+.barrage {
+	width: 800px;
+}
+
+/* 视频部分 start */
+.barrage .video {
+	/* 相对定位 */
+	position: relative;
+	width: 100%;
+}
+.barrage .video video {
+	width: 100%;
+}
+.barrage .video canvas {
+	/* 绝对定位 */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+/* 视频部分 end */
+
+/* 发送弹幕部分 start */
+.barrage .submit {
+	display: flex;
+	width: 100%;
+	height: 40px;
+}
+.barrage .submit input {
+	/* 清除form表单元素自带的轮廓 */
+	outline: 0;
+	width: 500px;
+	padding: 10px;
+	border: 1px solid #e7e7e7;
+}
+.barrage .submit button {
+	outline: 0;
+	border: 0;
+	width: 100px;
+	color: #fff;
+	background: linear-gradient(45deg, #016eff 70%, #1296ea);
+	/* 鼠标变小手 */
+	cursor: pointer;
+}
+/* 按钮点击后的样式 */
+.barrage .submit .btn_active {
+	color: #bbb;
+	background: #e7e7e7;
+	/* 鼠标变禁止点击状态 */
+	cursor: not-allowed;
+}
+/* 发送弹幕部分 end */

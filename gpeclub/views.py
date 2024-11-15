@@ -49,6 +49,9 @@ def index(request):
 def powerschool(request):
     return render(request, 'powerschool.html')
 
+def isocolon(request):
+    return render(request,'projects/isocolon/index.html')
+
 from django.shortcuts import render
 from django.http import JsonResponse
 import json

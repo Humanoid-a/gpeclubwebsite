@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+<head>
+    {% load static %}
+    <script src="{%  static 'assets/js/color-modes.js' %}"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <!--<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">-->
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Isocolon</title>
+      <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
+    <!--link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/heroes/"-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+
+    <link href="{% static 'isocolon.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'basestyles.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'heroes.css' %}" rel="stylesheet">
+
+
+
+    <style>
+        .whiteCover
+        {
+            opacity:0.8;
+            background:white;
+        }
+        .maxSize
+        {
+            width:100%;
+            height:100%;
+            margin-top:-100%;
+            width:100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container" style="padding-top: 50px">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="40" height="40">
+                        <!--<use href="{% static 'imgs/logo.png' %}"/>-->
+                        <img src="{% static 'imgs/logo.png' %}" width="40" height="40" loading="lazy">
+                    </svg>
+                    <span class="fs-4">GPE Club</span>
+                </a>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="../../" class="nav-link" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="../search/" class="nav-link active">Projects</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="../school/" class="nav-link">School</a></li>
+                </ul>
+            </header>
+        </div>
+        <nav class="navbar bg-body-tertiary fixed-top">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#">Table of Content</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Contents</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#1">Definition</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#2">Examples</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Practice Problems
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#3.1">Action</a></li>
+                      <li><a class="dropdown-item" href="#3.2">Another action</a></li>
+                        <li><a class="dropdown-item" href="#3.3">Something else here</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#5">Conclusion</a>
+                  </li>
+                </ul>
+                <!--
+                <form class="d-flex mt-3" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                -->
+              </div>
+            </div>
+          </div>
+        </nav>
+        <a name="0"></a>
+        <!--
+		<div class="navbar1">
+			<div class="nav1">
+				<ul>
+					<li>
+						<a href="#1">Definition</a>
+                        <ol>
+							<li><a href="#1.1">My Definition</a></li>
+							<li><a href="#1.2">Online Definition</a></li>
+						</ol>
+					</li>
+					<li>
+						<a href="#2">Examples</a>
+                        <ol>
+							<li><a href="#2.1">Usage</a></li>
+							<li><a href="#2.2">Real-life Examples</a></li>
+						</ol>
+					</li>
+					<li>
+						<a href="#3">Practice Questions</a>
+						<ol>
+							<li><a href="#3.1">MCQ 1</a></li>
+							<li><a href="#3.2">MCQ 2</a></li>
+                            <li><a href="#3.3">MCQ 3</a></li>
+						</ol>
+					</li>
+					<li>
+						<a href="#4">Question Answers</a>
+                        <ol>
+                            <li><a href="#4.1">Answer 1</a></li>
+                            <li><a href="#4.2">Answer 2</a></li>
+                            <li><a href="#4.3">Answer 3</a></li>
+                        </ol>
+					</li>
+					<li>
+						<a href="#5">Conclusion</a>
+                        <ol>
+							<li><a href="#5.1">Conclusion</a></li>
+							<li><a href="#5.2">Citations</a></li>
+						</ol>
+					</li>
+					<li class="underline"></li>
+				</ul>
+			</div>
+		</div>
+		-->
+		<div class="grid">
+            <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+              <symbol id="check-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+              </symbol>
+              <symbol id="info-fill" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+              </symbol>
+              <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </symbol>
+            </svg>
+
+			<div class="columb1">
+			</div>
+			<div class="column2">
+				<a name="1"></a>
+                <a name="1.1"></a>
+				<h1 align="middle" style="padding-top: 50px">First, what is invective?</h1>
+				<p style="padding-top:25px; padding-bottom: 25px" >
+                    Quick definition: Invective is a rhetorical device that uses <span class="highlight1">abusive and critical language</span> to attack and blame a certain target.
+                    <br><br>Characteristics of invective: <br>1. The usage of aggressive and violent language. <br>2. An abusive and critical tone. <br>3. An angry and outraged emotional appeal. <br>4. An unwillingness of communication.
+                    <br><br>Chinese translation of invective: 谩骂
+                </p>
+                <div class="img1-parent">
+				    <img src="{% static 'imgs/project_covers/4.jpg' %}" alt="" class="img1"/>
+                </div>
+                <a name="1.2"></a>
+                <h1 align="middle" style="padding-top: 50px">Online definitions for invective</h1>
+                <div class="parent-container1">
+                    <div class="tab_Content">
+                        <input type="radio" name="tab_list" id="tab_list1" checked />
+                        <input type="radio" name="tab_list" id="tab_list2" />
+                        <input type="radio" name="tab_list" id="tab_list3" />
+                        <label for="tab_list1">
+                            <img src="{% static 'imgs/mw.png' %}" alt="" />
+                            Webster</label
+                        >
+                        <label for="tab_list2">
+                            <img src="{% static 'imgs/ca.png' %}" alt="" />
+                            Cambridge</label
+                        >
+                        <label for="tab_list3">
+                            <img src="{% static 'imgs/di.png' %}" alt="" />
+                            Dictionary.com</label
+                        >
+
+                        <ul>
+                            <li>
+                                <img src="{% static 'imgs/mw.png' %}" alt="" class="box"/>
+                                <h2>Webster Definition</h2>
+                                <p>
+                                    1 : Insulting or abusive language. <br>2 : An abusive expression or speech.
+                                </p>
+                            </li>
+                            <li>
+                                <img src="{% static 'imgs/ca.png' %}" alt="" class="box"/>
+                                <h2>Cambridge Definition</h2>
+                                <p>
+                                    Criticism that is very forceful, unkind, and often rude. <br> Example: A stream of invective from some sectors of the press continues to assail the government.
+
+                                </p>
+                            </li>
+                            <li>
+                                <img src="{% static 'imgs/di.png' %}" class="box"/>
+                                <h2>Dictionary.com Definition</h2>
+                                <p>
+                                    1 : Vehement or violent denunciation, censure, or reproach. <br>2 : A railing accusation; vituperation. <br>3 : insulting or abusive word or expression.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+				<a name="2"></a>
+                <a name="2.1"></a>
+				<h1 align="middle" style="padding-top: 50px">Usage Circumstance</h1>
+				<p style="padding-top:25px">
+                    When using the rhetorical device of invective, we need to pay attention to the correct circumstances of using it.
+                    <br><br>1. <span class="highlight1">Use invective when using pathos</span>. Pathos is the appeal to the audience’s emotions. And by using invective, we can trigger the audience’s emotion of feeling angry. Therefore, we can make the message we deliver more impactful to the audience and thus help us to better deliver our following messages too.
+                    <br><br>2. <span class="highlight1">Use invective when attacking</span>. When we persuade our opponent and their idea, we can use invective to attack the opponent. Because of the invective’s strong emotional appeal, it can help us to influence the audience’s idea against the opponent’s when used effectively. Remember to be careful with our logos, because invective is more emotional than logical.
+                    <br><br>3. <span class="highlight1">Use invective when mobilizing</span>. Sometimes, we want to trigger the audience to have a sense of identity that aligns with us, different from the opponent. By using invective effectively, we can distinguish our standing point from the opponent, creating patriotism within the audience. Hence making the audience feel aligned with us and other audiences.
+                </p>
+                <a name="2.2"></a>
+                <h1 align="middle" style="padding-top: 50px">Real-life Examples</h1>
+				<p style="padding-top:25px; padding-bottom: 25px">
+                    Example 1:
+                    <br><br>In Donald Trump’s 2020 presidential campaign, he often refers to his opponent, Joe Biden as “Sleepy Joe”. For example, on April 25, 2019, Trump tweeted a message that said, “Welcome to the race, Sleepy Joe”.
+                    <br><br>In this tweet, using invective, Trump called the other presidential candidate Biden “Sleepy Joe” to humiliate and attack him. By effectively using invective, Trump can evoke concern in the audience, the voters, about Biden’s age, thus diminishing his credibility. This causes the audience to question whether is Biden really “sleepy” because of his old age and cannot handle the job of president effectively as Trump. Moreover, by using the nickname “Sleepy Joe” often in his campaign, Trump can group his supporters to also attack Biden using this nickname,
+                    triggering their emotions of sarcasm at Biden and making them align with the choice of voting for Trump as the president.
+                </p>
+                <div class="img1-parent">
+				    <img src="{% static 'imgs/trump1.png' %}" alt="" class="img1"/>
+                </div>
+                <p style="padding-top:25px; padding-bottom: 25px">
+                    Example 2:
+                    <br><br>In ABC's 2024 presidential debate, when arguing about illegal immigrants with presidential candidate Kamala Harris, presidential candidate Donald Trump said: “In Springfield, they are eating the dogs. The people that came in, they are eating the cats. They’re eating – they are eating the pets of the people that live there.”
+                    <br><br>In this sentence, using invective, Trump attacks the illegal immigrants by claiming they are “eating cats and dogs”. By effectively using invective to make a false claim about the illegal immigrants’ shocking and negative actions, Trump can dehumanize them and make the audience attack the illegal immigrants, furthermore questioning Harris’ political view about illegal immigrants in the US.
+                    Because how eating cats and dogs is beyond the moral standards of the audience, Trump’s attack can create a negative view of illegal immigrants in the audience, therefore letting the audience support his negative view of illegal immigrants and against Harris’ positive view of them.
+                </p>
+                <div class="img1-parent">
+				    <img src="{% static 'imgs/trump2.png' %}" alt="" class="img1"/>
+                </div>
+				<a name="3"></a>
+                <a name="3.1"></a>
+				<h1 align="middle" style="padding-top: 50px">Example Multiple Choice Question 1</h1>
+				<p style="padding-top: 25px">
+                    Which of the followings is the correct definition of invective?
+                </p>
+                    <div class="d-grid gap-2">
+                        <div id="liveAlertPlaceholder"></div>
+                        <button class="btn btn-outline-light text-start" type="button" id="liveAlertBtn">
+                            <p>
+                            A. A rhetorical device that puts two terms side by side to create a sense of contrast.
+                            </p>
+                        </button>
+                        <button class="btn btn-outline-light text-start" type="button">
+                            <p>
+                            B. A rhetorical device that uses abusive and critical language to attack the opponent
+                            </p>
+                        </button>
+                        <button class="btn btn-outline-light text-start" type="button">
+                            <p>
+                            C. A rhetorical device that used to add emotion to language by intentionally exaggerating statements.
+                            </p>
+                        </button>
+                        <button class="btn btn-outline-light text-start" type="button">
+                            <p>
+                            D. Donald Trump
+                            </p>
+                        </button>
+                    </div>
+                <p class="d-inline-flex gap-1" style="padding-top: 20px">
+                  <a class="btn btn-light" data-bs-toggle="collapse" href="#MCQ1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    See Explanation
+                  </a>
+                </p>
+                <div class="collapse" id="MCQ1">
+                  <div class="card card-body">
+                      <p style="padding-left: 15px; padding-right: 15px">
+                          The correct answer is C
+                          <br><br>A. Incorrect. This choice uses logical reasoning to argue back, without using emotional appeals.
+                          <br>B. Incorrect. This choice uses personal credibility to argue back, different from the emotional appeal used in the invective.
+                          <br><span class="highlight1">C. Correct.</span> This choice uses aggressive language to attack the teacher when arguing.
+                          <br>D. Incorrect. This choice uses the wrong kind of emotion to appeal.
+                      </p>
+                  </div>
+                </div>
+
+				<a name="3.2"></a>
+                <h1 align="middle" style="padding-top: 25px">Example Multiple Choice Question 2</h1>
+                <p style="padding-top: 25px">
+                    Consider this circumstance: Your AP Lang teacher, Mr. Dopuch, gave you a 0 on your last assignment. Mr. Dopuch said you failed because how you didn’t follow the instructions. You argued back:
+                    <br>Which of the following is the correct use of invective?
+                    <br><br>A. “The instructions weren’t clear enough. This specific instruction was written wrongly and ineffectively to mislead students.”
+                    <br>B. “Nobody knows grading better than me. Based on my experience, simply giving a 0 won’t help us to learn and improve.”
+                    <br>C. “You are such a terrible teacher, causing me to fail my assignment and trashing my GPA.”
+                    <br>D. *Cry*
+                </p>
+                <p class="d-inline-flex gap-1">
+                  <a class="btn btn-primary" data-bs-toggle="collapse" href="#MCQ2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    See Answers
+                  </a>
+                </p>
+                <div class="collapse" id="MCQ2">
+                  <div class="card card-body">
+                      <p style="padding-left: 15px; padding-right: 15px">
+                          The correct answer is C
+                          <br><br>A. Incorrect. This choice uses logical reasoning to argue back, without using emotional appeals.
+                          <br>B. Incorrect. This choice uses personal credibility to argue back, different from the emotional appeal used in the invective.
+                          <br><span class="highlight1">C. Correct.</span> This choice uses aggressive language to attack the teacher when arguing.
+                          <br>D. Incorrect. This choice uses the wrong kind of emotion to appeal.
+                      </p>
+                  </div>
+                </div>
+
+                <a name="3.3"></a>
+                <h1 align="middle" style="padding-top: 25px">Example Multiple Choice Question 3</h1>
+                <p style="padding-top: 25px">
+                    Consider this circumstance: You are a US presidential candidate and you are debating against your opponent. Regarding the opponent, you said to the audience: “Do not vote for him, because he doesn’t believe in our democracy. Remember his last term and what did he do when he lost the election and refused to hand over his power? What he believes is his own power and interest, not we the people. Please consider this when you are voting.”
+                    <br>Did you use invective in this above quote?
+                    <br><br>A. Yes
+                    <br>B. No
+                </p>
+                <div class="button-container1">
+                    <div class="button">
+                        <a href="#4.3" style="--i: 1">See Answer</a>
+                    </div>
+                </div>
+                <div class="img1-parent">
+				    <img src="{% static 'imgs/not_trump2.png' %}" alt="" class="img1"/>
+                </div>
+                <a name="4"></a>
+				<a name="4.1"></a>
+				<h1 align="middle" style="padding-top: 50px">Answer for MCQ 1</h1>
+                <p style="padding-top: 25px">
+                    <br>The correct answer is B
+                    <br><br>A. Incorrect. This choice refers to the rhetorical device of juxtaposition.
+                    <br><span class="highlight1">B. Correct.</span> Invective is indeed the rhetorical device that is characterized by its abusive and attractive language.
+                    <br>C. Incorrect. This choice refers to the rhetorical device of hyperbole.
+                    <br>D. Incorrect. Obviously.
+                </p>
+                <div class="button-container1">
+                    <div class="button">
+                        <a href="#3.1" style="--i: 1">Back</a>
+                    </div>
+                </div>
+                <a name="4.2"></a>
+				<h1 align="middle" style="padding-top: 25px">Answer for MCQ 2</h1>
+                <p style="padding-top: 25px">
+                    <br>The correct answer is C
+                    <br><br>A. Incorrect. This choice uses logical reasoning to argue back, without using emotional appeals.
+                    <br>B. Incorrect. This choice uses personal credibility to argue back, different from the emotional appeal used in the invective.
+                    <br><span class="highlight1">C. Correct.</span> This choice uses aggressive language to attack the teacher when arguing.
+                    <br>D. Incorrect. This choice uses the wrong kind of emotion to appeal.
+                </p>
+                <div class="button-container1">
+                    <div class="button">
+                        <a href="#3.2" style="--i: 1">Back</a>
+                    </div>
+                </div>
+                <a name="4.3"></a>
+				<h1 align="middle" style="padding-top: 25px">Answer for MCQ 3</h1>
+                <p style="padding-top: 25px">
+                    <br>The correct answer is <span class="highlight1">B, No</span>
+                    <br><br>This quote didn’t use invective to persuade but instead used logical reasoning. You logically analyzed your opponent’s past behavior and concluded how he is a bad president when voting, damaging his credibility to the audience.
+                    <br>If uses invective, the quote would be like: “He is just wrong! He is a nazi and wants to become the American Hitler, destroying the democracy of the US!”
+
+                </p>
+                <div class="button-container1">
+                    <div class="button">
+                        <a href="#3.3" style="--i: 1">Back</a>
+                    </div>
+                </div>
+
+				<a name="5"></a>
+                <a name="5.1"></a>
+				<h1 align="middle" style="padding-top: 50px">Conclusion</h1>
+				<p style="padding-top: 25px">
+                    If used correctly, invective is a powerful and effective rhetorical device that is mainly used when appealing to pathos. But still, if used ineffectively in incorrect circumstances, invective may oppositely damage your argument. Below are some tips that need to be remembered when using invective:
+                    <br><br>1. Be careful with logos and ethos. Invective could damage your logical reasoning and your credibility when used.
+                    <br>2. Balance between abuse and respect. Overly using invective may severely disrespect your opponent.
+                    <br>3. Use with consideration. Invective is far more complicated than simply humiliating your opponent, so be mind utilizing it thoughtfully.
+                </p>
+                <div class="img1-parent">
+				    <img src="{% static 'imgs/not_trump1.png' %}" alt="" class="img1"/>
+                </div>
+				<a name="5.2"></a>
+                <h1 align="middle" style="padding-top: 25px">Citations</h1>
+				<p style="padding-top: 25px">
+                    “Invective.” Merriam-Webster Dictionary, 18 Oct. 2024, www.merriam-webster.com/dictionary/invective.
+                    <br>“Invective” Cambridge Dictionary 6 Nov. 2024, dictionary.cambridge.org/us/dictionary/english/invective.
+                    <br>“Dictionary.com | Meanings and Definitions of English Words.” Dictionary.com, 27 Jan. 2021, www.dictionary.com/browse/invective.
+                    <br>Wendling, Merlyn Thomas &. Mike. Donald Trump Repeats Baseless Claim About Haitian Immigrants Eating Cats and Dogs in Springfield, Ohio. 15 Sept. 2024, www.bbc.com/news/articles/c77l28myezko.
+                    <br>Wikipedia contributors. “Sleepy Joe (Nickname).” Wikipedia, 6 Nov. 2024, en.wikipedia.org/wiki/Sleepy_Joe_(nickname).
+                    <br>Wikipedia contributors. “Invective.” Wikipedia, 19 July 2024, en.wikipedia.org/wiki/Invective.
+                </p>
+                <div class="button1">
+					<a href="#0" style="--i: 1">Back To Top</a>
+				</div>
+			</div>
+		</div>
+        <div class="b-example-divider"></div>
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
+
+                <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="40" height="40">
+                        <img src="{% static 'imgs/logo.png' %}" width="40" height="40" loading="lazy">
+                    </svg>
+                </a>
+
+                <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item"><a href="../../" class="nav-link px-2 text-body-secondary">Home</a></li>
+                    <li class="nav-item"><a href="../school/" class="nav-link px-2 text-body-secondary">School</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+                </ul>
+            </footer>
+        </div>
+  </main>
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script>
+    const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+    const appendAlert = (message, type) => {
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+      ].join('')
+    
+      alertPlaceholder.append(wrapper)
+    }
+    
+    const alertTrigger = document.getElementById('liveAlertBtn')
+    const wrong = document.getElementById('wrong')
+    if (alertTrigger) {
+      alertTrigger.addEventListener('click', () => {
+        appendAlert('Correct!', 'success')
+      })
+    }
+    </script>
+</body>
+</html>
