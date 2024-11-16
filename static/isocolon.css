@@ -33,6 +33,12 @@ a {
 
 
 }
+h4 {
+	font-size: 20px !important;
+}
+h1{
+	font-size: 35px !important;
+}
 
 /* Example CSS to style the image */
 .img1-parent{
@@ -268,7 +274,6 @@ h3{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 600px; /* Example height */
 }
 
 .button-container1 {
