@@ -15,6 +15,7 @@ def callback_course(course: CourseData):
 """
 def callback_course(course: CourseData):
     course_str = str(course)
-    print(course_str.encode('utf-8', errors='replace').decode('utf-8'))
+    #print(course_str.encode('utf-8', errors='replace').decode('utf-8'))
+    print(course_str.encode('gbk',errors='replace').decode('gbk'))
     with open('../crawled.txt', 'a', encoding='utf-8') as f:
         f.write(f"{course_str}\n")
