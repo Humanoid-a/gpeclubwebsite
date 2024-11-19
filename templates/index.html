@@ -19,7 +19,29 @@
             text-decoration: none !important;
 
         }
+        .img1-parent{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            -webkit-transition:width 1s, height 1s,
+            background-color 1s, -webkit-transform 1s !important;
+            transition:width 1s, height 1s, background-color 1s, transform 1s !important;
+        }
+        .img1 {
+            width: 100% !important; /* Make the image responsive */
+            max-width: 150px !important; /* Set a maximum width */
+            height: auto !important; /* Maintain aspect ratio */
+            border-radius: 15px !important;
+            align-self: center !important;
+
+
+        }
+        .img1-parent:hover {
+            transform:scale(125%) !important;
+        }
     </style>
+
 
     
     <!-- Custom styles for this template -->
@@ -72,9 +94,46 @@
         </p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
           <a href="projects/search/"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Projects</button></a>
-          <a href="projects/school/"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">School</button></a>
+          <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">About Us</button>
 
         <button type="button" class="btn btn-outline-secondary btn-lg px-4">Login</button>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">About Us</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h4>
+                  GPE Club
+              </h4>
+            <p>
+                Members: Andy Wang, Will Li, Andrew Hu
+                <br><br>Website made by Will and Andy<br><br>
+            </p>
+              <div class="img1-parent">
+                  <img src="{% static 'imgs/gandy.jpg' %}" alt="" class="img1"/>
+              </div>
+              <p>
+                    GAndY<br>
+              </p>
+              <div class="img1-parent">
+                  <img src="{% static 'imgs/will.jpg' %}" alt="" class="img1"/>
+              </div>
+                <p>
+                    Will
+                </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="overflow-hidden" style="max-height: 100vh;">
