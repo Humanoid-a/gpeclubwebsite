@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <!--<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">-->
     <meta name="generator" content="Hugo 0.122.0">
-    <title>THIS info</title>
+    <title>Login</title>
       <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
     <!--link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/heroes/"-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -30,6 +30,19 @@
             width:100%;
             height:100%;
         }
+        .parent
+        {
+            max-width: 500px;
+            margin: auto auto;
+        }
+        .align-left-form {
+            text-align: left;
+        }
+        .align-left-form .form-label,
+        .align-left-form .form-check-label,
+        .align-left-form .form-text {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -37,9 +50,9 @@
         <div class="container">
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32">
+                    <svg class="bi me-2" width="40" height="40">
                         <!--<use href="{% static 'imgs/logo.png' %}"/>-->
-                        <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+                        <img src="{% static 'imgs/logo.png' %}" width="40" height="40" loading="lazy">
                     </svg>
                     <span class="fs-4">GPE Club</span>
                 </a>
@@ -60,6 +73,7 @@
         <div class="px-4 pt-5 my-5 text-center border-bottom">
             <h1 style="padding-bottom: 50px">Date: {{current_date}}</h1>
             <h3>Powerschool Login</h3>
+            <!--
             <form method="POST" action="../powerschool/" onsubmit="submitForm(event)">
                 {% csrf_token %}
                 <label for="usr">Username: </label>
@@ -73,6 +87,26 @@
                 <input type="checkbox" id="ck" name="ck">
                 <label for="ck">Remember Me</label>
             </form>
+            -->
+            <div class="parent">
+            <form method="POST" action="../powerschool/" onsubmit="submitForm(event)" style="padding-bottom: 100px" class="align-left-form">
+                {% csrf_token %}
+              <div class="mb-3">
+                <label for="usr" class="form-label">Username: </label>
+                <input type="text" class="form-control" id="usr" aria-describedby="emailHelp" name="usr">
+                <div id="emailHelp" class="form-text">We'll never share your username and password with anyone else.</div>
+              </div>
+              <div class="mb-3">
+                <label for="pw" class="form-label">Password: </label>
+                <input type="password" class="form-control" id="pw" name="pw">
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="ck" name="ck">
+                <label class="form-check-label" for="ck">Remember Me</label>
+              </div>
+              <button type="submit" class="btn btn-primary" value="Login">Submit</button>
+            </form >
+            </div>
         </div>
 
         <div class="b-example-divider"></div>
@@ -81,8 +115,8 @@
                 <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
 
                 <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32">
-                        <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+                    <svg class="bi me-2" width="40" height="40">
+                        <img src="{% static 'imgs/logo.png' %}" width="40" height="40" loading="lazy">
                     </svg>
                 </a>
 

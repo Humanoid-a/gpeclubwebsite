@@ -4,7 +4,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render
 from datetime import datetime
-
+import io
+import sys
+from powerschool.powerschool import PSLData
+from django.shortcuts import render
+from powerschool.powerschool.spiders.psl import PslSpider
 """
 def index(request):
     #return render(request,'test.html')
@@ -46,8 +50,10 @@ def index(request):
     current_date = datetime.now()
     return render(request, 'index.html', {'current_date': current_date})
 
+from gpeclub.models import psl
 def powerschool(request):
-    return render(request, 'powerschool.html')
+    courses = psl.objects.all()
+    return render(request, 'powerschool.html', {'courses': courses})
 
 def isocolon(request):
     return render(request,'projects/isocolon/index.html')
@@ -69,3 +75,4 @@ def run_crawltest(request):
         except Exception as e:
             return JsonResponse({'success': False, 'error': str(e)})
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
+

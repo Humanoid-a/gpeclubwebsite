@@ -13,9 +13,14 @@ def callback_course(course: CourseData):
     with open('../crawled.txt', 'a', encoding='utf-8') as f:
         f.write(f"{course}\n")
 """
+
+from gpeclub.models import psl
 def callback_course(course: CourseData):
     course_str = str(course)
     #print(course_str.encode('utf-8', errors='replace').decode('utf-8'))
     print(course_str.encode('gbk',errors='replace').decode('gbk'))
+
+    courses = psl(courses=course_str)
+    courses.save()
     with open('../crawled.txt', 'a', encoding='utf-8') as f:
         f.write(f"{course_str}\n")

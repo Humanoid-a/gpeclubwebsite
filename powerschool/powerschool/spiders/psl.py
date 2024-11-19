@@ -69,9 +69,12 @@ class PslSpider(scrapy.Spider):
                 course_grades = self.extract_grade(sem1)
                 l_grade = course_grades[0]
                 n_grade = course_grades[1]
-            except:
-                l_grade = 'None'
-                n_grade = 0
 
-            course_data = psl.CourseData(course_name, l_grade, n_grade)
-            psl.callback_course(course_data)
+                course_data = psl.CourseData(course_name, l_grade, n_grade)
+                psl.callback_course(course_data)
+            except:
+                #l_grade = 'None'
+                #n_grade = 0
+                continue
+
+

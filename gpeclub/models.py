@@ -12,3 +12,6 @@ class Project(models.Model):
     project_cover = models.CharField(max_length=256, default='imgs/logo.png')
     project_description = models.TextField()
 
+class psl(models.Model):
+    courses = models.CharField(max_length=256)
+
