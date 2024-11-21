@@ -56,7 +56,7 @@ class PslSpider(scrapy.Spider):
     def afterlogin(self, response):
         #print('-'*50)
         #print('Login!')
-
+        from .. import PSLData as psl
         TD_TAG = 'td'
         COURSE_TAG = 'tr + .center'
 
@@ -74,7 +74,7 @@ class PslSpider(scrapy.Spider):
                 course_grades = self.extract_grade(sem1)
                 l_grade = course_grades[0]
                 n_grade = course_grades[1]
-                from .. import PSLData as psl
+
                 course_data = psl.CourseData(course_name, l_grade, n_grade)
                 courses.append(course_data)
                 psl.callback_course(course_data)

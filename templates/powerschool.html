@@ -99,10 +99,10 @@
             </tr>
           </thead>
           <tbody>
-              {% for course in courses %}
+              {% for line in lines %}
                   <tr>
                       <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{ course.courses }}</td>
+                      <td>{{ line }}</td>
                   </tr>
               {% endfor %}
           </tbody>

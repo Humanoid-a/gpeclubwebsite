@@ -9,6 +9,9 @@ import sys
 from powerschool.powerschool import PSLData
 from django.shortcuts import render
 from powerschool.powerschool.spiders.psl import PslSpider
+
+
+
 """
 def index(request):
     #return render(request,'test.html')
@@ -17,7 +20,7 @@ def index(request):
     #return render(request, 'header.html')
     return render(request,'index.html')
 """
-
+username = ''
 def header(request):
     return render(request,'header.html')
 
@@ -52,20 +55,27 @@ def index(request):
 
 from gpeclub.models import psl
 import time
+import os
 def powerschool(request):
+    global username
     #time.sleep(2)
     courses = psl.objects.all()
-    return render(request, 'powerschool.html', {'courses': courses})
+    #username = request.GET.get('username')
+    txt = os.path.join('powerschool/grades/', f'{username}.txt')
+    with open(txt, 'r') as file:
+        grades = file.read()
+    lines = grades.splitlines()
+    return render(request, 'powerschool.html', {'lines': lines})
 
 def isocolon(request):
     return render(request,'projects/isocolon/index.html')
 
-from django.shortcuts import render
+
 from django.http import JsonResponse
 import json
 from pslCrawlAPI import crawl_account
-
 def run_crawltest(request):
+    global username
     if request.method == 'POST':
         data = json.loads(request.body)
         username = data.get('usr')
