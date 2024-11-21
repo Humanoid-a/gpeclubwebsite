@@ -9,12 +9,12 @@ from scrapy.utils.project import get_project_settings
 from powerschool.spiders import psl
 from scrapy.cmdline import execute
 
-from gpeclub.models import psl as psl_model
+#from gpeclub.models import psl as psl_model
 
 
 
 def crawl_account(username, pwd):
-    psl_model.objects.all().delete()
+    #psl_model.objects.all().delete()
     #process = CrawlerProcess(get_project_settings())
 
     process = CrawlerProcess(get_project_settings())
