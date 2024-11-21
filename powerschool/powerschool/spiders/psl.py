@@ -5,6 +5,7 @@ from .. import PSLData as psl
 USERNAME = ''
 PWD = ''
 
+
 class PslSpider(scrapy.Spider):
     name = "psl"
     allowed_domains = ["power.this.edu.cn"]
@@ -76,5 +77,6 @@ class PslSpider(scrapy.Spider):
                 #l_grade = 'None'
                 #n_grade = 0
                 continue
+
 
 

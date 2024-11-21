@@ -1,10 +1,18 @@
-import powerschool.pslcrawler as pslcrawler
+#import powerschool.pslcrawler as pslcrawler
+import subprocess
+import sys
+import pslCrawlAPI
 
-#pslcrawler.crawl_account('ENTER YOUR USERNAME', 'ENTER YOUR PWD')
-pslcrawler.crawl_account('190621DLA', 'EsJ77577@')
+#pslcrawler.crawl_account('190621DLA', 'EsJ77577@')
+#pslcrawler.crawl_account('190621DLA', 'EsJ77577@')
+pslCrawlAPI.crawl_account('190621DLA', 'EsJ77577@')
+
+
+#pslcrawler.crawl_account('190621DLA', 'EsJ77577@')
 #test_n = '190621DLA'
 #test_p = 'EsJ77577@'
-
+#subprocess.run([sys.executable,'powerschool/pslcrawler.py','--username','190621DLA','--pwd','EsJ77577@'])
+#subprocess.run([sys.executable,'powerschool/pslcrawler.py','--username','190621DLA','--pwd','EsJ77577@'])
 
 
 #import sys

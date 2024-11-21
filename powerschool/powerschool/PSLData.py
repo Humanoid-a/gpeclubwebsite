@@ -22,5 +22,5 @@ def callback_course(course: CourseData):
 
     courses = psl(courses=course_str)
     courses.save()
-    with open('../crawled.txt', 'a', encoding='utf-8') as f:
+    with open('../crawled.txt', 'a', encoding='gbk') as f:
         f.write(f"{course_str}\n")
