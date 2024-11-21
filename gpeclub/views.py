@@ -51,7 +51,9 @@ def index(request):
     return render(request, 'index.html', {'current_date': current_date})
 
 from gpeclub.models import psl
+import time
 def powerschool(request):
+    time.sleep(2)
     courses = psl.objects.all()
     return render(request, 'powerschool.html', {'courses': courses})
 
@@ -61,7 +63,7 @@ def isocolon(request):
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
-from powerschool.pslcrawler import crawl_account
+from pslCrawlAPI import crawl_account
 
 def run_crawltest(request):
     if request.method == 'POST':
