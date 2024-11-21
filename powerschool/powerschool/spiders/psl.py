@@ -1,6 +1,6 @@
 import scrapy
 from scrapy.http import FormRequest
-from .. import PSLData as psl
+
 
 USERNAME = ''
 PWD = ''
@@ -70,7 +70,7 @@ class PslSpider(scrapy.Spider):
                 course_grades = self.extract_grade(sem1)
                 l_grade = course_grades[0]
                 n_grade = course_grades[1]
-
+                from .. import PSLData as psl
                 course_data = psl.CourseData(course_name, l_grade, n_grade)
                 psl.callback_course(course_data)
             except:

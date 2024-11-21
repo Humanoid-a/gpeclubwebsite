@@ -14,13 +14,20 @@ def callback_course(course: CourseData):
         f.write(f"{course}\n")
 """
 
-#from gpeclub.models import psl
+import time
+import csv
 def callback_course(course: CourseData):
     course_str = str(course)
     #print(course_str.encode('utf-8', errors='replace').decode('utf-8'))
     print(course_str.encode('gbk',errors='replace').decode('gbk'))
+    with open('crawled.csv', 'a', newline='', encoding='gbk') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        #csvwriter.writerow(course_str.split())
+        csvwriter.writerow([course.course_name, course.course_letter_grade, course.course_number_grade])
 
-    #courses = psl(courses=course_str)
-    #courses.save()
-    with open('../crawled.txt', 'a', encoding='gbk') as f:
-        f.write(f"{course_str}\n")
+    from gpeclub.models import psl
+    courses = psl(courses=course_str)
+    courses.save()
+
+    time.sleep(10)
+    psl.objects.all().delete()

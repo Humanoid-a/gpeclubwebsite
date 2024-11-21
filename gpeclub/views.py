@@ -53,7 +53,7 @@ def index(request):
 from gpeclub.models import psl
 import time
 def powerschool(request):
-    time.sleep(2)
+    #time.sleep(2)
     courses = psl.objects.all()
     return render(request, 'powerschool.html', {'courses': courses})
 
