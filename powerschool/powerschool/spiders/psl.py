@@ -15,6 +15,8 @@ class PslSpider(scrapy.Spider):
         return self.login(username=USERNAME, pwd=PWD)
 
     def login(self, username, pwd):
+        self.username = username
+        self.pwd = pwd
         formdata = {
             'dbpw':pwd,
             'translator_username': '',
@@ -58,6 +60,8 @@ class PslSpider(scrapy.Spider):
         TD_TAG = 'td'
         COURSE_TAG = 'tr + .center'
 
+        courses = []
+
         for course in response.css(COURSE_TAG):
 
             columns = list(course.css(TD_TAG))
@@ -72,11 +76,15 @@ class PslSpider(scrapy.Spider):
                 n_grade = course_grades[1]
                 from .. import PSLData as psl
                 course_data = psl.CourseData(course_name, l_grade, n_grade)
+                courses.append(course_data)
                 psl.callback_course(course_data)
             except:
                 #l_grade = 'None'
                 #n_grade = 0
                 continue
+
+        grades_data = psl.GradesData(self.username, courses)
+        psl.callback_gradefile(grades_data)
 
 
 
