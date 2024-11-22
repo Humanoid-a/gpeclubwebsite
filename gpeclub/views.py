@@ -59,13 +59,21 @@ import os
 def powerschool(request):
     global username
     #time.sleep(2)
-    courses = psl.objects.all()
+    avg_txt = os.path.join('powerschool/grades/', f'{username}avg.txt')
+    with open(avg_txt, 'r') as file:
+        avg = file.read()
+    print(avg)
+    gpa = avg
     #username = request.GET.get('username')
     txt = os.path.join('powerschool/grades/', f'{username}.txt')
     with open(txt, 'r') as file:
         grades = file.read()
     lines = grades.splitlines()
-    return render(request, 'powerschool.html', {'lines': lines})
+    try:
+        os.remove(txt), os.remove(avg_txt)
+    except:
+        pass
+    return render(request, 'powerschool.html', {'lines': lines, 'gpa': gpa})
 
 def isocolon(request):
     return render(request,'projects/isocolon/index.html')

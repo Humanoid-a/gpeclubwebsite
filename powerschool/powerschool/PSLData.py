@@ -41,6 +41,10 @@ def callback_course(course: CourseData):
 def callback_gradefile(grades: GradesData):
     grades_str = str(grades).encode('gbk', errors='replace').decode('gbk')
     print(grades_str)
-
     with open('powerschool/grades/{}.txt'.format(grades.username), 'w', encoding='utf-8') as f:
         f.write(grades_str)
+
+import os
+def callback_avg(avg, grades: GradesData):
+    with open('powerschool/grades/{}avg.txt'.format(grades.username), 'w', encoding='utf-8') as f:
+        f.write(str(avg))
