@@ -70,10 +70,10 @@ class CourseLibrary(object):
 
 
 
-DEFAULT_LIBRARY = LoadLibrary(DEFAULT_LOAD_LIBRARY)
-DEFAULT_LIBRARY.add_course(CoursePrefab("ELA",1))
-print("Loaded course library: {}".format(DEFAULT_LIBRARY.serialize()))
-DEFAULT_LIBRARY.save(DEFAULT_LOAD_LIBRARY)
+#DEFAULT_LIBRARY = LoadLibrary(DEFAULT_LOAD_LIBRARY)
+#DEFAULT_LIBRARY.add_course(CoursePrefab("ELA",1))
+#print("Loaded course library: {}".format(DEFAULT_LIBRARY.serialize()))
+#DEFAULT_LIBRARY.save(DEFAULT_LOAD_LIBRARY)
 
 def SaveDefaultLibrary():
     DEFAULT_LIBRARY.save(DEFAULT_LOAD_LIBRARY)
@@ -81,3 +81,5 @@ def SaveDefaultLibrary():
 def ReloadDefaultLibrary():
     global DEFAULT_LIBRARY
     DEFAULT_LIBRARY = LoadLibrary(DEFAULT_LOAD_LIBRARY)
+
+ReloadDefaultLibrary()
