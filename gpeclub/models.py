@@ -14,4 +14,3 @@ class Project(models.Model):
 
 class psl(models.Model):
     courses = models.CharField(max_length=256)
-
