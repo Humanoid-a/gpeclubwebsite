@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'gpeclub.apps.GpeclubConfig',
     'GPEClubWebsite',
 ]
+#DJANGO_SETTINGS_MODULE = 'GPEClubWebsite.settings'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

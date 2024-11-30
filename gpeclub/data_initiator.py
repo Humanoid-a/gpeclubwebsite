@@ -1,6 +1,12 @@
 from . import models
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+#import os
+
+#settings.configure()
+
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "GPEClubWebsite.settings")
+
 def clearDatas():
     a = models.Project.objects.all()
     for _ in range(len(a)):

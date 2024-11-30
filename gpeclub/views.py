@@ -10,6 +10,8 @@ from powerschool.powerschool import PSLData
 from django.shortcuts import render
 from powerschool.powerschool.spiders.psl import PslSpider
 
+#import gpeclub.data_initiator
+
 
 
 """
