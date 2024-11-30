@@ -26,6 +26,16 @@ models.Project.objects.create(
     project_cover=project_cover_path('1.png'),
 )
 
+#polyptoton
+models.Project.objects.create(
+    project_id=5,
+    project_name='Polyptoton',
+    project_url='projects/polyptoton/',
+    project_version='1.0.0',
+    project_description='by Andy Wang',
+    project_cover=project_cover_path('6.png'),
+)
+
 #photo1
 models.Project.objects.create(
     project_id=0,

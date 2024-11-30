@@ -40,6 +40,10 @@ import IndividualProjects.trigonomis.localviews as trigonomis1
 def supertictactoe(request):
     return superttt.view_index(request)
 
+import IndividualProjects.polyptoton.localviews as polyptotonView
+def polyptoton(request):
+    return polyptotonView.view_index(request)
+
 def photo1(request):
     return render(request,'projects/photo1/index.html')
 
