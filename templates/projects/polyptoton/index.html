@@ -27,6 +27,10 @@
             background-color: #f4f4f9;
             color: #333;
         }
+        .containerPage div
+        {
+            margin: 30px 0;
+        }
         .header {
             color: #2c3e50;
         }
@@ -58,8 +62,64 @@
         {
             list-style-type: upper-alpha;
         }
+
+         .question {
+             background-color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .options {
+            margin-left: 20px;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .submit-button {
+            margin-top: 20px;
+        }
+
     </style>
 
+      <script>
+          function checkAnswer(questionIdx)
+          {
+              const answers = ['D','C','C','A','B'];
+
+              const questionId = "question"+questionIdx.toString();
+              var question = document.getElementById(questionId);
+                //const userAnswer = question.querySelector(`input[name="q${questionIdx}"]:checked`);
+              const userAnswer = question.querySelector(`input:checked`);
+              var resultDisplay = question.getElementsByClassName("resultDisplay")[0];
+              //alert(userAnswer.value.toString());
+                if (userAnswer)
+                {
+                    if(userAnswer.value === answers[questionIdx-1]) {
+                        resultDisplay.textContent = "Correct.";
+                        resultDisplay.style.color = 'green';
+                        var answer = question.getElementsByClassName("answer")[0];
+                        answer.classList.remove('invisible');
+                        //alert("correct");
+                    }
+                    else{
+                        resultDisplay.textContent = "Wrong.";
+                        resultDisplay.style.color = 'red';
+                        //alert("wrong");
+                    }
+                }
+                else{
+                    resultDisplay.textContent = "Please select an answer.";
+                    resultDisplay.style.color = 'red';
+                    //alert("please select an answer");
+                }
+
+
+
+          }
+      </script>
     
 
 
@@ -97,16 +157,17 @@
 
     <div class="containerPage">
         <h1 class="header">Polyptoton</h1>
+        <p><em><strong>By: Andy Wang</strong></em></p>
 
     <div class="definition-section">
         <h2 class="subheadings">Definition</h2>
-        <p><strong>Polyptoton</strong> is a figure of speech that repeats words sharing the same root.</p>
+        <p><strong>Polyptoton</strong> is a figure of speech that <strong>repeats words sharing the same root.</strong></p>
     </div>
 
     <div class="root-definition">
         <h2>Definition: Root Words</h2>
-        <p><strong>Root words</strong> are the basic parts of words that can be combined with affixes to form other words.</p>
-        <p><em>Note:</em> Root words are not always standalone words.</p>
+        <p><strong>Root words</strong> are the <strong>basic parts of words</strong> that can be combined with affixes to form other words.</p>
+        <p><em>Note:</em> Root words are <strong>not always standalone words.</strong></p>
     </div>
 
     <div class="table-section">
@@ -169,110 +230,149 @@
         </ol>
         <p><em>You shall not pass before I bleed till my blood dries.</em></p>
 
-        <p><strong>Now, write a sentence using polyptoton.</strong>></p>
+        <p><strong>Now, write a sentence using polyptoton.</strong></p>
     </div>
 
     <div class="practice-section">
         <h2>Practice</h2>
+        <p><em>Explanation displays after answering the question correctly.</em></p>
+        <p><strong>Select a choice to fill in the blank that makes the sentence a polyptoton.</strong></p>
         <!--p><strong>MCQs</strong></p-->
-        <ol>
-            <p><strong>Select a choice to fill in the blank to make the sentence a polyptoton.</strong></p>
-                    <li>In geography, we used ____.</li>
-                    <ul class="mcqs">
-                        <li>Biology</li>
-                        <li>Thermometers</li>
-                        <li>Astrology</li>
-                        <li>Geometry</li>
-                    </ul>
-                <p><strong>Answer:</strong> D. Geography and geometry both have the root word <em>geo</em>, making the sentence a polyptoton.</p>
-            </li>
-            <li>My ___ said, he will not teach starting next year.
-                <ul class="mcqs">
-                    <li>Friend</li>
-                    <li>Mother</li>
-                    <li>Teacher</li>
-                    <li>Professor</li>
-                </ul>
-                <p><strong>Answer:</strong> C. Teacher and teach share the root word “teach,” emphasizing it in the context.</p>
-            </li>
-            <li>Where you go, I have already __.
-                <ul class="mcqs">
-                    <li>Went</li>
-                    <li>Been</li>
-                    <li>Gone</li>
-                    <li>Seen</li>
-                </ul>
-                <p><strong>Answer:</strong> C. Gone and go share the root “go,” creating a polyptoton emphasizing “go.”</p>
-            </li>
-        </ol>
+            <div class="question" id="question1">
+        <p><strong>Question 1:</strong> In geography, we used ____.</p>
+        <div class="options">
+            <label><input type="radio" name="q1" value="A"> A. Biology</label>
+            <label><input type="radio" name="q1" value="B"> B. Thermometers</label>
+            <label><input type="radio" name="q1" value="C"> C. Astrology</label>
+            <label><input type="radio" name="q1" value="D"> D. Geometry</label>
+        </div>
+        <div class="submit-button">
+            <button type="button" onclick="checkAnswer(1)">Check</button>
+        </div>
+        <strong><p class="resultDisplay"></p></strong>
+        <div class="answer invisible">
+            <p><strong>Answer:</strong> D. Geography and geometry both have the root word <em>geo</em>, making the sentence a polyptoton.</p>
+        </div>
     </div>
 
-    <div class="review-section">
-        <p><strong>Select the choice(s) that employs polyptoton.</strong></p>
-        <ul class="mcqs">
-            <li>My friend, how dare you betray our friendship?</li>
-            <li>My companion, how dare you betray our friendship?</li>
-            <li>How dare you turn your back on the connection we once had?</li>
-            <li>How could you betray my trust, friend?</li>
-        </ul>
-        <p><strong>Answer:</strong> A. Friend and friendship share the root word “friend,” emphasizing a sense of betrayal.</p>
-        <ul class="mcqs">
-            <li>Import the goods with boat.</li>
-            <li>Import the goods through the port by the sea.</li>
-            <li>The portable device is out of stock.</li>
-            <li>I gave a portion of my life to you.</li>
-        </ul>
-        <p><strong>Answer:</strong> B. Import and port share the root “port,” creating rhythm.</p>
+    <div class="question" id="question2">
+        <p><strong>Question 2:</strong> My ___ said, he will not teach starting next year.</p>
+        <div class="options">
+            <label><input type="radio" name="q2" value="A"> A. Friend</label>
+            <label><input type="radio" name="q2" value="B"> B. Mother</label>
+            <label><input type="radio" name="q2" value="C"> C. Teacher</label>
+            <label><input type="radio" name="q2" value="D"> D. Professor</label>
+        </div>
+        <div class="submit-button">
+            <button type="button" onclick="checkAnswer(2)">Check</button>
+        </div>
+        <strong><p class="resultDisplay"></p></strong>
+        <div class="answer invisible">
+            <p><strong>Answer:</strong> C. Teacher and teach both have the same root word of <em>teach</em>, making the sentence a polyptoton while emphasizing the term <em>teach</em> in the context.</p>
+        </div>
     </div>
 
-    <div class="references-section">
-        <h2>Review</h2>
-        <ul>
-            <li>Definition of polyptoton: A figure of speech that repeats words sharing the same root.</li>
-            <li>Definition of root word: The basic parts of words that can be combined with affixes to form other words.</li>
-            <li>Purpose of polyptoton: To convey implicit messages and add rhythm to the text.</li>
-        </ul>
-
-        <h2>References</h2>
-        <ul>
-            <li><a href="https://www.scribbr.co.uk/english-language/root-word/#:~:text=A%20root%20word%20is%20the,prefix%20root%20word%20suffix" target="_blank">Scribbr - Root Words</a></li>
-            <li><a href="https://www.grammarly.com/blog/grammar/root-words/" target="_blank">Grammarly - Root Words</a></li>
-            <li><a href="https://www.litcharts.com/literary-devices-and-terms/polyptoton" target="_blank">LitCharts - Polyptoton</a></li>
-        </ul>
+    <div class="question" id="question3">
+        <p><strong>Question 3:</strong> Where you go, I have already ____.</p>
+        <div class="options">
+            <label><input type="radio" name="q3" value="A"> A. Went</label>
+            <label><input type="radio" name="q3" value="B"> B. Been</label>
+            <label><input type="radio" name="q3" value="C"> C. Gone</label>
+            <label><input type="radio" name="q3" value="D"> D. Seen</label>
+        </div>
+        <div class="submit-button">
+            <button type="button" onclick="checkAnswer(3)">Check</button>
+        </div>
+        <strong><p class="resultDisplay"></p></strong>
+        <div class="answer invisible">
+            <p><strong>Answer:</strong> C. Gone and go share the same root word <em>go</em>, creating a polyptoton emphasizing <em>go</em> while also creating rhythm (along with the use of juxtaposition).</p>
+        </div>
     </div>
 
+        <p><strong>Select the choice that employs polyptoton.</strong></p>
+    <div class="question" id="question4">
+        <p><strong>Question 4:</strong></p>
+        <div class="options">
+            <label><input type="radio" name="q4" value="A"> A. My friend, how dare you betray our friendship?</label>
+            <label><input type="radio" name="q4" value="B"> B. My companion, how dare you betray our friendship?</label>
+            <label><input type="radio" name="q4" value="C"> C. How dare you turn your back on the connection we once had?</label>
+            <label><input type="radio" name="q4" value="D"> D. How could you betray my trust, friend?</label>
+        </div>
+        <div class="submit-button">
+            <button type="button" onclick="checkAnswer(4)">Check</button>
+        </div>
+        <strong><p class="resultDisplay"></p></strong>
+        <div class="answer invisible">
+            <p><strong>Answer:</strong> A. Friend and friendship share the root word <em>friend</em>, making the sentence a polyptoton. The emphasis of <em>friend</em> in the polyptoton typically strengthens the sense of betrayal in the text.</p>
+        </div>
     </div>
 
-<!--/div-->
+    <div class="question" id="question5">
+        <p><strong>Question 5:</strong></p>
+        <div class="options">
+            <label><input type="radio" name="q5" value="A"> A. Import the goods with boat.</label>
+            <label><input type="radio" name="q5" value="B"> B. Import the goods through the port by the sea.</label>
+            <label><input type="radio" name="q5" value="C"> C. The portable device is out of stock.</label>
+            <label><input type="radio" name="q5" value="D"> D. I gave a portion of my life to you.</label>
+        </div>
+        <div class="submit-button">
+            <button type="button" onclick="checkAnswer(5)">Check</button>
+        </div>
+        <strong><p class="resultDisplay"></p></strong>
+        <div class="answer invisible">
+            <p><strong>Answer:</strong> B. Import and port share the root word <em>port</em>, meaning “carry”, thus making the sentence a polyptoton. Using <em>port</em> here explicitly grants the sentence a better rhythm.</p>
+        </div>
+    </div>
+        </div>
 
-<!--/div-->
+        <div class="references-section">
+            <h2>Review</h2>
+            <ul>
+                <li>Definition of polyptoton: A figure of speech that repeats words sharing the same root.</li>
+                <li>Definition of root word: The basic parts of words that can be combined with affixes to form other words.</li>
+                <li>Purpose of polyptoton: To convey implicit messages and add rhythm to the text.</li>
+            </ul>
 
-  <div class="b-example-divider"></div>
+            <h2>References</h2>
+            <ul>
+                <li><a href="https://www.scribbr.co.uk/english-language/root-word/#:~:text=A%20root%20word%20is%20the,prefix%20root%20word%20suffix" target="_blank">Scribbr - Root Words</a></li>
+                <li><a href="https://www.grammarly.com/blog/grammar/root-words/" target="_blank">Grammarly - Root Words</a></li>
+                <li><a href="https://www.litcharts.com/literary-devices-and-terms/polyptoton" target="_blank">LitCharts - Polyptoton</a></li>
+            </ul>
+        </div>
 
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
+    </div>
 
-        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <svg class="bi me-2" width="40" height="32">
-                <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
-            </svg>
-        </a>
+    <!--/div-->
 
-        <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="../../" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-        </ul>
-    </footer>
-</div>
+    <!--/div-->
 
-</main>
+      <div class="b-example-divider"></div>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
+
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+                </svg>
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="../../" class="nav-link px-2 text-body-secondary">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
+            </ul>
+        </footer>
+    </div>
+
+    </main>
 
 
 
-<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 
-    </body>
-</html>
+        </body>
+    </html>
