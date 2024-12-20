@@ -79,6 +79,15 @@ models.Project.objects.create(
     project_cover=project_cover_path('5.png'),
 )
 
+models.Project.objects.create(
+    project_id=5,
+    project_name='Politic Quiz',
+    project_url='politics/',
+    project_version='1.0.0',
+    project_description='Ideology Quiz from 8 values',
+    project_cover=project_cover_path('7.png'),
+)
+
 """
 python manage.py shell
 import gpeclub.data_initiator

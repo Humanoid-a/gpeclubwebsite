@@ -46,6 +46,9 @@ import IndividualProjects.polyptoton.localviews as polyptotonView
 def polyptoton(request):
     return polyptotonView.view_index(request)
 
+def politics(request):
+    return render(request, 'projects/8values/index.html')
+
 def photo1(request):
     return render(request,'projects/photo1/index.html')
 
