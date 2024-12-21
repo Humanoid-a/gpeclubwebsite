@@ -18,4 +18,7 @@ urlpatterns = [
     path('projects/powerschool/', views.powerschool, name="powerschool"),
     path('projects/run_crawltest/', views.run_crawltest, name="run_crawltest"),
     path('politics/', views.politics, name="politics"),
+    path('politics/instructions/', views.instructions, name="instructions"),
+    path('politics/quiz/', views.quiz, name="quiz"),
+    path('politics/results/', views.results, name="results"),
 ]

@@ -1,4 +1,6 @@
 <head>
+    {% load static %}
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:400,700" rel="stylesheet">
 <link href='../../../static/8values.css' rel='stylesheet' type='text/css'>
 <title>8values Quiz</title>
@@ -15,8 +17,31 @@
 </head>
 <body>
 <script type="application/javascript"
-        src="questions.js">
+        src="../../../static/assets/js/questions.js">
 </script>
+<div class="container">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="40" height="40">
+                        <!--<use href="{% static 'imgs/logo.png' %}"/>-->
+                        <img src="{% static 'imgs/logo.png' %}" width="40" height="40" loading="lazy">
+                    </svg>
+                    <span class="fs-4">GPE Club</span>
+                </a>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a href="../../" class="nav-link" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="../search/" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="../about/" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">School</a></li>
+                </ul>
+            </header>
+        </div>
+<div class="b-example-divider"></div>
 <h1>8values</h1>
 <hr>
 <h2 style="text-align:center;" id="question-number">Loading...</h2>
@@ -105,7 +130,7 @@ stats"></a></div></noscript>
         let final_dipl = dipl_array.reduce((a, b) => a + b, 0)
         let final_govt = govt_array.reduce((a, b) => a + b, 0)
         let final_scty = scty_array.reduce((a, b) => a + b, 0)
-        location.href = `results.html`
+        location.href = `../results/`
             + `?e=${calc_score(final_econ,max_econ)}`
             + `&d=${calc_score(final_dipl,max_dipl)}`
             + `&g=${calc_score(final_govt,max_govt)}`

@@ -48,6 +48,12 @@ def polyptoton(request):
 
 def politics(request):
     return render(request, 'projects/8values/index.html')
+def instructions(request):
+    return render(request, 'projects/8values/instructions.html')
+def quiz(request):
+    return render(request, 'projects/8values/quiz.html')
+def results(request):
+    return render(request, 'projects/8values/results.html')
 
 def photo1(request):
     return render(request,'projects/photo1/index.html')

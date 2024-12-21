@@ -1,7 +1,7 @@
 <head>
-    {% load static %}
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:400,700" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:400,700" rel="stylesheet">
+    {% load static %}
     <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href='{% static '8values.css' %}' rel='stylesheet' type='text/css'>
 
@@ -63,7 +63,7 @@
     <a href="#anchor"><img src="{% static "imgs/value_images/progress.svg" %}" class="quadcolumn"></a>
 </div>
 <br>
-<button class="button" onclick="location.href='instructions.html';" style="font-size:36pt;">Click here to start!</button>
+<button class="button" onclick="location.href='instructions/';" style="font-size:36pt;">Click here to start!</button>
 <br><hr>
 <h2>What is 8values?</h2>
     <p>8values is, in essence, a political quiz that attempts to assign percentages for eight different political values. You will be presented by a statement, and then you will answer with your opinion on the statement, from <b>Strongly Agree</b> to <b>Strongly Disagree</b>, with each answer slightly affecting your scores. At the end of the quiz, your answers will be compared to the maximum possible for each value, thus giving you a percentage. Answer honestly!<br /><br />
@@ -171,7 +171,7 @@ src="//c.statcounter.com/11325211/0/fd9f0659/1/" alt="web
 stats"></a></div></noscript>
 
 <!-- This is the script for the page itself -->
-<script type="application/javascript"src="questions.js"></script>
+<script type="application/javascript"src="../../../static/assets/js/questions.js"></script>
 <script type="text/javascript">
     document.getElementById("numOfQuestions").innerHTML = questions.length;
 </script>
