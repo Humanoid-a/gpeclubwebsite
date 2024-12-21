@@ -1,27 +1,36 @@
 html {
-    background-color: #bbbbbb;
+    /* background-color: #bbbbbb; */
     padding: 0px;
     scroll-behavior: smooth;
 }
 body {
-    width: 80%;
+    width: 75%;
     min-height: calc(100vh - 4em);
     margin: 0 auto;
-    padding: 2em;
+    /*padding: 2em;
     background-color: #dddddd;
     border-color: #eeeeee;
     border-left-style: solid;
     border-right-style: solid;
     border-width: 20px;
+    */
 }
 p {
+    /*
     color: #444444;
     font-family: 'Roboto', sans-serif;
     font-size: 18.5pt;
     line-height: 1.15;
     margin: 4pt;
-}
 
+     */
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #222529;
+    --text-color: #ffffff;
+  }
+}
 p.value {
     margin-top: 22px;
     margin-bottom: 22px;
@@ -75,8 +84,10 @@ h2 {
     margin-bottom: 10pt;
 }
 li {
+    /*
     font-size: 16pt;
     text-indent: 16pt;
+     */
 }
 a {
     font-family: inherit;
