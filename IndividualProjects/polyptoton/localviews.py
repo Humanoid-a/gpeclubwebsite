@@ -18,5 +18,9 @@ render_context = {
 
 render_context = {}
 
+
+
 def view_index(request):
     return HttpResponse(webtemplate.render(render_context))
+
+

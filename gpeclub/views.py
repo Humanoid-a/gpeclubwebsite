@@ -111,3 +111,6 @@ def run_crawltest(request):
             return JsonResponse({'success': False, 'error': str(e)})
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
+
+
+#import IndividualProjects.satPrep.vocabDatas as vocabDatas
