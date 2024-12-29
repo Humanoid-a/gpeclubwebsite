@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-30 01:31+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\GPEClubWebsite\settings.py:152
+msgid "English"
+msgstr ""
+
+#: .\GPEClubWebsite\settings.py:153
+msgid "Chinese"
+msgstr ""
+
+#: .\templates\index.html:67 .\templates\index.html:128
+msgid "name"
+msgstr "GPE Club"
+
+#: .\templates\index.html:74
+msgid "Search..."
+msgstr ""
+
+#: .\templates\index.html:82
+msgid "Language"
+msgstr ""
+
+#: .\templates\index.html:90
+msgid "Home"
+msgstr ""
+
+#: .\templates\index.html:91 .\templates\index.html:110
+msgid "Projects"
+msgstr ""
+
+#: .\templates\index.html:92
+msgid "About"
+msgstr ""
+
+#: .\templates\index.html:93
+msgid "School"
+msgstr ""
+
+#: .\templates\index.html:101
+msgid "index title"
+msgstr "Game Programming Engineering"
+
+#: .\templates\index.html:107
+msgid "Official website of GPE Interactive"
+msgstr ""
+
+#: .\templates\index.html:111 .\templates\index.html:123
+msgid "About Us"
+msgstr ""
