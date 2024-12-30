@@ -2,6 +2,8 @@
 <html lang="en" data-bs-theme="auto">
   <head>
       {% load static %}
+      {% load i18n %}
+
       <script src="{%  static 'assets/js/color-modes.js' %}"></script>
 
     <meta charset="utf-8">
@@ -15,6 +17,11 @@
       <link href="{% static 'basestyles.css' %}" rel="stylesheet">
 
     <style>
+        .button1{
+            position: fixed;
+            bottom: 100px;
+            right: 75px;
+        }
     </style>
 
     
@@ -27,32 +34,59 @@
 
 
 <main>
+    <a name="0"></a>
+
 <div class="shadow" style="width:100%;">
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <!--<use href="{% static 'imgs/logo.png' %}"/>-->
-                    <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
-                </svg>
-                <span class="fs-4">GPE Club</span>
-            </a>
+    <div class="button1">
+        <a href="#0" class="btn btn-primary">
+            <svg t="1735554699762" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4238" width="30" height="40"><path d="M960 541.4H682.3v389.3H341.7V541.4H64l448-448 448 448zM633.6 882V492.7h208.9L512 162.2 181.5 492.7h208.9V882h243.2z" fill="#ffffff" p-id="4239"></path></svg>
+        </a>
+    </div>
+    <div class="shadow" style="width:100%;">
+        <!-- <div class="container fixed-top" > -->
+        <div class="container" >
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom ">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="32" height="32">
+                        <!--<use href="{% static 'imgs/logo.png' %}"/>-->
+                        <img src="{% static 'imgs/logo.png' %}" width="32" height="32" loading="lazy">
+                    </svg>
+                    <span class="fs-4">{% trans "name" %}</span>
+                </a>
 
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="#" method="get">
-                <div style="display:flex;" class="">
-                    <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/>
-                    <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
-                </div>
-            </form>
 
-            <ul class="nav nav-pills">
-                <li class="nav-item"><a href="../../" class="nav-link" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="../search/" class="nav-link active">Projects</a></li>
-                <li class="nav-item"><a href="../about/" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="../school/" class="nav-link">School</a></li>
-            </ul>
-        </header>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="projects/search/" method="get">
+                    <div style="display:flex;" class="">
+                        <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
+                        <input type="search" class="form-control" placeholder="{% trans "Search..." %}" aria-label="Search" name="query" value="{{ query }}"/>
+                        <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
+                    </div>
+                </form>
+
+                <ul class="nav nav-pills ">
+
+                    {% get_current_language as CURRENT_LANGUAGE %}
+                    {% get_available_languages as AVAILABLE_LANGUAGES %}
+
+                    <form action="{% url 'set_language' %}" method="post" style = "padding-right: 15px">
+                      {% csrf_token %}
+                      <select name="language" class="form-select" onchange="this.form.submit()" >
+                        {% get_current_language as CURRENT_LANGUAGE %}
+                        {% get_available_languages as AVAILABLE_LANGUAGES %}
+                        {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+                          <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
+                            {{ lang_name }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </form>
+                    <li class="nav-item"><a href="#" class="nav-link" aria-current="page">{% trans "Home" %}</a></li>
+                    <li class="nav-item"><a href="projects/search/" class="nav-link active">{% trans "Projects" %}</a></li>
+                    <li class="nav-item"><a href="projects/about/" class="nav-link">{% trans "About" %}</a></li>
+                    <li class="nav-item"><a href="projects/school/" class="nav-link">{% trans "School" %}</a></li>
+                </ul>
+            </header>
+        </div>
     </div>
 </div>
 
@@ -60,7 +94,7 @@
         <h1>
         {% if query == "" %}
             <div class="align-content-center text-center"><img src="{% static 'imgs/logo.png' %}" width="75px" height="75px"/></div>
-            GPE Projects
+            GPE {% trans "Projects" %}
         {% else %}
             "{{ query }}" Results
         {% endif %}
