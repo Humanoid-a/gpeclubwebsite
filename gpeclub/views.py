@@ -29,6 +29,24 @@ def header(request):
 def about(request):
     return render(request,'about.html')
 
+def vocab(request):
+    return render(request,'vocab.html')
+from django.http import JsonResponse
+import os
+from django.conf import settings
+import json
+def final_data(request):
+    # Define the path to the JSON file
+    json_path = os.path.join(settings.BASE_DIR, 'static', 'assets', 'js', 'final_data.json')
+
+    # Read and return the JSON data
+    try:
+        with open(json_path, 'r') as json_file:
+            data = json.load(json_file)
+        return JsonResponse(data, safe=False)
+    except Exception as e:
+        return JsonResponse({'error': 'Failed to load data'}, status=500)
+
 from django.shortcuts import render
 def school(request):
     current_date = datetime.now()

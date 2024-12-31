@@ -13,7 +13,8 @@ urlpatterns = [
     path('projects/trigonomis/', views.trigonomis, name="trigonomis"),
     path('projects/invective/', views.invective, name="invective"),
     path('projects/isocolon/', views.isocolon, name="isocolon"),
-    path('projects/about/', views.about, name="about"),
+    path('about/', views.about, name="about"),
+    path('vocab/', views.vocab, name="vocab"),
     path('projects/school/', views.school, name="school"),
     path('projects/powerschool/', views.powerschool, name="powerschool"),
     path('projects/run_crawltest/', views.run_crawltest, name="run_crawltest"),
@@ -21,4 +22,5 @@ urlpatterns = [
     path('politics/instructions/', views.instructions, name="instructions"),
     path('politics/quiz/', views.quiz, name="quiz"),
     path('politics/results/', views.results, name="results"),
+    path('final_data.json', views.final_data, name='final_data'),
 ]

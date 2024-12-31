@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>GPE Club</title>
+    <title>{% trans "name" %}</title>
       <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -45,6 +45,11 @@
             position: fixed;
             bottom: 100px;
             right: 75px;
+        }
+        .progress {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #333;
         }
     </style>
 
@@ -105,7 +110,7 @@
                     </form>
                     <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">{% trans "Home" %}</a></li>
                     <li class="nav-item"><a href="projects/search/" class="nav-link">{% trans "Projects" %}</a></li>
-                    <li class="nav-item"><a href="projects/about/" class="nav-link">{% trans "About" %}</a></li>
+                    <li class="nav-item"><a href="about/" class="nav-link">{% trans "About" %}</a></li>
                     <li class="nav-item"><a href="projects/school/" class="nav-link">{% trans "School" %}</a></li>
                 </ul>
             </header>
@@ -126,7 +131,7 @@
           <a href="projects/search/"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Projects" %}</button></a>
           <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{% trans "About Us" %}</button>
 
-        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Login</button>
+          <a href="vocab/"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Vocab" %}</button></a>
       </div>
     </div>
     <!-- Button trigger modal -->
