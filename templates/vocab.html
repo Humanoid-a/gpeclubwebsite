@@ -138,6 +138,10 @@
     </div>
     <div class="px-4 pt-5 my-5  ">
         <div class="flashcard-container">
+            <div class="buttons" style="padding-top: 50px; padding-bottom: 50px">
+              <button id="known" class="btn btn-secondary btn-lg px-4 me-sm-3">Know</button><br><br>
+              <button id="unknown" class="btn btn-secondary btn-lg px-4 me-sm-3" >Don't Know</button>
+            </div>
             <div class="flashcard text-center" id="flashcard">
               <div class="front" id="front">
                 <!-- Word will be displayed here -->
@@ -156,11 +160,20 @@
                 Random Shuffle
               </label>
             </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="practiceUnknown">
+              <label class="form-check-label" for="flexCheckDefault">
+                Only Unknown Words checked
+              </label>
+            </div>
+            <div style="padding-top: 25px">
+                <button id="clear" class="btn btn-danger btn-lg px-3 me-sm-3">Reset Data</button>
+            </div>
         </div>
         <script src="{% static 'assets/js/vocab.js' %}"></script>
     </div>
 
-    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div class="b-example-divider"></div>
     <!--div class="b-example-divider" style="background-color:white; box-shadow:none; padding-top:10px; border:none;"></div-->
 
