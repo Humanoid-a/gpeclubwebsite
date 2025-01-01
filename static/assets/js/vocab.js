@@ -47,28 +47,40 @@ function setupEventListeners() {
     const flashcard = document.getElementById('flashcard');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-
+    const random = document.getElementById('random');
+    let israndom = random.checked;
     let currentIndex = 0;
+
+    random.addEventListener('change', () => {
+        israndom = random.checked;
+    });
 
     flashcard.addEventListener('click', () => {
         flashcard.classList.toggle('flipped');
     });
 
     prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            displayFlashcard(currentIndex);
-        } else {
-            alert('This is the first flashcard.');
+        if (!israndom) {
+            if (currentIndex > 0) {
+                currentIndex--;
+                displayFlashcard(currentIndex);
+            } else {
+                alert('This is the first flashcard.');
+            }
         }
     });
 
     nextBtn.addEventListener('click', () => {
-        if (currentIndex < vocabData.length - 1) {
-            currentIndex++;
-            displayFlashcard(currentIndex);
+        if (!israndom) {
+            if (currentIndex < vocabData.length - 1) {
+                currentIndex++;
+                displayFlashcard(currentIndex);
+            } else {
+                alert('You have reached the last flashcard.');
+            }
         } else {
-            alert('You have reached the last flashcard.');
+            currentIndex = Math.floor(Math.random() * vocabData.length);
+            displayFlashcard(currentIndex);
         }
     });
 }
