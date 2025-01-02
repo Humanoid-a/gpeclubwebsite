@@ -49,7 +49,7 @@ models.Project.objects.create(
     project_url='projects/photo1/',
     project_version='1.0.0',
     project_description='Miniature world',
-    project_cover=project_cover_path('2.png'),
+    project_cover=project_cover_path('1.png'),
 )
 
 models.Project.objects.create(
