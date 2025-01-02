@@ -1,0 +1,43 @@
+.square600
+{
+    width:600px;
+    height:600px;
+}
+
+.square200
+{
+    width:200px;
+    height:200px;
+}
+
+
+#tttblock
+{
+    background:white;
+    border: 1px solid black;
+}
+
+
+.gridimg
+{
+    display:flex;
+}
+
+#tttcontainer
+{
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+#tttgrid
+{
+    width:100%;
+    height:100%;
+    background:black;
+
+    display:grid;
+    grid-template-columns: repeat(3, 32.25%);
+    grid-template-rows: repeat(3, 32.25%);
+    gap:1.61%;
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/crawltest.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/powerschool/grades/main_courses.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/powerschool/powerschool/PSLData.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/powerschool/powerschool/__init__.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/powerschool/powerschool/items.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/powerschool/powerschool/pipelines.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/powerschool/powerschool/settings.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/powerschool/powerschool/spiders/baidu.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/powerschool/powerschool/spiders/psl.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/powerschool/pslcrawler.py" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

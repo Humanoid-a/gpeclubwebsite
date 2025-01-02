@@ -1,0 +1,11 @@
+{
+  "builds": [{
+    "src": "GPEClubWebsite/wsgi.py",
+    "use": "@vercel/python",
+    "config": { "maxLambdaSize": "15mb", "runtime": "python3.11.4"}
+  }],
+  "routes": [{
+    "src": "/(.*)",
+    "dest": "GPEClubWebsite/wsgi.py"
+  }]
+}
