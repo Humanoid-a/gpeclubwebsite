@@ -92,6 +92,7 @@ function setupEventListeners() {
     let israndom = random.checked;
     let currentIndex = 0;
     let unknownIndex = 0;
+    let Index = 0;
 
     random.addEventListener('change', () => {
         israndom = random.checked;
@@ -161,22 +162,31 @@ function setupEventListeners() {
     });
 
     known.addEventListener('click', () => {
-        if(!knownWords.includes(currentIndex)){
-            knownWords.push(currentIndex);
+        if(!modeUnknown){
+            Index = currentIndex;
+        }else{
+            Index = unknownIndex;
+        }
+        if(!knownWords.includes(Index)){
+            knownWords.push(Index);
             console.log(knownWords);
             setCookie('knownWords', JSON.stringify(knownWords));
-            if(unknownWords !== null && unknownWords.includes(currentIndex)){
-                unknownWords = unknownWords.filter(index => index !== currentIndex);
+            if(unknownWords !== null && unknownWords.includes(Index)){
+                unknownWords = unknownWords.filter(index => index !== Index);
                 setCookie('unknownWords', JSON.stringify(unknownWords));
             }
         }
     });
 
     unknown.addEventListener('click', () => {
-        if(!unknownWords.includes(currentIndex)){
+        if(!unknownWords.includes(currentIndex) && !modeUnknown){
             unknownWords.push(currentIndex);
             console.log(unknownWords);
             setCookie('unknownWords', JSON.stringify(unknownWords));
+            if(knownWords !== null && knownWords.includes(currentIndex)){
+                knownWords = knownWords.filter(index => index !== currentIndex);
+                setCookie('knownWords', JSON.stringify(knownWords))
+            }
         }
     });
 

@@ -160,14 +160,34 @@
                 Random Shuffle
               </label>
             </div>
-            <div class="form-check">
+            <div class="form-check" style="padding-bottom: 25px">
               <input class="form-check-input" type="checkbox" value="" id="practiceUnknown">
               <label class="form-check-label" for="flexCheckDefault">
                 Only Unknown Words checked
               </label>
             </div>
-            <div style="padding-top: 25px">
-                <button id="clear" class="btn btn-danger btn-lg px-3 me-sm-3">Reset Data</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+              Reset Data
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Warning</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    By confirming, you will lose all of your vocab data.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="clear" data-bs-dismiss="modal">Reset</button>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
         <script src="{% static 'assets/js/vocab.js' %}"></script>
