@@ -24,6 +24,7 @@
             position: fixed;
             bottom: 100px;
             right: 75px;
+            z-index: 9999;
         }
         .flashcard-container {
           position: relative;
@@ -31,6 +32,11 @@
           height: 400px;
             justify-content: center;
             margin: 0 auto;
+        }
+        @media (max-width: 667px) {
+          .flashcard-container {
+            width: 90%;
+          }
         }
         .flashcard {
           width: 100%;
@@ -61,6 +67,20 @@
         .flashcard.flipped .back {
           transform: rotateY(0);
         }
+        .flashcard {
+          transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 1;
+        }
+
+        .flashcard.slide-out {
+          transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        .flashcard.slide-in {
+          transform: translateX(0);
+            opacity: 1;
+        }
         #front {
           font-size: 50px;
             color: black;
@@ -69,6 +89,9 @@
         #back {
           font-size: 30px;
             color: black;
+        }
+        .count {
+            font-size: 20px;
         }
 
     </style>
@@ -138,13 +161,13 @@
     </div>
     <div class="px-4 pt-5 my-5  ">
         <div class="flashcard-container">
-            <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="padding-top: 0px; padding-bottom: 10px">
-              <button id="known" class="btn btn-secondary btn-lg px-4 me-sm-3 border">Know (1)</button>
-              <button id="unknown" class="btn btn-secondary btn-lg px-4 me-sm-3 border" >Don't Know (2)</button>
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="padding-bottom: 10px">
+              <button id="known" type="button" class="btn btn-secondary btn-lg px-4 me-sm-3 border" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vocab Added" >Know (1)</button>
+              <button id="unknown" type="button" class="btn btn-secondary btn-lg px-4 me-sm-3 border" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vocab Added">Don't Know (2)</button>
             </div>
             <div style="align-items: end; padding-bottom: 25px" >
-                <div id="numKnown"></div>
-                <div id="numUnknown"></div>
+                <div id="numKnown" class="count"></div>
+                <div id="numUnknown" class="count"></div>
             </div>
             <div class="flashcard text-center" id="flashcard">
               <div class="front" id="front" style="align-content: center">

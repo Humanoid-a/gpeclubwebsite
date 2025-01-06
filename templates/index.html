@@ -46,10 +46,10 @@
             bottom: 100px;
             right: 75px;
         }
-        .progress {
-            margin-top: 10px;
-            font-size: 1em;
-            color: #333;
+        iframe {
+            width: 100%;
+            height: 250px;
+            max-width: 800px;
         }
     </style>
 
@@ -129,7 +129,7 @@
         </p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
           <a href="projects/search/"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Projects" %}</button></a>
-          <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{% trans "About Us" %}</button>
+          <a ><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{% trans "About Us" %}</button></a>
 
           <a href="vocab/"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Vocab" %}</button></a>
       </div>
@@ -173,9 +173,10 @@
     </div>
 
          
-         <iframe src="https://store.steampowered.com/widget/3327910/?t=Trigonomis%0AMade%20by%20Andy%20Wang%20and%20the%20whole%20GPE%20Club" frameborder="0" width="800" height="250"></iframe>
+                 <iframe src="https://store.steampowered.com/widget/3327910/?t=Trigonomis%0AMade%20by%20Andy%20Wang%20and%20the%20whole%20GPE%20Club" frameborder="0" width="800" height="250"></iframe>
 
     <div class="overflow-hidden" style="max-height: 100vh">
+
       <div class="container px-5">
         <img src="{% static 'imgs/mygame.png' %}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Trigonomis" width="800" height="auto" loading="lazy">
       </div>

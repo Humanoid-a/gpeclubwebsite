@@ -160,44 +160,52 @@ function setupEventListeners() {
     });
 
     nextBtn.addEventListener('click', () => {
-        if (!israndom) {
-            if (!modeUnknown){
-                if (currentIndex < vocabData.length - 1) {
-                    currentIndex++;
-                    if (knownWords !== null){
-                        while(knownWords.includes(currentIndex)){
+        const flashcard = document.getElementById('flashcard');
+        flashcard.classList.add('slide-out');
+        setTimeout(() => {
+            if (!israndom) {
+                if (!modeUnknown) {
+                    if (currentIndex < vocabData.length - 1) {
                         currentIndex++;
+                        if (knownWords !== null) {
+                            while (knownWords.includes(currentIndex)) {
+                                currentIndex++;
+                            }
+                        }
+                        displayFlashcard(currentIndex);
+                    } else {
+                        alert('You have reached the last flashcard.');
+                    }
+                } else {
+                    if (unknownIndex < unknownWords.length - 1) {
+                        unknownIndex++;
+                        displayFlashcard(unknownWords[unknownIndex]);
+                    } else {
+                        alert('You have reached the last flashcard.');
+                    }
+                }
+            } else {
+                if (!modeUnknown) {
+                    currentIndex = Math.floor(Math.random() * vocabData.length);
+                    if (knownWords !== null) {
+                        while (knownWords.includes(currentIndex)) {
+                            currentIndex = Math.floor(Math.random() * vocabData.length);
                         }
                     }
                     displayFlashcard(currentIndex);
+                    viewed.push(currentIndex);
                 } else {
-                    alert('You have reached the last flashcard.');
-                }
-            }else {
-                if (unknownIndex < unknownWords.length - 1) {
-                    unknownIndex++;
+                    unknownIndex = Math.floor(Math.random() * unknownWords.length);
                     displayFlashcard(unknownWords[unknownIndex]);
-                } else {
-                    alert('You have reached the last flashcard.');
+                    viewed.push(unknownWords[unknownIndex]);
                 }
             }
-        }else{
-            if(!modeUnknown){
-                currentIndex = Math.floor(Math.random() * vocabData.length);
-                if (knownWords !== null) {
-                    while (knownWords.includes(currentIndex)) {
-                        currentIndex = Math.floor(Math.random() * vocabData.length);
-                    }
-                }
-                displayFlashcard(currentIndex);
-                viewed.push(currentIndex);
-            }else{
-                unknownIndex = Math.floor(Math.random() * unknownWords.length);
-                displayFlashcard(unknownWords[unknownIndex]);
-                viewed.push(unknownWords[unknownIndex]);
-            }
-
-        }
+            flashcard.classList.remove('slide-out');
+            flashcard.classList.add('slide-in');
+            setTimeout(() => {
+            flashcard.classList.remove('slide-in');
+        }, 300);
+        }, 300);
     });
 
     known.addEventListener('click', () => {
