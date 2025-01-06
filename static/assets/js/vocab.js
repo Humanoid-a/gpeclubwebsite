@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 var knownWords = [];
 var unknownWords = [];
+var viewed = [];
 
 let vocabData = [];  // Initialize as an array
 if (getCookie('knownWords') !== null) {
@@ -104,12 +105,24 @@ function setupEventListeners() {
     flashcard.addEventListener('click', () => {
         flashcard.classList.toggle('flipped');
     });
-
+    document.addEventListener('keydown', (event) => {
+        if (event.code === 'Space') {
+            event.preventDefault();
+            flashcard.classList.toggle('flipped');
+        }
+        if (event.code === 'ArrowLeft') {
+            prevBtn.click();
+        }
+        if (event.code === 'ArrowRight') {
+            nextBtn.click();
+        }
+    });
     clear.addEventListener('click', () => {
         knownWords = [];
         unknownWords = [];
         setCookie('knownWords', JSON.stringify(knownWords));
         setCookie('unknownWords', JSON.stringify(unknownWords));
+        getNum();
     });
 
     prevBtn.addEventListener('click', () => {
@@ -119,6 +132,23 @@ function setupEventListeners() {
                 displayFlashcard(currentIndex);
             } else {
                 alert('This is the first flashcard.');
+            }
+        } else {
+            if (!modeUnknown) {
+                if (viewed.length > 0) {
+                    viewed.pop();
+                    currentIndex = viewed[viewed.length - 1];
+                    displayFlashcard(currentIndex);
+                } else {
+                    alert('This is the first flashcard.');
+                }
+            } else {
+                if (unknownIndex > 0) {
+                    unknownIndex--;
+                    displayFlashcard(unknownWords[unknownIndex]);
+                } else {
+                    alert('This is the first flashcard.');
+                }
             }
         }
     });
@@ -154,10 +184,13 @@ function setupEventListeners() {
                     }
                 }
                 displayFlashcard(currentIndex);
+                viewed.push(currentIndex);
             }else{
                 unknownIndex = Math.floor(Math.random() * unknownWords.length);
                 displayFlashcard(unknownWords[unknownIndex]);
+                viewed.push(unknownWords[unknownIndex]);
             }
+
         }
     });
 
@@ -176,6 +209,7 @@ function setupEventListeners() {
                 setCookie('unknownWords', JSON.stringify(unknownWords));
             }
         }
+        getNum();
     });
 
     unknown.addEventListener('click', () => {
@@ -188,6 +222,7 @@ function setupEventListeners() {
                 setCookie('knownWords', JSON.stringify(knownWords))
             }
         }
+        getNum();
     });
 
 }
@@ -215,7 +250,15 @@ function displayFlashcard(index) {
     front.textContent = `${vocab.word} (${vocab.partOfSpeech})`;
     back.textContent = vocab.definition;
 
+    getNum();
     // Ensure the card is not flipped when displaying a new card
     const flashcard = document.getElementById('flashcard');
     flashcard.classList.remove('flipped');
+}
+
+function getNum(){
+    const numKnown = document.getElementById('numKnown');
+    const numUnknown = document.getElementById('numUnknown');
+    numKnown.textContent = 'Known words count: ' + knownWords.length.toString();
+    numUnknown.textContent = 'Unknown words count: ' + unknownWords.length.toString();
 }

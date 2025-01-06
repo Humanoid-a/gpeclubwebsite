@@ -138,15 +138,19 @@
     </div>
     <div class="px-4 pt-5 my-5  ">
         <div class="flashcard-container">
-            <div class="buttons" style="padding-top: 50px; padding-bottom: 50px">
-              <button id="known" class="btn btn-secondary btn-lg px-4 me-sm-3">Know</button><br><br>
-              <button id="unknown" class="btn btn-secondary btn-lg px-4 me-sm-3" >Don't Know</button>
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="padding-top: 0px; padding-bottom: 10px">
+              <button id="known" class="btn btn-secondary btn-lg px-4 me-sm-3 border">Know</button>
+              <button id="unknown" class="btn btn-secondary btn-lg px-4 me-sm-3 border" >Don't Know</button>
+            </div>
+            <div style="align-items: end; padding-bottom: 25px" >
+                <div id="numKnown"></div>
+                <div id="numUnknown"></div>
             </div>
             <div class="flashcard text-center" id="flashcard">
-              <div class="front" id="front">
+              <div class="front" id="front" style="align-content: center">
                 <!-- Word will be displayed here -->
               </div>
-              <div class="back" id="back">
+              <div class="back" id="back" style="align-content: center">
                 <!-- Definition will be displayed here -->
               </div>
             </div>
