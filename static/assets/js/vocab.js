@@ -116,6 +116,12 @@ function setupEventListeners() {
         if (event.code === 'ArrowRight') {
             nextBtn.click();
         }
+        if (event.code === 'Digit1'){
+            known.click();
+        }
+        if (event.code === 'Digit2'){
+            unknown.click();
+        }
     });
     clear.addEventListener('click', () => {
         knownWords = [];

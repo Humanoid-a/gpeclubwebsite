@@ -128,10 +128,10 @@
                         {% endfor %}
                       </select>
                     </form>
-                    <li class="nav-item"><a href="#" class="nav-link" aria-current="page">{% trans "Home" %}</a></li>
-                    <li class="nav-item"><a href="projects/search/" class="nav-link">{% trans "Projects" %}</a></li>
-                    <li class="nav-item"><a href="projects/about/" class="nav-link">{% trans "About" %}</a></li>
-                    <li class="nav-item"><a href="projects/school/" class="nav-link active">{% trans "School" %}</a></li>
+                    <li class="nav-item"><a href="../" class="nav-link" aria-current="page">{% trans "Home" %}</a></li>
+                    <li class="nav-item"><a href="../projects/search/" class="nav-link">{% trans "Projects" %}</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">{% trans "Vocab" %}</a></li>
+                    <li class="nav-item"><a href="../projects/school/" class="nav-link">{% trans "School" %}</a></li>
                 </ul>
             </header>
         </div>
@@ -139,8 +139,8 @@
     <div class="px-4 pt-5 my-5  ">
         <div class="flashcard-container">
             <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="padding-top: 0px; padding-bottom: 10px">
-              <button id="known" class="btn btn-secondary btn-lg px-4 me-sm-3 border">Know</button>
-              <button id="unknown" class="btn btn-secondary btn-lg px-4 me-sm-3 border" >Don't Know</button>
+              <button id="known" class="btn btn-secondary btn-lg px-4 me-sm-3 border">Know (1)</button>
+              <button id="unknown" class="btn btn-secondary btn-lg px-4 me-sm-3 border" >Don't Know (2)</button>
             </div>
             <div style="align-items: end; padding-bottom: 25px" >
                 <div id="numKnown"></div>
