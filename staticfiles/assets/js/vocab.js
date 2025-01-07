@@ -89,6 +89,9 @@ function setupEventListeners() {
     const random = document.getElementById('random');
     const practiceUnknown = document.getElementById('practiceUnknown');
     const clear = document.getElementById('clear');
+    const toastLiveExample = document.getElementById('liveToast')
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+
     let modeUnknown = practiceUnknown.checked;
     let israndom = random.checked;
     let currentIndex = 0;
@@ -203,9 +206,13 @@ function setupEventListeners() {
             flashcard.classList.remove('slide-out');
             flashcard.classList.add('slide-in');
             setTimeout(() => {
-            flashcard.classList.remove('slide-in');
-        }, 300);
-        }, 300);
+                flashcard.classList.remove('slide-in');
+                flashcard.classList.add('slide-in-active');
+                setTimeout(() => {
+                    flashcard.classList.remove('slide-in-active');
+                }, 250);
+            }, 10);
+        }, 250);
     });
 
     known.addEventListener('click', () => {
@@ -224,6 +231,7 @@ function setupEventListeners() {
             }
         }
         getNum();
+        toastBootstrap.show()
     });
 
     unknown.addEventListener('click', () => {
@@ -237,6 +245,7 @@ function setupEventListeners() {
             }
         }
         getNum();
+        toastBootstrap.show()
     });
 
 }

@@ -26,6 +26,12 @@
             right: 75px;
             z-index: 9999;
         }
+        .button2{
+            position: fixed;
+            top: 25%;
+            right: 10%;
+            z-index: 9999;
+        }
         .flashcard-container {
           position: relative;
           width: 600px;
@@ -68,19 +74,25 @@
           transform: rotateY(0);
         }
         .flashcard {
-          transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            opacity: 1;
+          transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+        }
+
+        .flashcard.slide-in {
+            transition: none;
+          transform: translateX(100%);
+          opacity: 0;
+        }
+
+        .flashcard.slide-in-active {
+          transform: translateX(0);
+          opacity: 1;
         }
 
         .flashcard.slide-out {
           transform: translateX(-100%);
-            opacity: 0;
+          opacity: 0;
         }
 
-        .flashcard.slide-in {
-          transform: translateX(0);
-            opacity: 1;
-        }
         #front {
           font-size: 50px;
             color: black;
@@ -159,11 +171,22 @@
             </header>
         </div>
     </div>
+
     <div class="px-4 pt-5 my-5  ">
         <div class="flashcard-container">
+            <div style="padding-bottom: 15px">
+                <div id="liveToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                    <div class="toast-body">
+                      Vocab Added
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div>
+            </div>
             <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="padding-bottom: 10px">
-              <button id="known" type="button" class="btn btn-secondary btn-lg px-4 me-sm-3 border" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vocab Added" >Know (1)</button>
-              <button id="unknown" type="button" class="btn btn-secondary btn-lg px-4 me-sm-3 border" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Vocab Added">Don't Know (2)</button>
+              <button id="known" type="button" class="btn btn-secondary btn-lg px-4 me-sm-3 border" >Know (1)</button>
+              <button id="unknown" type="button" class="btn btn-secondary btn-lg px-4 me-sm-3 border" >Don't Know (2)</button>
             </div>
             <div style="align-items: end; padding-bottom: 25px" >
                 <div id="numKnown" class="count"></div>
@@ -178,8 +201,8 @@
               </div>
             </div>
             <div class="buttons text-center" style="padding-top: 50px; padding-bottom: 50px">
-              <button id="prevBtn" class="btn btn-primary btn-lg px-4 me-sm-3">Previous</button>
-              <button id="nextBtn" class="btn btn-primary btn-lg px-4 me-sm-3">Next</button>
+              <button id="prevBtn" class="btn btn-primary btn-lg px-4 me-sm-3">(<-) Previous</button>
+              <button id="nextBtn" class="btn btn-primary btn-lg px-4 me-sm-3">Next (->)</button>
             </div>
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="random">
