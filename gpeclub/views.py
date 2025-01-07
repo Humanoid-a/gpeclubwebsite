@@ -47,6 +47,24 @@ def final_data(request):
     except Exception as e:
         return JsonResponse({'error': 'Failed to load data'}, status=500)
 
+
+def vocab_data_response_generator(json_name):
+    return lambda request: vocab_data(json_name)
+
+import IndividualProjects.satPrep.vocabUtils as vocabUtils
+def vocab_data(json_name):
+    json_path = os.path.join(settings.BASE_DIR, 'static', 'vocab', '{}.json'.format(json_name))
+
+    # Read and return the JSON data
+    try:
+        with open(json_path, 'r') as json_file:
+            data = vocabUtils.VocabSet(json.load(json_file))
+        return JsonResponse(data, safe=False)
+    except Exception as e:
+        return JsonResponse({'error': 'Failed to load data'}, status=500)
+
+
+
 from django.shortcuts import render
 def school(request):
     current_date = datetime.now()
