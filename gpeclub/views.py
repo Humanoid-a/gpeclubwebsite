@@ -131,6 +131,8 @@ def isocolon(request):
 
 def phys2(request):
     return render(request,'projects/phys2/index.html')
+def phys2u2(request):
+    return render(request,'projects/phys2/index2.html')
 
 
 from django.http import JsonResponse
