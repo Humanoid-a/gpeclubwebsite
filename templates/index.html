@@ -45,6 +45,19 @@
             position: fixed;
             bottom: 100px;
             right: 75px;
+            z-index: 9999;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+        }
+        @media (max-width: 500px) {
+          .button1{
+                position: fixed;
+                bottom: 50px;
+                right: 25px;
+                z-index: 9999;
+              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+          }
         }
         iframe {
             width: 100%;
@@ -153,17 +166,17 @@
                 <br><br>Website made by Will and Andy<br><br>
             </p>
               <div class="img1-parent">
-                  <img src="{% static 'imgs/gandy.jpg' %}" alt="" class="img1"/>
-              </div>
-              <p>
-                    GAndY<br>
-              </p>
-              <div class="img1-parent">
                   <img src="{% static 'imgs/will.jpg' %}" alt="" class="img1"/>
               </div>
                 <p>
                     Will
                 </p>
+              <div class="img1-parent">
+                  <img src="{% static 'imgs/gandy.jpg' %}" alt="" class="img1"/>
+              </div>
+              <p>
+                    GAndY<br>
+              </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

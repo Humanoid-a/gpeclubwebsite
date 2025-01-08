@@ -23,6 +23,7 @@ urlpatterns = [
     path('politics/quiz/', views.quiz, name="quiz"),
     path('politics/results/', views.results, name="results"),
     path('final_data.json', views.final_data, name='final_data'),
+    path('projects/phys2/', views.phys2, name='phys2'),
 ] + list(map(lambda name: path('vocab/{}'.format(name), views.vocab_data_response_generator(name), name='vocab_{}'.format(name)),
 
              map(lambda i: 'set{}'.format(i),range(1,33+1))

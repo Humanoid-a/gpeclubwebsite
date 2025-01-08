@@ -129,6 +129,9 @@ def powerschool(request):
 def isocolon(request):
     return render(request,'projects/isocolon/index.html')
 
+def phys2(request):
+    return render(request,'projects/phys2/index.html')
+
 
 from django.http import JsonResponse
 import json
