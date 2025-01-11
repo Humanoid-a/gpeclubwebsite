@@ -3,26 +3,53 @@
   <head>
       {% load static %}
       {% load i18n %}
-
       <script src="{%  static 'assets/js/color-modes.js' %}"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Search</title>
+    <title>Vocabulary Set</title>
       <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
   <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
       <link href="{% static 'basestyles.css' %}" rel="stylesheet">
-
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
     <style>
+        a{
+            text-decoration: none !important;
+
+        }
         .button1{
             position: fixed;
             bottom: 100px;
             right: 75px;
+            z-index: 9999;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
         }
+        @media (max-width: 500px) {
+          .button1{
+                position: fixed;
+                bottom: 50px;
+                right: 25px;
+                z-index: 9999;
+              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+          }
+        }
+        .page{
+            position: fixed;
+              top: 90%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+        }
+        
+
     </style>
+
 
     
     <!-- Custom styles for this template -->
@@ -35,14 +62,12 @@
 
 <main>
     <a name="0"></a>
-
-<div class="shadow" style="width:100%;">
+    <div class="shadow" style="width:100%;">
     <div class="button1">
         <a href="#0" class="btn btn-primary">
             <svg t="1735554699762" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4238" width="30" height="40"><path d="M960 541.4H682.3v389.3H341.7V541.4H64l448-448 448 448zM633.6 882V492.7h208.9L512 162.2 181.5 492.7h208.9V882h243.2z" fill="#ffffff" p-id="4239"></path></svg>
         </a>
     </div>
-    <div class="shadow" style="width:100%;">
         <!-- <div class="container fixed-top" > -->
         <div class="container" >
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom ">
@@ -54,7 +79,7 @@
                     <span class="fs-4">{% trans "name" %}</span>
                 </a>
 
-
+    
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="projects/search/" method="get">
                     <div style="display:flex;" class="">
                         <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
@@ -62,7 +87,7 @@
                         <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
                     </div>
                 </form>
-
+    
                 <ul class="nav nav-pills ">
 
                     {% get_current_language as CURRENT_LANGUAGE %}
@@ -81,53 +106,35 @@
                       </select>
                     </form>
                     <li class="nav-item"><a href="{% url 'index' %}" class="nav-link" aria-current="page">{% trans "Home" %}</a></li>
-                    <li class="nav-item"><a href="{% url 'search' %}" class="nav-link active">{% trans "Projects" %}</a></li>
-                    <li class="nav-item"><a href="{% url 'vocabList' %}" class="nav-link">{% trans "Vocab" %}</a></li>
+                    <li class="nav-item"><a href="{% url 'search' %}" class="nav-link">{% trans "Projects" %}</a></li>
+                    <li class="nav-item"><a href="{% url 'vocabList' %}" class="nav-link active">{% trans "Vocab" %}</a></li>
                     <li class="nav-item"><a href="{% url 'school' %}" class="nav-link">{% trans "School" %}</a></li>
                 </ul>
             </header>
         </div>
     </div>
-</div>
 
-    <div class="align-content-center text-center mb-3 border-3">
-        <h1>
-        {% if query == "" %}
-            <div class="align-content-center text-center"><img src="{% static 'imgs/logo.png' %}" width="75px" height="75px"/></div>
-            GPE {% trans "Projects" %}
-        {% else %}
-            "{{ query }}" Results
-        {% endif %}
-        </h1>
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1>SAT Vocabulary Set</h1>
+        <br><br>
+         {% for vocabSet in vocabSets %}
+             <!--a href='{% static 'projects/vocab/{{ vocabSet }}.json' %}'></a-->
+             <!--a href='../../../vocab/{{ vocabSet }}'>{{ vocabSet }}</a>  <br/-->
+             <!--a href='../sets/{{ vocabSet }}/'>{{ vocabSet }}</a>  <br/-->
+             <a href='{% url 'vocabSet' set_name=vocabSet %}'>{{ vocabSet }}</a>  <br/>
+            {% endfor %}
+
     </div>
-
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="padding-left:10%; padding-right:10%; grid-gap: 20px;">
-        {% for project in projects %}
-        <div class="col">
-            <div class="card shadow-sm">
-
-                <a href="../../{{ project.project_url }}">
-                    <img src="{% static '/' %}{{ project.project_cover }}" class="bd-placeholder-img card-img-top" width="100%" height="50%"/>
-                </a>
-                <div class="card-body">
-                    <p class="card-text">
-                    <h3>{{ project.project_name }}</h3>
-                    {{ project.project_description }}
-                    </p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <a href="../../{{ project.project_url }}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
-                        </div>
-                        <small class="text-body-secondary">{{ project.project_author }}</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+    <!--nav aria-label="Page navigation example" class="page">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link disabled" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link active" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="unit2/">2</a></li>
+        <li class="page-item"><a class="page-link" href="unit2/">Next</a></li>
+      </ul>
+    </nav-->
     <div class="b-example-divider"></div>
-
+    <!--div class="b-example-divider" style="background-color:white; box-shadow:none; padding-top:10px; border:none;"></div-->
 
 
   <!--div class="b-example-divider"></div-->
@@ -135,11 +142,11 @@
 <div class="" style="width:100%; padding-bottom:0; margin-bottom:0;">
 <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 ThisGPE</p>
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
 
         <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <svg class="bi me-2" width="40" height="32">
-                <img src="{% static 'imgs/logo.png' %}" width="40" height="32" loading="lazy">
+            <svg class="bi me-2" width="32" height="32">
+                <img src="{% static 'imgs/logo.png' %}" width="32" height="32" loading="lazy">
             </svg>
         </a>
 
@@ -158,6 +165,7 @@
 
 
 <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
 
     </body>
 </html>

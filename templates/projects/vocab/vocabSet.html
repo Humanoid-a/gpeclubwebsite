@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+      {% load static %}
+      {% load i18n %}
+      <script src="{%  static 'assets/js/color-modes.js' %}"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Vocab Practice</title>
+      <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'basestyles.css' %}" rel="stylesheet">
+
+    <style>
+        a{
+            text-decoration: none !important;
+
+        }
+        .button1{
+            position: fixed;
+            bottom: 100px;
+            right: 75px;
+            z-index: 9999;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+        }
+        @media (max-width: 500px) {
+          .button1{
+                position: fixed;
+                bottom: 50px;
+                right: 25px;
+                z-index: 9999;
+              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+          }
+        }
+        .button2{
+            position: fixed;
+            top: 25%;
+            right: 10%;
+            z-index: 9999;
+        }
+        .flashcard-container {
+          position: relative;
+          width: 600px;
+          height: 400px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        @media (max-width: 667px) {
+          .flashcard-container {
+            width: 90%;
+          }
+        }
+        .flashcard {
+          width: 100%;
+          height: 100%;
+          perspective: 1000px;
+          cursor: pointer;
+
+        }
+        .flashcard div {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          backface-visibility: hidden;
+          border: 5px solid #ccc;
+          border-radius: 8px;
+          padding: 20px;
+          box-sizing: border-box;
+          background-color: white;
+          transition: transform 0.5s;
+
+        }
+        .flashcard .back {
+          transform: rotateY(180deg);
+        }
+        .flashcard.flipped .front {
+          transform: rotateY(180deg);
+        }
+        .flashcard.flipped .back {
+          transform: rotateY(0);
+        }
+        .flashcard {
+          transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+        }
+
+        .flashcard.slide-in {
+            transition: none;
+          transform: translateX(100%);
+          opacity: 0;
+        }
+
+        .flashcard.slide-in-active {
+          transform: translateX(0);
+          opacity: 1;
+        }
+
+        .flashcard.slide-out {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+
+        #front {
+          font-size: 50px;
+            color: black;
+            font-weight: bold;
+        }
+        #back {
+          font-size: 30px;
+            color: black;
+        }
+        .count {
+            font-size: 20px;
+        }
+
+    </style>
+
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'heroes.css' %}" rel="stylesheet">
+  </head>
+  <body>
+
+
+
+
+<main>
+    <a name="0"></a>
+    <div class="shadow" style="width:100%;">
+    <div class="button1">
+        <a href="#0" class="btn btn-primary">
+            <svg t="1735554699762" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4238" width="30" height="40"><path d="M960 541.4H682.3v389.3H341.7V541.4H64l448-448 448 448zM633.6 882V492.7h208.9L512 162.2 181.5 492.7h208.9V882h243.2z" fill="#ffffff" p-id="4239"></path></svg>
+        </a>
+    </div>
+        <!-- <div class="container fixed-top" > -->
+        <div class="container" >
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom ">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="32" height="32">
+                        <!--<use href="{% static 'imgs/logo.png' %}"/>-->
+                        <img src="{% static 'imgs/logo.png' %}" width="32" height="32" loading="lazy">
+                    </svg>
+                    <span class="fs-4">{% trans "name" %}</span>
+                </a>
+
+    
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="projects/search/" method="get">
+                    <div style="display:flex;" class="">
+                        <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
+                        <input type="search" class="form-control" placeholder="{% trans "Search..." %}" aria-label="Search" name="query" value="{{ query }}"/>
+                        <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
+                    </div>
+                </form>
+    
+                <ul class="nav nav-pills ">
+
+                    {% get_current_language as CURRENT_LANGUAGE %}
+                    {% get_available_languages as AVAILABLE_LANGUAGES %}
+
+                    <form action="{% url 'set_language' %}" method="post" style = "padding-right: 15px">
+                      {% csrf_token %}
+                      <select name="language" class="form-select" onchange="this.form.submit()" >
+                        {% get_current_language as CURRENT_LANGUAGE %}
+                        {% get_available_languages as AVAILABLE_LANGUAGES %}
+                        {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+                          <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
+                            {{ lang_name }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </form>
+                    <li class="nav-item"><a href="{% url 'index' %}" class="nav-link" aria-current="page">{% trans "Home" %}</a></li>
+                    <li class="nav-item"><a href="{% url 'search' %}" class="nav-link">{% trans "Projects" %}</a></li>
+                    <li class="nav-item"><a href="{% url 'vocabList' %}" class="nav-link active">{% trans "Vocab" %}</a></li>
+                    <li class="nav-item"><a href="{% url 'school' %}" class="nav-link">{% trans "School" %}</a></li>
+                </ul>
+            </header>
+        </div>
+    </div>
+
+    <div class="px-4 pt-5 my-5" id="scriptHolder">
+        <div class="flashcard-container">
+            <div style="padding-bottom: 15px">
+                <div id="liveToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="d-flex">
+                    <div class="toast-body">
+                      Vocab Added
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                </div>
+            </div>
+            <div class="btn-group-vertical" role="group" aria-label="Vertical button group" style="padding-bottom: 10px">
+              <button id="known" type="button" class="btn btn-secondary btn-lg px-4 me-sm-3 border" >Know (1)</button>
+              <button id="unknown" type="button" class="btn btn-secondary btn-lg px-4 me-sm-3 border" >Don't Know (2)</button>
+            </div>
+            <div style="align-items: end; padding-bottom: 25px" >
+                <div id="numKnown" class="count"></div>
+                <div id="numUnknown" class="count"></div>
+            </div>
+            <div class="flashcard text-center" id="flashcard">
+              <div class="front" id="front" style="align-content: center">
+                <!-- Word will be displayed here -->
+              </div>
+              <div class="back" id="back" style="align-content: center">
+                <!-- Definition will be displayed here -->
+              </div>
+            </div>
+            <div class="buttons text-center" style="padding-top: 50px; padding-bottom: 50px">
+              <button id="prevBtn" class="btn btn-primary btn-lg px-4 me-sm-3">(<-) Previous</button>
+              <button id="nextBtn" class="btn btn-primary btn-lg px-4 me-sm-3">Next (->)</button>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="random">
+              <label class="form-check-label" for="flexCheckDefault">
+                Random Shuffle
+              </label>
+            </div>
+            <div class="form-check" style="padding-bottom: 25px">
+              <input class="form-check-input" type="checkbox" value="" id="practiceUnknown">
+              <label class="form-check-label" for="flexCheckDefault">
+                Only Unknown Words checked
+              </label>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+              Reset Data
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Warning</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    By confirming, you will lose all of your vocab data.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="clear" data-bs-dismiss="modal">Reset</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <script>
+        // Define the parameters to pass
+        const params = {
+            set_path: '{% url 'vocabSetData' set_name=set_name %}'
+        };
+
+        /*
+        // Construct the query string
+        const queryString = Object.entries(params)
+            .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+            .join('&');
+
+        // Create the script element
+        let scriptHolder = document.getElementById('scriptHolder')
+        const script = document.createElement('script');
+        script.src = `{% static 'assets/js/vocabset.js' %}?${queryString}`; // Add the parameters to the script's URL
+        //alert(queryString);
+        //script.async = true; // Optional: Load script asynchronously
+
+        // Append the script to the document
+        scriptHolder.appendChild(script);
+        */
+    </script>
+    <script src="{% static 'assets/js/vocabset.js' %}"></script>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div class="b-example-divider"></div>
+    <!--div class="b-example-divider" style="background-color:white; box-shadow:none; padding-top:10px; border:none;"></div-->
+
+
+
+  <!--div class="b-example-divider"></div-->
+
+<div class="" style="width:100%; padding-bottom:0; margin-bottom:0;">
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
+
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="32" height="32">
+                <img src="{% static 'imgs/logo.png' %}" width="32" height="32" loading="lazy">
+            </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="{% url 'school' %}" class="nav-link px-2 text-body-secondary">School</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+    </footer>
+</div>
+</div>
+
+</main>
+
+
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
+</html>

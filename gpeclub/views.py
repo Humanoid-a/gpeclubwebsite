@@ -48,20 +48,7 @@ def final_data(request):
         return JsonResponse({'error': 'Failed to load data'}, status=500)
 
 
-def vocab_data_response_generator(json_name):
-    return lambda request: vocab_data(json_name)
 
-import IndividualProjects.satPrep.vocabUtils as vocabUtils
-def vocab_data(json_name):
-    json_path = os.path.join(settings.BASE_DIR, 'static', 'vocab', '{}.json'.format(json_name))
-
-    # Read and return the JSON data
-    try:
-        with open(json_path, 'r') as json_file:
-            data = vocabUtils.VocabSet(json.load(json_file))
-        return JsonResponse(data, safe=False)
-    except Exception as e:
-        return JsonResponse({'error': 'Failed to load data'}, status=500)
 
 
 
@@ -128,6 +115,36 @@ def powerschool(request):
 
 def isocolon(request):
     return render(request,'projects/isocolon/index.html')
+
+def supertictactoe(request):
+    return superttt.view_index(request)
+
+import IndividualProjects.satPrep.vocab_web as vocab_web
+def vocabList(request):
+    return vocab_web.view_vocab_list(request)
+
+def vocabSet(request, set_name):
+    return vocab_web.view_vocab_set(request, set_name)
+
+'''
+def vocab_data_response_generator(json_name):
+    return lambda request: vocab_data(json_name)
+'''
+
+def vocab_set_data(request, set_name):
+    return vocab_data(set_name)
+
+import IndividualProjects.satPrep.vocabUtils as vocabUtils
+def vocab_data(json_name):
+    json_path = os.path.join(settings.BASE_DIR, 'static', 'vocab', '{}.json'.format(json_name))
+
+    # Read and return the JSON data
+    try:
+        with open(json_path, 'r') as json_file:
+            data = vocabUtils.VocabSet(json.load(json_file))
+        return JsonResponse(data, safe=False)
+    except Exception as e:
+        return JsonResponse({'error': 'Failed to load data'}, status=500)
 
 def phys2(request):
     return render(request,'projects/phys2/index.html')

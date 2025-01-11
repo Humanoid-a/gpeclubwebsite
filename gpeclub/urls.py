@@ -3,7 +3,7 @@ from django.urls import path
 from . import views
 from . import search
 
-urlpatterns = [
+urlpatterns = ([
     path('', views.index, name="index"),
     path('projects/search/', search.search_project_by_name,name = 'search'),
     path('header/', views.header, name="header"),
@@ -14,7 +14,7 @@ urlpatterns = [
     path('projects/invective/', views.invective, name="invective"),
     path('projects/isocolon/', views.isocolon, name="isocolon"),
     path('about/', views.about, name="about"),
-    path('vocab/', views.vocab, name="vocab"),
+    #path('vocab/', views.vocab, name="vocab"),
     path('projects/school/', views.school, name="school"),
     path('projects/powerschool/', views.powerschool, name="powerschool"),
     path('projects/run_crawltest/', views.run_crawltest, name="run_crawltest"),
@@ -25,8 +25,12 @@ urlpatterns = [
     path('final_data.json', views.final_data, name='final_data'),
     path('projects/phys2/', views.phys2, name='phys2'),
     path('projects/phys2/unit2/', views.phys2u2, name='phys2u2'),
-] + list(map(lambda name: path('vocab/{}'.format(name), views.vocab_data_response_generator(name), name='vocab_{}'.format(name)),
+    path('projects/vocab/List', views.vocabList, name='vocabList'),
+   path('projects/vocab/sets/<str:set_name>/', views.vocabSet, name='vocabSet'),
+       path('projects/vocab/sets_data/<str:set_name>/', views.vocab_set_data, name='vocabSetData'),
+           ]
+#+ list(map(lambda name: path('projects/vocab/sets_data/{}'.format(name), views.vocab_data_response_generator(name), name='vocab_set_data_{}'.format(name)),
+ #map(lambda i: 'set{}'.format(i),range(1,33+1))
+ #))
 
-             map(lambda i: 'set{}'.format(i),range(1,33+1))
-
-             ))
+)

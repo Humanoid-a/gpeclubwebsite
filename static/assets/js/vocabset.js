@@ -1,5 +1,5 @@
-//THIS IS OBSOLETE
-
+const set_path = params.set_path;
+//alert(set_path);
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
@@ -47,7 +47,7 @@ function getCookie(name) {
 
 function fetchData() {
     // Fetching from Django View
-    fetch('/final_data.json')
+    fetch(set_path)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
