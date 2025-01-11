@@ -1,4 +1,5 @@
 const set_path = params.set_path;
+const set_name = params.set_name;
 //alert(set_path);
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,10 +33,12 @@ if (getCookie('unknownWords') !== null) {
 console.log(unknownWords);
 
 function setCookie(name, value) {
-    document.cookie = name + "=" + (value || "") + "; path=/";
+    const cookieName = `${name}_${set_name}`;
+    document.cookie = cookieName + "=" + (value || "") + "; path=/";
 }
 function getCookie(name) {
-    const nameEQ = name + "=";
+    const cookieName = `${name}_${set_name}`;
+    const nameEQ = cookieName + "=";
     const ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];

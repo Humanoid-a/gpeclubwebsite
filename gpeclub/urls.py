@@ -25,8 +25,8 @@ urlpatterns = ([
     path('final_data.json', views.final_data, name='final_data'),
     path('projects/phys2/', views.phys2, name='phys2'),
     path('projects/phys2/unit2/', views.phys2u2, name='phys2u2'),
-    path('projects/vocab/List', views.vocabList, name='vocabList'),
-   path('projects/vocab/sets/<str:set_name>/', views.vocabSet, name='vocabSet'),
+    path('vocab/list', views.vocabList, name='vocabList'),
+   path('vocab/sets/<str:set_name>/', views.vocabSet, name='vocabSet'),
        path('projects/vocab/sets_data/<str:set_name>/', views.vocab_set_data, name='vocabSetData'),
            ]
 #+ list(map(lambda name: path('projects/vocab/sets_data/{}'.format(name), views.vocab_data_response_generator(name), name='vocab_set_data_{}'.format(name)),

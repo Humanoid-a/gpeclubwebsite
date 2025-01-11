@@ -113,17 +113,50 @@
             </header>
         </div>
     </div>
-
     <div class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1>SAT Vocabulary Set</h1>
-        <br><br>
-         {% for vocabSet in vocabSets %}
-             <!--a href='{% static 'projects/vocab/{{ vocabSet }}.json' %}'></a-->
-             <!--a href='../../../vocab/{{ vocabSet }}'>{{ vocabSet }}</a>  <br/-->
-             <!--a href='../sets/{{ vocabSet }}/'>{{ vocabSet }}</a>  <br/-->
-             <a href='{% url 'vocabSet' set_name=vocabSet %}'>{{ vocabSet }}</a>  <br/>
-            {% endfor %}
+        <h1>SAT Vocabulary Sets</h1>
+        <br>
+    <div class="overflow-hidden" style="max-height: 100vh">
 
+      <div class="container px-5">
+        <img src="{% static 'aivocab.png' %}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Trigonomis" width="800" height="auto" loading="lazy">
+      </div>
+    </div>
+    <br>
+       <div class="col-lg-6 mx-auto">
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btn-lg px-4 me-sm-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Vocab Set 1-10
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        {% for vocabSet in vocabSets|slice:":10" %}
+                            <li><a class="dropdown-item" href="{% url 'vocabSet' set_name=vocabSet %}">{{ vocabSet }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btn-lg px-4 me-sm-3" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                        Vocab Set 11-20
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        {% for vocabSet in vocabSets|slice:"10:20" %}
+                            <li><a class="dropdown-item" href="{% url 'vocabSet' set_name=vocabSet %}">{{ vocabSet }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle btn-lg px-4 me-sm-3" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                        Vocab Set 21-33
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                        {% for vocabSet in vocabSets|slice:"20:33" %}
+                            <li><a class="dropdown-item" href="{% url 'vocabSet' set_name=vocabSet %}">{{ vocabSet }}</a></li>
+                        {% endfor %}
+                    </ul>
+            </div>
+          </div>
+       </div>
     </div>
     <!--nav aria-label="Page navigation example" class="page">
       <ul class="pagination">

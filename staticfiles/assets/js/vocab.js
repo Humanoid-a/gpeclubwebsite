@@ -1,3 +1,6 @@
+//THIS IS OBSOLETE
+
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
     setupEventListeners();
