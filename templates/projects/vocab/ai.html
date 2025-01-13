@@ -134,8 +134,8 @@
     <a name="0"></a>
     <div class="shadow" style="width:100%;">
     <div class="button1">
-        <a href="{% url 'vocabList' %}" class="btn btn-primary btn-lg px-4 me-sm-3" >
-            <- Back
+        <a id="vocabLink" href="{% url 'ai' set_name=set_name %}" class="btn btn-primary btn-lg px-4 me-sm-3">
+            Flashcards
         </a>
     </div>
         <!-- <div class="container fixed-top" > -->
@@ -313,6 +313,12 @@
 
 
 <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const vocabLink = document.getElementById('vocabLink');
+    const vocabSet = '{{ set_name }}';
+    vocabLink.href = "{% url 'vocabSet' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
+});
+</script>
     </body>
 </html>

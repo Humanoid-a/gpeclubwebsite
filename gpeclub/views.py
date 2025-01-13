@@ -124,9 +124,15 @@ def vocabList(request):
     return vocab_web.view_vocab_list(request)
 
 def vocabSet(request, set_name):
+    context = {
+        'set_name': set_name,
+    }
     return vocab_web.view_vocab_set(request, set_name)
 
 def ai(request, set_name):
+    context = {
+        'set_name': set_name,
+    }
     return vocab_web.view_vocab_ai(request, set_name)
 
 '''

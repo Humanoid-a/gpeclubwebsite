@@ -213,14 +213,12 @@
     
         checkbox.addEventListener('change', function() {
             dropdownItems.forEach(item => {
-                const url = new URL(item.href);
+                const vocabSet = item.textContent.trim();
                 if (checkbox.checked) {
-                    url.searchParams.set('set_name', 'ai');
+                    item.href = "{% url 'ai' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
                 } else {
-                    const vocabSet = item.textContent.trim();
-                    url.searchParams.set('set_name', vocabSet);
+                    item.href = "{% url 'vocabSet' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
                 }
-                item.href = url.toString();
             });
         });
     });
