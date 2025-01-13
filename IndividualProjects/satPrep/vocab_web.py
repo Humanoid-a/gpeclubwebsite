@@ -23,3 +23,8 @@ vocab_set_template = 'projects/vocab/vocabSet.html'
 def view_vocab_set(request, set_name):
     context = {'set_name': set_name}
     return render(request, vocab_set_template, context)
+
+vocab_ai_template = 'projects/vocab/ai.html'
+def view_vocab_ai(request, set_name):
+    context = {'set_name': set_name}
+    return render(request, vocab_ai_template, context)

@@ -26,9 +26,11 @@ urlpatterns = ([
     path('projects/phys2/', views.phys2, name='phys2'),
     path('projects/phys2/unit2/', views.phys2u2, name='phys2u2'),
     path('vocab/list', views.vocabList, name='vocabList'),
+    path('vocab/ai/<str:set_name>/', views.ai, name='ai'),
    path('vocab/sets/<str:set_name>/', views.vocabSet, name='vocabSet'),
        path('projects/vocab/sets_data/<str:set_name>/', views.vocab_set_data, name='vocabSetData'),
            ]
+
 #+ list(map(lambda name: path('projects/vocab/sets_data/{}'.format(name), views.vocab_data_response_generator(name), name='vocab_set_data_{}'.format(name)),
  #map(lambda i: 'set{}'.format(i),range(1,33+1))
  #))

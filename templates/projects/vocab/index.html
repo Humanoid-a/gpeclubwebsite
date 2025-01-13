@@ -123,6 +123,14 @@
       </div>
     </div>
     <br>
+    <div class="col-lg-1 mx-auto">
+    <div class="form-check" style="padding-bottom: 25px">
+      <input class="form-check-input" type="checkbox" value="" id="AIMode">
+      <label class="form-check-label" for="AIMode">
+          <h5>AI mode</h5>
+      </label>
+    </div>
+    </div>
        <div class="col-lg-6 mx-auto">
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
                 <div class="dropdown">
@@ -198,7 +206,25 @@
 
 
 <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
-
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkbox = document.getElementById('AIMode');
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+    
+        checkbox.addEventListener('change', function() {
+            dropdownItems.forEach(item => {
+                const url = new URL(item.href);
+                if (checkbox.checked) {
+                    url.searchParams.set('set_name', 'ai');
+                } else {
+                    const vocabSet = item.textContent.trim();
+                    url.searchParams.set('set_name', vocabSet);
+                }
+                item.href = url.toString();
+            });
+        });
+    });
+    </script>
 
     </body>
 </html>

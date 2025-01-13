@@ -126,6 +126,9 @@ def vocabList(request):
 def vocabSet(request, set_name):
     return vocab_web.view_vocab_set(request, set_name)
 
+def ai(request, set_name):
+    return vocab_web.view_vocab_ai(request, set_name)
+
 '''
 def vocab_data_response_generator(json_name):
     return lambda request: vocab_data(json_name)
