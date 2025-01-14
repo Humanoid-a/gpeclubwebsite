@@ -160,7 +160,6 @@ def phys2(request):
 def phys2u2(request):
     return render(request,'projects/phys2/index2.html')
 
-
 from django.http import JsonResponse
 import json
 from pslCrawlAPI import crawl_account
@@ -180,4 +179,56 @@ def run_crawltest(request):
 
 
 
-#import IndividualProjects.satPrep.vocabDatas as vocabDatas
+import openai
+from openai import OpenAI
+from django.conf import settings
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
+
+@csrf_exempt  # Use with caution; prefer proper CSRF protection
+def get_openai_response(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            prompt = data.get('prompt', '').strip()
+            user_input = data.get('input', '').strip()
+
+            if not prompt or not user_input:
+                return JsonResponse({'error': 'Both prompt and input are required.'}, status=400)
+
+            # Define the messages structure for OpenAI Chat API
+            client = OpenAI()
+            completion = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": prompt},
+                    {
+                        "role": "user",
+                        "content": user_input
+                    }
+                ]
+            )
+
+            # Extract the assistant's reply
+            ai_response = completion.choices[0].message.content
+
+            # Validate the AI's response
+            if ai_response not in ["Yes", "No"]:
+                ai_response = "No"  # Default to "No" if response is unexpected
+
+            logger.debug(f"Received prompt: {prompt}")
+            logger.debug(f"User input: {user_input}")
+            logger.debug(f"AI response: {ai_response}")
+
+            return JsonResponse({'response': ai_response})
+        except Exception as e:
+            logger.error(f"Error processing request: {e}")
+            return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)
+

@@ -52,6 +52,10 @@
             color: var(--text-color);
             font-weight: bold;
         }
+        .back {
+          font-size: 30px;
+            color: var(--text-color);
+        }
         :root {
           --background-color: #ffffff;
           --text-color: #000000;
@@ -130,49 +134,43 @@
     </div>
 
     <div class="px-4 pt-5 my-5" id="scriptHolder">
-        <div class="front" id="front" style="align-content: center">
-
-        </div>
-        <div class="col-lg-6 mx-auto">
-            <div style="padding-bottom: 15px">
-                <div id="liveToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                  <div class="d-flex">
-                    <div class="toast-body">
-                      Vocab Added
-                    </div>
-                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                  </div>
-                </div>
-            </div>
-            <div style="align-items: end; padding-bottom: 25px" >
+        <!-- Example for index 1 -->
+        <div id="response-1"></div>
+        <div class="col-lg-3 mx-auto">
+        <div style="align-items: end; border: 2px solid #000; padding: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 5px;">
                 <div id="numKnown" class="count"></div>
                 <div id="numUnknown" class="count"></div>
             </div>
-            <div class="col-lg-6 mx-auto">
+            <br>
+        <div class="front" id="front" style="display: flex; justify-content: center; align-items: center;">
+
+        </div>
+            <div id="response-0" class="back" style="display: flex; justify-content: center; align-items: center;"></div>
+            <br><br>
                 <form id="textForm">
                     <div class="mb-3">
                         <label for="textInput" class="form-label">Enter the definition of the word</label>
                         <input type="text" class="form-control" id="textInput" placeholder="Definition / Chinese Translation">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <br><br><br>
                 </form>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="random">
-              <label class="form-check-label" for="flexCheckDefault">
-                Random Shuffle
-              </label>
-            </div>
-            <div class="form-check" style="padding-bottom: 25px">
-              <input class="form-check-input" type="checkbox" value="" id="practiceUnknown">
-              <label class="form-check-label" for="flexCheckDefault">
-                Only Unknown Words checked
-              </label>
-            </div>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-              Reset Data
-            </button>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="random">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Random Shuffle
+                  </label>
+                </div>
+                <div class="form-check" style="padding-bottom: 25px">
+                  <input class="form-check-input" type="checkbox" value="" id="practiceUnknown">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Only Unknown Words checked
+                  </label>
+                </div>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                  Reset Data
+                </button>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -217,7 +215,7 @@
         scriptHolder.appendChild(script);
         */
     </script>
-    <script src="{% static 'assets/js/ai.js' %}"></script>
+    <script type="module" src="{% static 'assets/js/ai.js' %}"></script>
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div class="b-example-divider"></div>
@@ -253,12 +251,6 @@
 
 
 <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const vocabLink = document.getElementById('vocabLink');
-    const vocabSet = '{{ set_name }}';
-    vocabLink.href = "{% url 'vocabSet' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
-});
-</script>
+
     </body>
 </html>

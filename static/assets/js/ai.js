@@ -1,11 +1,17 @@
+
 const set_path = params.set_path;
 const set_name = params.set_name;
+var currentIndex = 0;
+var israndom = false;
 //alert(set_path);
+
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
     setupEventListeners();
 });
+
+
 var knownWords = [];
 var unknownWords = [];
 var viewed = [];
@@ -92,8 +98,7 @@ function setupEventListeners() {
     const clear = document.getElementById('clear');
 
     let modeUnknown = practiceUnknown.checked;
-    let israndom = random.checked;
-    let currentIndex = 0;
+    israndom = random.checked;
     let unknownIndex = 0;
     let Index = 0;
 
@@ -107,17 +112,6 @@ function setupEventListeners() {
     document.addEventListener('keydown', (event) => {
 
     });
-    document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('textForm');
-    const textInput = document.getElementById('textInput');
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
-        const textValue = textInput.value;
-        console.log('Submitted text:', textValue);
-        // You can now use the textValue variable as needed
-    });
-});
     clear.addEventListener('click', () => {
         knownWords = [];
         unknownWords = [];
@@ -125,89 +119,147 @@ function setupEventListeners() {
         setCookie('unknownWordsAI', JSON.stringify(unknownWords));
         getNum();
     });
-
-    nextBtn.addEventListener('click', () => {
-        const flashcard = document.getElementById('flashcard');
-        flashcard.classList.add('slide-out');
-        setTimeout(() => {
-            if (!israndom) {
-                if (!modeUnknown) {
-                    if (currentIndex < vocabData.length - 1) {
-                        currentIndex++;
-                        if (knownWords !== null) {
-                            while (knownWords.includes(currentIndex)) {
-                                currentIndex++;
-                            }
-                        }
-                        displayFlashcard(currentIndex);
-                    } else {
-                        alert('You have reached the last flashcard.');
-                    }
-                } else {
-                    if (unknownIndex < unknownWords.length - 1) {
-                        unknownIndex++;
-                        displayFlashcard(unknownWords[unknownIndex]);
-                    } else {
-                        alert('You have reached the last flashcard.');
-                    }
-                }
-            } else {
-                if (!modeUnknown) {
-                    currentIndex = Math.floor(Math.random() * vocabData.length);
-                    if (knownWords !== null) {
-                        while (knownWords.includes(currentIndex)) {
-                            currentIndex = Math.floor(Math.random() * vocabData.length);
-                        }
-                    }
-                    displayFlashcard(currentIndex);
-                    viewed.push(currentIndex);
-                } else {
-                    unknownIndex = Math.floor(Math.random() * unknownWords.length);
-                    displayFlashcard(unknownWords[unknownIndex]);
-                    viewed.push(unknownWords[unknownIndex]);
-                }
-            }
-            flashcard.classList.remove('slide-out');
-            flashcard.classList.add('slide-in');
-            setTimeout(() => {
-                flashcard.classList.remove('slide-in');
-                flashcard.classList.add('slide-in-active');
-                setTimeout(() => {
-                    flashcard.classList.remove('slide-in-active');
-                }, 250);
-            }, 10);
-        }, 250);
-    });
-
 }
+
+async function AI(text, index) {
+    const vocab = vocabData[index];
+    const developer = 'You are given a vocabulary and its definition and Chinese translation below. Determine if the user\'s input generally matches the idea or Chinese translation of the vocabulary term. Answer with only "Yes" or "No".';
+    const def = `${vocab.word}: ${vocab.definition}`;
+    const prompt = `${developer} ${def}`;
+    const input = text;
+
+    console.log('Prompt:', prompt);
+    console.log('Input:', input);
+
+    try {
+        const response = await fetch('/en/api/get-openai-response/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken(), // Function to retrieve CSRF token
+            },
+            body: JSON.stringify({
+                prompt: prompt,
+                input: input,
+            }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log('AI Response:', data.response);
+            // Update your UI with the AI response
+            displayAIResponse(index, data.response);
+        } else {
+            console.error('Backend Error:', data.error);
+            // Optionally, display an error message to the user
+            displayAIError(index, data.error);
+        }
+    } catch (error) {
+        console.error('Network or Server Error:', error);
+        // Optionally, display a network error message to the user
+        displayAIError(index, 'A network error occurred. Please try again.');
+    }
+}
+
+// Function to retrieve CSRF token from cookies
+function getCsrfToken() {
+    let cookieValue = null;
+    const name = 'csrftoken';
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Function to display AI response in the UI
+function displayAIResponse(index, response) {
+    const responseElement = document.getElementById(`response-0`);
+    responseElement.innerText = response;
+    displayFlashcard(currentIndex);
+    if (response === 'Yes') {
+        knownWords.push(vocabData[currentIndex].word);
+        setCookie('knownWordsAI', JSON.stringify(knownWords));
+    }else{
+        unknownWords.push(vocabData[currentIndex].word);
+        setCookie('unknownWordsAI', JSON.stringify(unknownWords));
+    }
+    getNum();
+}
+
+// Function to display AI error in the UI
+function displayAIError(index, errorMessage) {
+    const responseElement = document.getElementById(`response-1`);
+    if (responseElement) {
+        responseElement.innerText = `Error: ${errorMessage}`;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM fully loaded and parsed'); // Debugging log
+
+    const form = document.getElementById('textForm');
+    const textInput = document.getElementById('textInput');
+
+    if (!form) {
+        console.error('Form with id "textForm" not found.');
+        return;
+    }
+
+    if (!textInput) {
+        console.error('Input with id "textInput" not found.');
+        return;
+    }
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+        let text = textInput.value.trim();
+        console.log('Submitted text:', text);
+        if (text === '') {
+            console.warn('No text entered.');
+            displayAIResponse(currentIndex, 'Please enter a definition or translation.');
+            return;
+        }
+        AI(text, currentIndex);
+        if (!israndom){
+            currentIndex++;
+        }else{
+            currentIndex = Math.floor(Math.random() * vocabData.length);
+        }
+        textInput.value = ''; // Optionally, clear the input field
+    });
+});
+
+
+
 
 function displayFlashcard(index) {
     const front = document.getElementById('front');
-    const back = document.getElementById('back');
 
     console.log(`Displaying flashcard at index: ${index}`);
 
     if (!vocabData || vocabData.length === 0) {
         front.textContent = 'No vocabulary data available.';
-        back.textContent = '';
         return;
     }
 
     if (index < 0 || index >= vocabData.length) {
         front.textContent = 'Index out of bounds.';
-        back.textContent = '';
         return;
     }
 
     const vocab = vocabData[index];
     console.log(`Current Word: ${vocab.word}, Part of Speech: ${vocab.partOfSpeech}`);
     front.textContent = `${vocab.word} (${vocab.partOfSpeech})`;
-    back.textContent = vocab.definition;
 
     getNum();
     // Ensure the card is not flipped when displaying a new card
-    const flashcard = document.getElementById('flashcard');
-    flashcard.classList.remove('flipped');
 }
 
 function getNum(){

@@ -160,3 +160,11 @@ LANGUAGES = (
 LOCALE_PATHS = [
     BASE_DIR / 'locale/',
 ]
+
+import os
+import openai
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
+# Set the API key for OpenAI
+openai.api_key = OPENAI_API_KEY
