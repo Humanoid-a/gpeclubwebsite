@@ -145,6 +145,7 @@ async function AI(text, index) {
         });
 
         const data = await response.json();
+        displayDefinition(index);
 
         if (response.ok) {
             console.log('AI Response:', data.response);
@@ -192,6 +193,11 @@ function displayAIResponse(index, response) {
         setCookie('unknownWordsAI', JSON.stringify(unknownWords));
     }
     getNum();
+}
+
+function displayDefinition(index) {
+    const responseElement = document.getElementById(`response-2`);
+    responseElement.innerText = 'Definition: ' + vocabData[index].definition;
 }
 
 // Function to display AI error in the UI
