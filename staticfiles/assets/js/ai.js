@@ -1,7 +1,6 @@
 
 const set_path = params.set_path;
 const set_name = params.set_name;
-var currentIndex = 0;
 var israndom = false;
 //alert(set_path);
 
@@ -12,13 +11,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-var knownWords = [];
-var unknownWords = [];
+let knownWords = [];
+let unknownWords = [];
 var viewed = [];
+var previous = 0;
+if (getCookieSingle('previous') !== null) {
+    previous = getCookieSingle('previous');
+    console.log(previous);
+}
+let currentIndex = previous;
 
 let vocabData = [];  // Initialize as an array
-if (getCookie('knownWords') !== null) {
-    let knownWordsCookie = getCookie('knownWords');
+if (getCookie('knownWordsAI') !== null) {
+    let knownWordsCookie = getCookie('knownWordsAI');
     knownWords = knownWordsCookie ? JSON.parse(knownWordsCookie) : [];
     if (!Array.isArray(knownWords)) {
         knownWords = [];
@@ -27,8 +32,8 @@ if (getCookie('knownWords') !== null) {
     knownWords = [];
 }
 console.log(knownWords);
-if (getCookie('unknownWords') !== null) {
-    let unknownWordsCookie = getCookie('unknownWords');
+if (getCookie('unknownWordsAI') !== null) {
+    let unknownWordsCookie = getCookie('unknownWordsAI');
     unknownWords = unknownWordsCookie ? JSON.parse(unknownWordsCookie) : [];
     if (!Array.isArray(unknownWords)) {
         unknownWords = [];
@@ -41,6 +46,16 @@ console.log(unknownWords);
 function setCookie(name, value) {
     const cookieName = `${name}_${set_name}`;
     document.cookie = cookieName + "=" + (value || "") + "; path=/";
+}
+function getCookieSingle(name) {
+    const cookieName = `${name}_${set_name}`;
+    const nameEQ = cookieName + "=";
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i].trim();
+        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
 }
 function getCookie(name) {
     const cookieName = `${name}_${set_name}`;
@@ -79,10 +94,10 @@ function fetchData() {
             }
             console.log('Processed Vocab Data:', vocabData); // Debugging statement
             if (vocabData.length > 0) {
-                displayFlashcard(0);
+                displayFlashcard(currentIndex);
             } else {
                 console.warn('vocabData is empty.');
-                displayFlashcard(0);
+                displayFlashcard(currentIndex);
             }
         })
         .catch(error => {
@@ -96,6 +111,7 @@ function setupEventListeners() {
     const random = document.getElementById('random');
     const practiceUnknown = document.getElementById('practiceUnknown');
     const clear = document.getElementById('clear');
+    const next = document.getElementById('next');
 
     let modeUnknown = practiceUnknown.checked;
     israndom = random.checked;
@@ -117,7 +133,30 @@ function setupEventListeners() {
         unknownWords = [];
         setCookie('knownWordsAI', JSON.stringify(knownWords));
         setCookie('unknownWordsAI', JSON.stringify(unknownWords));
+        setCookie('previous', JSON.stringify(0));
         getNum();
+    });
+    next.addEventListener('click', () => {
+        const response = document.getElementById(`response-0`);
+        const def = document.getElementById(`response-2`);
+        response.innerText = '';
+        def.innerText = '';
+        if (!israndom){
+            currentIndex++;
+            if (knownWords !== null) {
+                while (knownWords.includes(currentIndex)) {
+                    currentIndex++;
+                }
+            }
+        }else{
+            currentIndex = Math.floor(Math.random() * vocabData.length);
+            if (knownWords !== null) {
+                while (knownWords.includes(currentIndex)) {
+                    currentIndex = Math.floor(Math.random() * vocabData.length);
+                }
+            }
+        }
+        displayFlashcard(currentIndex);
     });
 }
 
@@ -145,6 +184,7 @@ async function AI(text, index) {
         });
 
         const data = await response.json();
+        displayDefinition(index);
 
         if (response.ok) {
             console.log('AI Response:', data.response);
@@ -183,7 +223,6 @@ function getCsrfToken() {
 function displayAIResponse(index, response) {
     const responseElement = document.getElementById(`response-0`);
     responseElement.innerText = response;
-    displayFlashcard(currentIndex);
     if (response === 'Yes') {
         knownWords.push(vocabData[currentIndex].word);
         setCookie('knownWordsAI', JSON.stringify(knownWords));
@@ -192,6 +231,11 @@ function displayAIResponse(index, response) {
         setCookie('unknownWordsAI', JSON.stringify(unknownWords));
     }
     getNum();
+}
+
+function displayDefinition(index) {
+    const responseElement = document.getElementById(`response-2`);
+    responseElement.innerText = 'Definition: ' + vocabData[index].definition;
 }
 
 // Function to display AI error in the UI
@@ -227,11 +271,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         AI(text, currentIndex);
-        if (!israndom){
-            currentIndex++;
-        }else{
-            currentIndex = Math.floor(Math.random() * vocabData.length);
-        }
+        previous = currentIndex;
+        console.log(previous);
+         setCookie('previous', JSON.stringify(previous));
         textInput.value = ''; // Optionally, clear the input field
     });
 });

@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-var knownWords = [];
-var unknownWords = [];
+let knownWords = [];
+let unknownWords = [];
 var viewed = [];
 var previous = 0;
 if (getCookieSingle('previous') !== null) {
@@ -22,8 +22,8 @@ if (getCookieSingle('previous') !== null) {
 let currentIndex = previous;
 
 let vocabData = [];  // Initialize as an array
-if (getCookie('knownWords') !== null) {
-    let knownWordsCookie = getCookie('knownWords');
+if (getCookie('knownWordsAI') !== null) {
+    let knownWordsCookie = getCookie('knownWordsAI');
     knownWords = knownWordsCookie ? JSON.parse(knownWordsCookie) : [];
     if (!Array.isArray(knownWords)) {
         knownWords = [];
@@ -32,8 +32,8 @@ if (getCookie('knownWords') !== null) {
     knownWords = [];
 }
 console.log(knownWords);
-if (getCookie('unknownWords') !== null) {
-    let unknownWordsCookie = getCookie('unknownWords');
+if (getCookie('unknownWordsAI') !== null) {
+    let unknownWordsCookie = getCookie('unknownWordsAI');
     unknownWords = unknownWordsCookie ? JSON.parse(unknownWordsCookie) : [];
     if (!Array.isArray(unknownWords)) {
         unknownWords = [];
@@ -139,9 +139,24 @@ function setupEventListeners() {
     next.addEventListener('click', () => {
         const response = document.getElementById(`response-0`);
         const def = document.getElementById(`response-2`);
-        displayFlashcard(currentIndex);
         response.innerText = '';
         def.innerText = '';
+        if (!israndom){
+            currentIndex++;
+            if (knownWords !== null) {
+                while (knownWords.includes(currentIndex)) {
+                    currentIndex++;
+                }
+            }
+        }else{
+            currentIndex = Math.floor(Math.random() * vocabData.length);
+            if (knownWords !== null) {
+                while (knownWords.includes(currentIndex)) {
+                    currentIndex = Math.floor(Math.random() * vocabData.length);
+                }
+            }
+        }
+        displayFlashcard(currentIndex);
     });
 }
 
@@ -258,15 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
         AI(text, currentIndex);
         previous = currentIndex;
         console.log(previous);
-        setCookie('previous', JSON.stringify(previous));
-        let prev = currentIndex;
-        if (!israndom){
-            currentIndex++;
-        }else{
-            while(currentIndex !== prev){
-                currentIndex = Math.floor(Math.random() * vocabData.length);
-            }
-        }
+         setCookie('previous', JSON.stringify(previous));
         textInput.value = ''; // Optionally, clear the input field
     });
 });
