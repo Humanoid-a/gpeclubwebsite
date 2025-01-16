@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchData();
     setupEventListeners();
 });
-
-
+hideSpinner();
 let knownWords = [];
 let unknownWords = [];
 var viewed = [];
@@ -159,13 +158,22 @@ function setupEventListeners() {
         displayFlashcard(currentIndex);
     });
 }
+function showSpinner() {
+  document.getElementById('spinner').style.display = 'flex';
+}
 
+function hideSpinner() {
+  document.getElementById('spinner').style.display = 'none';
+}
 async function AI(text, index) {
     const vocab = vocabData[index];
     const developer = 'You are given a vocabulary and its definition and Chinese translation below. Determine if the user\'s input generally matches the idea or Chinese translation of the vocabulary term. Answer with only "Yes" or "No".';
     const def = `${vocab.word}: ${vocab.definition}`;
     const prompt = `${developer} ${def}`;
     const input = text;
+    const response = document.getElementById(`response-0`);
+    response.innerText = '';
+    showSpinner()
 
     console.log('Prompt:', prompt);
     console.log('Input:', input);
@@ -195,6 +203,7 @@ async function AI(text, index) {
             // Optionally, display an error message to the user
             displayAIError(index, data.error);
         }
+        hideSpinner()
     } catch (error) {
         console.error('Network or Server Error:', error);
         // Optionally, display a network error message to the user
