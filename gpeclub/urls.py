@@ -27,6 +27,7 @@ urlpatterns = ([
     path('projects/phys2/unit2/', views.phys2u2, name='phys2u2'),
     path('vocab/list', views.vocabList, name='vocabList'),
     path('vocab/ai/<str:set_name>/', views.ai, name='ai'),
+    path('vocab/mcq/<str:set_name>/', views.mcq, name='mcq'),
 
     path('api/get-openai-response/', views.get_openai_response, name='get_openai_response'),
 

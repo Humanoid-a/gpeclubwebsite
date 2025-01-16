@@ -28,3 +28,8 @@ vocab_ai_template = 'projects/vocab/ai.html'
 def view_vocab_ai(request, set_name):
     context = {'set_name': set_name}
     return render(request, vocab_ai_template, context)
+
+vocab_mcq_template = 'projects/vocab/mcq.html'
+def view_vocab_mcq(request, set_name):
+    context = {'set_name': set_name}
+    return render(request, vocab_mcq_template, context)

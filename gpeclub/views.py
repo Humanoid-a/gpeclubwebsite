@@ -134,6 +134,11 @@ def ai(request, set_name):
         'set_name': set_name,
     }
     return vocab_web.view_vocab_ai(request, set_name)
+def mcq(request, set_name):
+    context = {
+        'set_name': set_name,
+    }
+    return vocab_web.view_vocab_mcq(request, set_name)
 
 '''
 def vocab_data_response_generator(json_name):

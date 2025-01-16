@@ -131,6 +131,7 @@
             <select class="form-select" id="AIMode">
                 <option value="off">Flashcards</option>
                 <option value="on">AI</option>
+                <option value="mcq">MCQ</option>
             </select>
         </div>
             <br>
@@ -221,8 +222,10 @@
                 const vocabSet = item.textContent.trim();
                 if (dropdown.value === 'on') {
                     item.href = "{% url 'ai' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
-                } else {
+                } else if (dropdown.value === 'off'){
                     item.href = "{% url 'vocabSet' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
+                }else{
+                    item.href = "{% url 'mcq' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
                 }
             });
         });
