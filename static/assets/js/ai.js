@@ -2,12 +2,22 @@
 const set_path = params.set_path;
 const set_name = params.set_name;
 var israndom = false;
+let modeUnknown = false;
+let Index = 0;
+
 //alert(set_path);
 
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
     setupEventListeners();
+    const progress = document.getElementById(`progress`);
+    const progressInfo = document.getElementById(`progressInfo`);
+    const progressBar = document.querySelector('.progress-bar');
+    let percentage = Math.round((knownWords.length / vocabData.length) * 100);
+    progress.innerText = percentage.toString() + '%';
+    progressBar.style.width = percentage.toString() + '%';
+    progressInfo.innerText = 'Progress: ' + knownWords.length.toString() + '/' + vocabData.length.toString();
 });
 hideSpinner();
 let knownWords = [];
@@ -122,11 +132,9 @@ function setupEventListeners() {
     const prev = document.getElementById('prev');
     const idk = document.getElementById('idk');
 
-    let modeUnknown = practiceUnknown.checked;
+    modeUnknown = practiceUnknown.checked;
     israndom = random.checked;
     let unknownIndex = 0;
-    let Index = 0;
-
     random.addEventListener('change', () => {
         israndom = random.checked;
     });
@@ -156,6 +164,7 @@ function setupEventListeners() {
             displayFlashcard(currentIndex);
         }
         displayFlashcard(currentIndex);
+        console.log(order);
     });
     next.addEventListener('click', () => {
         isIdk = false;
@@ -164,23 +173,41 @@ function setupEventListeners() {
         response.innerText = '';
         def.innerText = '';
         order += 1;
-        viewed[order] = currentIndex;
-        if (!israndom){
-            currentIndex++;
-            if (knownWords !== null) {
-                while (knownWords.includes(currentIndex)) {
-                    currentIndex++;
+        if(!modeUnknown){
+            viewed[order] = currentIndex;
+            if (!israndom){
+                currentIndex++;
+                if (knownWords !== null) {
+                    while (knownWords.includes(currentIndex)) {
+                        currentIndex++;
+                    }
+                }
+            }else{
+                currentIndex = Math.floor(Math.random() * vocabData.length);
+                if (knownWords !== null) {
+                    while (knownWords.includes(currentIndex)) {
+                        currentIndex = Math.floor(Math.random() * vocabData.length);
+                    }
                 }
             }
+            displayFlashcard(currentIndex);
         }else{
-            currentIndex = Math.floor(Math.random() * vocabData.length);
-            if (knownWords !== null) {
-                while (knownWords.includes(currentIndex)) {
-                    currentIndex = Math.floor(Math.random() * vocabData.length);
+            viewed[order] = unknownWords[Index];
+            if (!israndom){
+                if(Index < unknownWords.length - 1) {
+                    Index++;
+                }else{
+                    Index = 0;
+                }
+            }else{
+                Index = Math.floor(Math.random() * unknownWords.length);
+                while(unknownWords[Index] === viewed[order]){
+                    Index = Math.floor(Math.random() * unknownWords.length);
                 }
             }
+            displayFlashcard(unknownWords[Index]);
         }
-        displayFlashcard(currentIndex);
+
     });
     idk.addEventListener('click', () => {
         isIdk = true;
@@ -188,9 +215,12 @@ function setupEventListeners() {
         const def = document.getElementById(`response-2`);
         response.innerText = 'Pass';
         def.innerText = vocabData[currentIndex].definition;
-        unknownWords.push(vocabData[currentIndex].word);
+        unknownWords.push(currentIndex);
+        unknownWords = [...new Set(unknownWords)];
+        console.log(unknownWords);
         getNum()
         setCookie('unknownWordsAI', JSON.stringify(unknownWords));
+        displayProgress();
     })
 }
 function showSpinner() {
@@ -263,15 +293,36 @@ function getCsrfToken() {
     return cookieValue;
 }
 
+function displayProgress(){
+    const progress = document.getElementById(`progress`);
+    const progressInfo = document.getElementById(`progressInfo`);
+    const progressBar = document.querySelector('.progress-bar');
+    let percentage = Math.round((knownWords.length / vocabData.length) * 100);
+    progress.innerText = percentage.toString() + '%';
+    progressBar.style.width = percentage.toString() + '%';
+    progressInfo.innerText = 'Progress: ' + knownWords.length.toString() + '/' + vocabData.length.toString() + ' words known';
+    return;
+}
+
 // Function to display AI response in the UI
 function displayAIResponse(index, response) {
     const responseElement = document.getElementById(`response-0`);
     responseElement.innerText = response;
     if (response === 'Correct') {
-        knownWords.push(vocabData[currentIndex].word);
+        if(!modeUnknown){
+            knownWords.push(currentIndex);
+            unknownWords = unknownWords.filter(item => item !== currentIndex);
+        }else{
+            knownWords.push(unknownWords[Index]);
+            unknownWords = unknownWords.filter(item => item !== unknownWords[Index]);
+        }
+        knownWords = [...new Set(knownWords)];
         setCookie('knownWordsAI', JSON.stringify(knownWords));
     }else{
-        unknownWords.push(vocabData[currentIndex].word);
+        if(!modeUnknown) {
+            unknownWords.push(currentIndex);
+        }
+        unknownWords = [...new Set(unknownWords)];
         setCookie('unknownWordsAI', JSON.stringify(unknownWords));
     }
     getNum();
@@ -314,7 +365,11 @@ document.addEventListener('DOMContentLoaded', function() {
             displayAIResponse(currentIndex, 'Please enter a definition or translation.');
             return;
         }
-        AI(text, currentIndex);
+        if(modeUnknown){
+            AI(text, unknownWords[Index]);
+        }else{
+            AI(text, currentIndex);
+        }
         textInput.value = ''; // Optionally, clear the input field
     });
 });
@@ -323,6 +378,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function displayFlashcard(index) {
+    displayProgress()
     const front = document.getElementById('front');
     previous = currentIndex;
         console.log(previous);

@@ -220,7 +220,6 @@ function setupEventListeners() {
             }, 10);
         }, 250);
     });
-
     known.addEventListener('click', () => {
         if(!modeUnknown){
             Index = currentIndex;
@@ -238,6 +237,7 @@ function setupEventListeners() {
         }
         getNum();
         toastBootstrap.show()
+        displayProgress()
     });
 
     unknown.addEventListener('click', () => {
@@ -255,8 +255,19 @@ function setupEventListeners() {
     });
 
 }
+function displayProgress(){
+        const progress = document.getElementById(`progress`);
+        const progressInfo = document.getElementById(`progressInfo`);
+        const progressBar = document.querySelector('.progress-bar');
+        let percentage = Math.round((knownWords.length / vocabData.length) * 100);
+        progress.innerText = percentage.toString() + '%';
+        progressBar.style.width = percentage.toString() + '%';
+        progressInfo.innerText = 'Progress: ' + knownWords.length.toString() + '/' + vocabData.length.toString() + ' words known';
+        return;
+    }
 
 function displayFlashcard(index) {
+    displayProgress()
     const front = document.getElementById('front');
     const back = document.getElementById('back');
 

@@ -197,7 +197,14 @@
         <img src="{% static 'aivocab.png' %}" class="img-fluid border rounded-3 shadow-lg mb-4" alt="AIVocab" width="800" height="auto" loading="lazy">
     </div>
     <div class="px-4 pt-5 my-5" id="scriptHolder">
-
+        <div id="response-1"></div>
+        <div class="col-lg-3 mx-auto">
+            <div id="progressInfo" style="padding-bottom: 10px"></div>
+            <div class="progress" role="progressbar" aria-label="Progress 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width: 25%" id="progress"></div>
+            </div>
+            <br>
+        </div>
         <div class="flashcard-container">
             <div style="padding-bottom: 15px">
                 <div id="liveToast" class="toast align-items-center text-bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
