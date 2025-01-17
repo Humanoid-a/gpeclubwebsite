@@ -223,8 +223,8 @@ def get_openai_response(request):
             ai_response = completion.choices[0].message.content
 
             # Validate the AI's response
-            if ai_response not in ["Yes", "No"]:
-                ai_response = "No"  # Default to "No" if response is unexpected
+            if ai_response not in ["Correct", "Incorrect"]:
+                ai_response = "Error"  # Default to "No" if response is unexpected
 
             logger.debug(f"Received prompt: {prompt}")
             logger.debug(f"User input: {user_input}")

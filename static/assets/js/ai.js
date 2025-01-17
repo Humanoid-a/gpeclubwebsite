@@ -12,8 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 hideSpinner();
 let knownWords = [];
 let unknownWords = [];
-var viewed = [];
-var previous = 0;
+let viewed = [0];
+let order = 0;
+let previous = 0;
+let isIdk = false;
+
 if (getCookieSingle('previous') !== null) {
     previous = getCookieSingle('previous');
     console.log(previous);
@@ -46,13 +49,18 @@ function setCookie(name, value) {
     const cookieName = `${name}_${set_name}`;
     document.cookie = cookieName + "=" + (value || "") + "; path=/";
 }
+
+function setCookieSingle(name, value) {
+    const cookieName = `${name}_${set_name}`;
+    document.cookie = cookieName + "=" + value.toString() + "; path=/";
+}
 function getCookieSingle(name) {
     const cookieName = `${name}_${set_name}`;
     const nameEQ = cookieName + "=";
     const ca = document.cookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i].trim();
-        if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        if (c.indexOf(nameEQ) === 0) return parseInt(c.substring(nameEQ.length, c.length), 10);
     }
     return null;
 }
@@ -111,6 +119,8 @@ function setupEventListeners() {
     const practiceUnknown = document.getElementById('practiceUnknown');
     const clear = document.getElementById('clear');
     const next = document.getElementById('next');
+    const prev = document.getElementById('prev');
+    const idk = document.getElementById('idk');
 
     let modeUnknown = practiceUnknown.checked;
     israndom = random.checked;
@@ -132,14 +142,29 @@ function setupEventListeners() {
         unknownWords = [];
         setCookie('knownWordsAI', JSON.stringify(knownWords));
         setCookie('unknownWordsAI', JSON.stringify(unknownWords));
-        setCookie('previous', JSON.stringify(0));
+        setCookieSingle('previous', 0);
         getNum();
     });
-    next.addEventListener('click', () => {
+    prev.addEventListener('click', () => {
         const response = document.getElementById(`response-0`);
         const def = document.getElementById(`response-2`);
         response.innerText = '';
         def.innerText = '';
+        if (order > 0){
+            currentIndex = viewed[order];
+            order -= 1;
+            displayFlashcard(currentIndex);
+        }
+        displayFlashcard(currentIndex);
+    });
+    next.addEventListener('click', () => {
+        isIdk = false;
+        const response = document.getElementById(`response-0`);
+        const def = document.getElementById(`response-2`);
+        response.innerText = '';
+        def.innerText = '';
+        order += 1;
+        viewed[order] = currentIndex;
         if (!israndom){
             currentIndex++;
             if (knownWords !== null) {
@@ -157,6 +182,16 @@ function setupEventListeners() {
         }
         displayFlashcard(currentIndex);
     });
+    idk.addEventListener('click', () => {
+        isIdk = true;
+        const response = document.getElementById(`response-0`);
+        const def = document.getElementById(`response-2`);
+        response.innerText = 'Pass';
+        def.innerText = vocabData[currentIndex].definition;
+        unknownWords.push(vocabData[currentIndex].word);
+        getNum()
+        setCookie('unknownWordsAI', JSON.stringify(unknownWords));
+    })
 }
 function showSpinner() {
   document.getElementById('spinner').style.display = 'flex';
@@ -167,7 +202,7 @@ function hideSpinner() {
 }
 async function AI(text, index) {
     const vocab = vocabData[index];
-    const developer = 'You are given a vocabulary and its definition and Chinese translation below. Determine if the user\'s input generally matches the idea or Chinese translation of the vocabulary term. Answer with only "Yes" or "No".';
+    const developer = 'You are given a vocabulary and its definition and Chinese translation below. Determine if the user\'s input generally and broadly matches the idea or Chinese translation of the vocabulary term. Answer with only "Correct" or "Incorrect".';
     const def = `${vocab.word}: ${vocab.definition}`;
     const prompt = `${developer} ${def}`;
     const input = text;
@@ -232,7 +267,7 @@ function getCsrfToken() {
 function displayAIResponse(index, response) {
     const responseElement = document.getElementById(`response-0`);
     responseElement.innerText = response;
-    if (response === 'Yes') {
+    if (response === 'Correct') {
         knownWords.push(vocabData[currentIndex].word);
         setCookie('knownWordsAI', JSON.stringify(knownWords));
     }else{
@@ -274,15 +309,12 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault(); // Prevent the form from submitting the traditional way
         let text = textInput.value.trim();
         console.log('Submitted text:', text);
-        if (text === '') {
+        if (text === '' && !isIdk) {
             console.warn('No text entered.');
             displayAIResponse(currentIndex, 'Please enter a definition or translation.');
             return;
         }
         AI(text, currentIndex);
-        previous = currentIndex;
-        console.log(previous);
-         setCookie('previous', JSON.stringify(previous));
         textInput.value = ''; // Optionally, clear the input field
     });
 });
@@ -292,6 +324,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function displayFlashcard(index) {
     const front = document.getElementById('front');
+    previous = currentIndex;
+        console.log(previous);
+         setCookieSingle('previous', previous);
 
     console.log(`Displaying flashcard at index: ${index}`);
 
