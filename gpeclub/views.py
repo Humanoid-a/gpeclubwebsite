@@ -222,10 +222,6 @@ def get_openai_response(request):
             # Extract the assistant's reply
             ai_response = completion.choices[0].message.content
 
-            # Validate the AI's response
-            if ai_response not in ["Correct", "Incorrect"]:
-                ai_response = "Error"  # Default to "No" if response is unexpected
-
             logger.debug(f"Received prompt: {prompt}")
             logger.debug(f"User input: {user_input}")
             logger.debug(f"AI response: {ai_response}")
