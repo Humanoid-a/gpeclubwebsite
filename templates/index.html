@@ -86,7 +86,7 @@
           height: 60px;
           padding: 0 10px;
           font-size: 20px;
-            max-width: 650px;
+            max-width: 700px;
             box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
 
             border: none;
@@ -175,14 +175,15 @@
             /* Basic box styling */
             border: 4px solid rgba(255, 255, 255, .8); /* A light gray border */
             padding: 10px; /* Space inside the box */
-            margin: 10px 0; /* Space around the box */
+            margin: 10px auto; /* Space around the box */
             background-color: rgba(255, 255, 255, .7); /* Slightly off-white background */
-            border-radius: 5px; /* Rounded corners */
+            border-radius: 12px; /* Rounded corners */
             -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
             /* Optional shadow for a card-like effect */
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
             display: none;
+            max-width: 700px;
         }
     </style>
 
@@ -260,7 +261,9 @@
         -->
         <br><br>
         <img src="{% static 'imgs/aisearch.png' %}" class="img2">
-        <br><br>
+        <br>
+        <a name="1"></a>
+        <br>
         <form id="textForm">
     <div class="mb-3">
       <input
@@ -281,7 +284,7 @@
   </form>
         <div id="response-0" class="back response-box">
             <p id="loadingPlaceholder" class="placeholder-glow" style="display: none;">
-                <span class="placeholder col-12"></span><span class="placeholder col-12"></span><span class="placeholder col-12"></span><span class="placeholder col-8"></span>
+                <span class="placeholder col-12"></span><span class="placeholder col-12"></span><span class="placeholder col-12"></span><span class="placeholder col-12"></span>
               </p>
 
               <!-- Actual AI response text, initially hidden -->

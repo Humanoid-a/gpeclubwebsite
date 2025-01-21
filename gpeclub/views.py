@@ -202,6 +202,7 @@ def get_openai_response(request):
             data = json.loads(request.body)
             prompt = data.get('prompt', '').strip()
             user_input = data.get('input', '').strip()
+            model= data.get('model', 'gpt-4o-mini')
 
             if not prompt or not user_input:
                 return JsonResponse({'error': 'Both prompt and input are required.'}, status=400)
@@ -209,7 +210,7 @@ def get_openai_response(request):
             # Define the messages structure for OpenAI Chat API
             client = OpenAI()
             completion = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model="{model}".format(model=model),
                 messages=[
                     {"role": "system", "content": prompt},
                     {
@@ -224,6 +225,7 @@ def get_openai_response(request):
 
             logger.debug(f"Received prompt: {prompt}")
             logger.debug(f"User input: {user_input}")
+            logger.debug(f"Model: {model}")
             logger.debug(f"AI response: {ai_response}")
 
             return JsonResponse({'response': ai_response})
