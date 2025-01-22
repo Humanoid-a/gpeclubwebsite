@@ -96,6 +96,7 @@
             border: none;
           outline: none;
           border-radius: 30px;
+            border: 1px solid #ffffff;
 
           /* We use two backgrounds:
              1) A white background for the input text (padding-box).
@@ -106,11 +107,9 @@
             linear-gradient(to right,
               #120078, #3C096C, #9D0191, #FD3A69, #FF7F11, #F5D300, #06D6A0, #06AED5
             ) border-box;
-          border: 4px solid transparent;
 
 
           /* Smooth transitions for border-radius and box-shadow */
-          transition: border-radius 0.3s ease, box-shadow 0.3s ease;
 
           /* Make the gradient background animate like a “rainbow flow” */
           background-size: 200% auto, 100% 100%;
@@ -118,6 +117,23 @@
 
             -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
+
+            transition:
+                border-radius 0.3s ease,
+                box-shadow 0.3s ease,
+                border 0.3s ease,
+                background 0.3s ease;
+
+
+
+        }
+        .search-bar:hover {
+            background:
+                linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)) padding-box,
+                linear-gradient(to right,
+                    #120078, #3C096C, #9D0191, #FD3A69, #FF7F11, #F5D300, #06D6A0, #06AED5
+                ) border-box;
+            border: 3px solid transparent;
         }
 
         /* Keyframes to shift the gradient left-to-right, then back */
@@ -138,6 +154,7 @@
         .search-bar:focus {
           border-radius: 12px;
           box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            border: 4px solid transparent;
         }
 
         .img2{
@@ -148,17 +165,14 @@
         }
 
         .button2 {
-          background: rgba(255, 255, 255, 0.7);
           -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
-            border: none;
           padding: 10px 20px;
           cursor: pointer;
           border-radius: 10px; /* Optional: Adds rounded corners */
-          transition: background-color 0.3s ease; /* Optional: Smooth background transition */
+          transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease; /* Optional: Smooth background transition */
             box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
             color: #222529;
-            border: none;
           outline: none;
 
           /* We use two backgrounds:
@@ -172,16 +186,31 @@
             ) border-box;
           border: 3px solid transparent;
         }
+
+        .button2:hover{
+            background:
+                linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)) padding-box,
+                linear-gradient(to right,
+                    #5835a6, #196198, #31e4f9
+                ) border-box;
+            box-shadow: 0 0 20px rgba(50, 95, 149, 0.5);
+
+        }
+
         .back {
           font-size: 18px;
             color: #222529;
         }
         .response-box {
             /* Basic box styling */
-            border: 4px solid var(--border); /* A light gray border */
             padding: 10px; /* Space inside the box */
             margin: 10px auto; /* Space around the box */
-            background-color: var(--blur); /* Slightly off-white background */
+            background:
+                linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)) padding-box,
+            linear-gradient(to right,
+              #F5F5FA, #E3F2FD, #D4E8F8, #D9F5E4, #FBE4D6, #F9D2F1, #D7C8F6, #BFD3FA
+            ) border-box;
+          border: 4px solid transparent;
             border-radius: 12px; /* Rounded corners */
             -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
