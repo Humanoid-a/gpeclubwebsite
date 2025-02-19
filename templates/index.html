@@ -332,6 +332,7 @@
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
           <a href="projects/search/"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Projects" %}</button></a>
           <a ><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{% trans "About Us" %}</button></a>
+          <a ><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" data-bs-toggle="modal" data-bs-target="#GPEHub">GPEHub</button></a>
           <a href="{% url 'vocabList' %}"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Vocab" %}</button></a>
       </div>
     </div>
@@ -369,6 +370,41 @@
               <p>
                     Andy Wang<br>Email: Alivehuman@outlook.com
               </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+         <div class="modal fade" id="GPEHub" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="GPEHub" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="hubLabel">GPEHub</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h2>
+                  Download GPEHub
+              </h2>
+            <p style="font-size: 18px">
+                <br>
+                GPEHub is a desktop application created by Will and the GPE Club, a toolbox that contains the projects of
+                the GPEClub Website and more AI features.
+                <br><br>
+                Download GPEHub at the Github repository:
+                <a href="https://github.com/BroWo1/GPE-Hub/releases">Release</a>
+                <br>
+                <br>
+                Or...<br>
+                MacOS Version:
+                <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.2.0/GPEHub-1.2.0-MacOS.dmg">Download</a>
+                <br>
+                Windows Version:
+                <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.2.0/GPEHub-1.2.0-Windows.exe">Download</a>
+            </p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -416,13 +452,12 @@
 
      <br>
      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-         <h1 class="display-4 fw-bold text-body-emphasis">Join the Club</h1>
+         <h4>Join the club! </h4>
          <!--a href="{% url 'vocabList' %}"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Apply" %}</button></a-->
-         <br>
          <div>
          <iframe src="
          https://forms.office.com/r/zi4HGMPJya
-        " width="600px" height="500px">Loading...</iframe>
+        " width="600px" height="600" style="border-radius: 8px; box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);">Loading...</iframe>
          </div>
      </div>
 
