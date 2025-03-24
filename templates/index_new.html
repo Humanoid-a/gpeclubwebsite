@@ -1,598 +1,502 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="auto">
   <head>
       {% load static %}
       {% load i18n %}
+      <script src="{%  static 'assets/js/color-modes.js' %}"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="GPE Interactive - Game Development and AI Programming Club">
+    <meta name="description" content="">
+    <meta name="generator" content="Hugo 0.122.0">
     <title>{% trans "name" %}</title>
-    <link rel="shortcut icon" href="{% static 'imgs/logo.ico' %}"></link>
+      <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+  <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'basestyles.css' %}" rel="stylesheet">
 
     <style>
-      :root {
-        --background-color: #0a0a0a;
-        --sidebar-color: #202123;
-        --text-color: #ffffff;
-        --secondary-text: #ececf1;
-        --border-color: #424242;
-        --primary-button: #10a37f;
-        --primary-button-hover: #0e8f6f;
-        --input-bg: #40414f;
-        --input-border: #565869;
-        --search-bg: #343541;
-      }
-      
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      }
-      
-      body {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        display: flex;
-        height: 100vh;
-        overflow: hidden;
-      }
-      
-      /* Sidebar */
-      .sidebar {
-        width: 260px;
-        height: 100vh;
-        background-color: var(--sidebar-color);
-        padding: 15px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-      }
-      
-      .sidebar-header {
-        display: flex;
-        align-items: center;
-        padding: 15px 0;
-        margin-bottom: 20px;
-      }
-      
-      .sidebar-header img {
-        width: 32px;
-        height: 32px;
-        margin-right: 10px;
-      }
-      
-      .sidebar-nav {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-      }
-      
-      .sidebar-nav a {
-        color: var(--secondary-text);
-        text-decoration: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        margin-bottom: 5px;
-        transition: background-color 0.2s;
-      }
-      
-      .sidebar-nav a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-      
-      .sidebar-nav a.active {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-      
-      /* Main Content */
-      .main-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        overflow-y: auto;
-        padding: 20px;
-      }
-      
-      .header-actions {
-        display: flex;
-        justify-content: flex-end;
-        padding: 10px 20px;
-      }
-      
-      .login-button {
-        background-color: var(--primary-button);
-        color: white;
-        border: none;
-        padding: 8px 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-      
-      .login-button:hover {
-        background-color: var(--primary-button-hover);
-      }
-      
-      .central-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-      }
-      
-      .central-content h1 {
-        font-size: 36px;
-        margin-bottom: 20px;
-      }
-      
-      .search-container {
-        width: 100%;
-        max-width: 600px;
-        margin: 20px 0;
-      }
-      
-      .search-input {
-        width: 100%;
-        padding: 15px;
-        background-color: var(--input-bg);
-        border: 1px solid var(--input-border);
-        border-radius: 5px;
-        color: white;
-        font-size: 16px;
-        margin-bottom: 10px;
-      }
-      
-      .search-button {
-        background-color: var(--primary-button);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-      
-      .search-button:hover {
-        background-color: var(--primary-button-hover);
-      }
-      
-      .action-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin: 20px 0;
-      }
-      
-      .action-button {
-        background-color: var(--search-bg);
-        color: white;
-        border: 1px solid var(--border-color);
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
-      
-      .action-button:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-      }
-      
-      .carousel {
-        width: 100%;
-        max-width: 800px;
-        margin: 30px auto;
-        position: relative;
-      }
-      
-      .carousel-inner {
-        position: relative;
-        overflow: hidden;
-        border-radius: 8px;
-      }
-      
-      .carousel-item {
-        display: none;
-      }
-      
-      .carousel-item.active {
-        display: block;
-      }
-      
-      .carousel-item img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-      }
-      
-      .carousel-caption {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        right: 0;
-        background-color: rgba(0,0,0,0.7);
-        padding: 10px;
-      }
-      
-      .carousel-control-prev, .carousel-control-next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0,0,0,0.5);
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-        color: white;
-      }
-      
-      .carousel-control-prev {
-        left: 10px;
-      }
-      
-      .carousel-control-next {
-        right: 10px;
-      }
-      
-      .iframe-container {
-        width: 100%;
-        max-width: 800px;
-        margin: 20px auto;
-        border-radius: 8px;
-        overflow: hidden;
-      }
-      
-      iframe {
-        width: 100%;
-        border: none;
-        border-radius: 8px;
-      }
-      
-      .footer {
-        border-top: 1px solid var(--border-color);
-        padding: 20px;
-        text-align: center;
-        color: var(--secondary-text);
-        margin-top: 30px;
-      }
-      
-      .modal {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.5);
-      }
-      
-      .modal-content {
-        background-color: var(--sidebar-color);
-        margin: 10% auto;
-        padding: 20px;
-        border-radius: 10px;
-        max-width: 600px;
-        max-height: 80vh;
-        overflow-y: auto;
-      }
-      
-      .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--border-color);
-        padding-bottom: 15px;
-        margin-bottom: 15px;
-      }
-      
-      .modal-close {
-        background: none;
-        border: none;
-        color: var(--text-color);
-        font-size: 24px;
-        cursor: pointer;
-      }
-      
-      .img-container {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
-      }
-      
-      .profile-img {
-        width: 150px;
-        height: 150px;
-        border-radius: 15px;
-        transition: transform 0.3s;
-      }
-      
-      .img-container:hover .profile-img {
-        transform: scale(1.25);
-      }
-      
-      .github-corner {
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 100;
-      }
+        a{
+            text-decoration: none !important;
 
-      /* Mobile adjustments */
-      @media (max-width: 768px) {
-        body {
-          flex-direction: column;
-          overflow-y: auto;
         }
-        
-        .sidebar {
+        .img1-parent{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            -webkit-transition:width 1s, height 1s,
+            background-color 1s, -webkit-transform 1s !important;
+            transition:width 1s, height 1s, background-color 1s, transform 1s !important;
+        }
+        .img1 {
+            width: 100% !important; /* Make the image responsive */
+            max-width: 150px !important; /* Set a maximum width */
+            height: auto !important; /* Maintain aspect ratio */
+            border-radius: 15px !important;
+            align-self: center !important;
+
+
+        }
+        .img1-parent:hover {
+            transform:scale(125%) !important;
+        }
+        .button1{
+            position: fixed;
+            bottom: 100px;
+            right: 75px;
+            z-index: 9999;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+        }
+        @media (max-width: 500px) {
+          .button1{
+                position: fixed;
+                bottom: 50px;
+                right: 25px;
+                z-index: 9999;
+              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+          }
+        }
+        iframe {
+            width: 100%;
+            height: 250px;
+            max-width: 800px;
+        }
+        .a1{
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 0 auto;
+        }
+        :root {
+          --background-color: #ffffff;
+          --text-color: #000000;
+            --blur: #f3f3f3;
+            --border: #d5d5d5;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          :root {
+            --background-color: #222529;
+            --text-color: #ffffff;
+              --blur: rgba(255, 255, 255, .7);
+              --border: rgba(255, 255, 255, .8);
+          }
+        }
+        .search-bar {
           width: 100%;
-          height: auto;
-          max-height: 200px;
+          height: 60px;
+          padding: 0 10px;
+          font-size: 20px;
+            max-width: 700px;
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+
+            border: none;
+          outline: none;
+          border-radius: 30px;
+            border: 1px solid #ffffff;
+
+          /* We use two backgrounds:
+             1) A white background for the input text (padding-box).
+             2) A rainbow gradient for the border (border-box).
+          */
+          background:
+                linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)) padding-box,
+            linear-gradient(to right,
+              #120078, #3C096C, #9D0191, #FD3A69, #FF7F11, #F5D300, #06D6A0, #06AED5
+            ) border-box;
+
+
+          /* Smooth transitions for border-radius and box-shadow */
+
+          /* Make the gradient background animate like a “rainbow flow” */
+          background-size: 200% auto, 100% 100%;
+          animation: rainbow 5s linear infinite;
+
+            -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+
+            transition:
+                border-radius 0.3s ease,
+                box-shadow 0.3s ease,
+                border 0.3s ease,
+                background 0.3s ease;
+
+
+
         }
-        
-        .main-content {
-          height: auto;
+        .search-bar:hover {
+            background:
+                linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)) padding-box,
+                linear-gradient(to right,
+                    #120078, #3C096C, #9D0191, #FD3A69, #FF7F11, #F5D300, #06D6A0, #06AED5
+                ) border-box;
+            border: 3px solid transparent;
         }
-        
-        .central-content {
-          padding: 10px;
+
+        /* Keyframes to shift the gradient left-to-right, then back */
+        @keyframes rainbow {
+          0% {
+            background-position: 0% center;
+          }
+          50% {
+            background-position: 100% center;
+          }
+          100% {
+            background-position: 0% center;
+          }
         }
-      }
+
+
+        /* On focus: decrease border-radius & add a glow (box-shadow) */
+        .search-bar:focus {
+          border-radius: 12px;
+          box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+            border: 4px solid transparent;
+        }
+
+        .img2{
+            max-height: 75px;
+            height: auto;
+            width: 90%;
+            max-width: 491px;
+        }
+
+        .button2 {
+          -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+          padding: 10px 20px;
+          cursor: pointer;
+          border-radius: 10px; /* Optional: Adds rounded corners */
+          transition: background-color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease; /* Optional: Smooth background transition */
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+            color: #222529;
+          outline: none;
+
+          /* We use two backgrounds:
+             1) A white background for the input text (padding-box).
+             2) A rainbow gradient for the border (border-box).
+          */
+          background:
+                linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)) padding-box,
+            linear-gradient(to right,
+              #5835a6, #196198, #31e4f9
+            ) border-box;
+          border: 3px solid transparent;
+        }
+
+        .button2:hover{
+            background:
+                linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)) padding-box,
+                linear-gradient(to right,
+                    #5835a6, #196198, #31e4f9
+                ) border-box;
+            box-shadow: 0 0 20px rgba(50, 95, 149, 0.5);
+
+        }
+
+        .back {
+          font-size: 18px;
+            color: #222529;
+        }
+        .response-box {
+            /* Basic box styling */
+            padding: 10px; /* Space inside the box */
+            margin: 10px auto; /* Space around the box */
+            background:
+                linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)) padding-box,
+            linear-gradient(to right,
+              #F5F5FA, #E3F2FD, #D4E8F8, #D9F5E4, #FBE4D6, #F9D2F1, #D7C8F6, #BFD3FA
+            ) border-box;
+          border: 4px solid transparent;
+            border-radius: 12px; /* Rounded corners */
+            -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+            /* Optional shadow for a card-like effect */
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+            display: none;
+            max-width: 700px;
+        }
     </style>
+
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{% static 'heroes.css' %}" rel="stylesheet">
   </head>
   <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <div class="sidebar-header">
-        <img src="{% static 'imgs/logo.png' %}" alt="GPE Logo">
-        <span>{% trans "name" %}</span>
-      </div>
-      
-      <div class="sidebar-nav">
-        <a href="{% url 'index' %}" class="active">{% trans "Home" %}</a>
-        <a href="{% url 'search' %}">{% trans "Projects" %}</a>
-        <a href="{% url 'vocabList' %}">{% trans "Vocab" %}</a>
-        <a href="{% url 'school' %}">{% trans "School" %}</a>
-        <div style="margin-top: auto;">
-          <form action="{% url 'set_language' %}" method="post">
-            {% csrf_token %}
-            <select name="language" onchange="this.form.submit()" style="background: var(--input-bg); color: white; border: 1px solid var(--input-border); padding: 8px; border-radius: 5px; width: 100%;">
-              {% get_current_language as CURRENT_LANGUAGE %}
-              {% get_available_languages as AVAILABLE_LANGUAGES %}
-              {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
-                <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
-                  {{ lang_name }}
-                </option>
-              {% endfor %}
-            </select>
-          </form>
-        </div>
-      </div>
+
+
+
+
+<main>
+    <a name="0"></a>
+    <div class="shadow" style="width:100%;">
+    <div class="button1">
+        <a href="#0" class="btn btn-primary">
+            <svg t="1735554699762" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4238" width="30" height="40"><path d="M960 541.4H682.3v389.3H341.7V541.4H64l448-448 448 448zM633.6 882V492.7h208.9L512 162.2 181.5 492.7h208.9V882h243.2z" fill="#ffffff" p-id="4239"></path></svg>
+        </a>
     </div>
+        <!-- <div class="container fixed-top" > -->
+        <div class="container" >
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom ">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <svg class="bi me-2" width="32" height="32">
+                        <!--<use href="{% static 'imgs/logo.png' %}"/>-->
+                        <img src="{% static 'imgs/logo.png' %}" width="32" height="32" loading="lazy">
+                    </svg>
+                    <span class="fs-4">{% trans "name" %}</span>
+                </a>
+
     
-    <!-- Main Content -->
-    <div class="main-content">
-      <div class="header-actions">
-        <button class="login-button">Log in</button>
-      </div>
-      
-      <a href="https://github.com/Humanoid-a/gpeclubwebsite" class="github-corner" aria-label="View source on Github">
-        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-          <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-          <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-          <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
-        </svg>
-      </a>
-      
-      <div class="central-content">
-        <h1>{% trans "index title" %}</h1>
-        
-        <img src="{% static 'imgs/aisearch.png' %}" alt="AI Search" style="max-width: 300px; margin: 20px 0;">
-        
-        <div class="search-container">
-          <form id="textForm">
-            <input type="search" class="search-input" id="textInput" placeholder="Navigate through GPE website..." name="q">
-            <button type="submit" class="search-button">Search</button>
-          </form>
-          
-          <div id="response-0" class="response-box" style="display: none; margin-top: 20px; padding: 15px; background-color: var(--search-bg); border-radius: 8px;">
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="projects/search/" method="get">
+                    <div style="display:flex;" class="">
+                        <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
+                        <input type="search" class="form-control" placeholder="{% trans "Search..." %}" aria-label="Search" name="query" value="{{ query }}"/>
+                        <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
+                    </div>
+                </form>
+    
+                <ul class="nav nav-pills ">
+
+                    {% get_current_language as CURRENT_LANGUAGE %}
+                    {% get_available_languages as AVAILABLE_LANGUAGES %}
+
+                    <form action="{% url 'set_language' %}" method="post" style = "padding-right: 15px">
+                      {% csrf_token %}
+                      <select name="language" class="form-select" onchange="this.form.submit()" >
+                        {% get_current_language as CURRENT_LANGUAGE %}
+                        {% get_available_languages as AVAILABLE_LANGUAGES %}
+                        {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+                          <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
+                            {{ lang_name }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </form>
+                    <li class="nav-item"><a href="{% url 'index' %}" class="nav-link active" aria-current="page">{% trans "Home" %}</a></li>
+                    <li class="nav-item"><a href="{% url 'search' %}" class="nav-link">{% trans "Projects" %}</a></li>
+                    <li class="nav-item"><a href="{% url 'vocabList' %}" class="nav-link">{% trans "Vocab" %}</a></li>
+                    <li class="nav-item"><a href="{% url 'school' %}" class="nav-link">{% trans "School" %}</a></li>
+                </ul>
+            </header>
+        </div>
+    </div>
+<div id="response-1" class="back" style="display: flex; justify-content: center; align-items: center;"></div>
+<div id="response-2" class="back" style="display: flex; justify-content: center; align-items: center;"></div>
+    <a href="https://github.com/Humanoid-a/gpeclubwebsite" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+     <div class="px-4 pt-5 my-5 text-center border-bottom">
+    <h1 class="display-4 fw-bold text-body-emphasis">{% trans "index title" %}</h1>
+    <div class="col-lg-6 mx-auto">
+        <!--
+      <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+        -->
+        <br><br>
+        <img src="{% static 'imgs/aisearch.png' %}" class="img2">
+        <br>
+        <a name="1"></a>
+        <br>
+        <form id="textForm">
+    <div class="mb-3">
+      <input
+        type="search"
+        class="search-bar"
+        id="textInput"
+        placeholder="Navigate through GPE website..."
+        name="q"
+      >
+    </div>
+
+    <button
+      type="submit"
+      class="button2"
+    >
+      Search
+    </button>
+  </form>
+        <div id="response-0" class="back response-box">
             <p id="loadingPlaceholder" class="placeholder-glow" style="display: none;">
-              <span class="placeholder col-12"></span><span class="placeholder col-12"></span>
-            </p>
-            <p id="actualResponse" style="display: none;"></p>
-          </div>
+                <span class="placeholder col-12"></span><span class="placeholder col-12"></span><span class="placeholder col-12"></span><span class="placeholder col-12"></span>
+              </p>
+
+              <!-- Actual AI response text, initially hidden -->
+              <p id="actualResponse" style="display: none;"></p>
         </div>
-        
-        <p style="margin: 20px 0;">
-          {% trans "Official website of GPE Interactive" %} <br> {{ current_date }}
-        </p>
-        
-        <div class="action-buttons">
-          <a href="projects/search/"><button class="action-button">{% trans "Projects" %}</button></a>
-          <button class="action-button" onclick="openModal('aboutUsModal')">{% trans "About Us" %}</button>
-          <button class="action-button" onclick="openModal('gpeHubModal')">GPEHub</button>
-          <a href="{% url 'vocabList' %}"><button class="action-button">{% trans "Vocab" %}</button></a>
-        </div>
-        
-        <div class="iframe-container">
-          <iframe src="https://store.steampowered.com/widget/3327910/?t=Trigonomis%0AMade%20by%20Andy%20Wang%20and%20the%20whole%20GPE%20Club" height="250"></iframe>
-        </div>
-        
-        <div class="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="{% static 'imgs/mygame.png' %}" alt="Trigonomis">
-              <div class="carousel-caption">
-                <h5>Trigonomis</h5>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="{% static 'imgs/aivocab2.png' %}" alt="AI Vocab">
-              <div class="carousel-caption">
-                <h5>AI Vocab</h5>
-              </div>
-            </div>
-          </div>
-          <button class="carousel-control-prev" onclick="changeSlide(-1)">❮</button>
-          <button class="carousel-control-next" onclick="changeSlide(1)">❯</button>
-        </div>
-        
-        <h3 style="margin-top: 30px;">Join the club!</h3>
-        <div class="iframe-container">
-          <iframe src="https://forms.office.com/r/zi4HGMPJya" height="600"></iframe>
-        </div>
-      </div>
-      
-      <div class="footer">
-        <p>&copy; 2024 GPE Interactive</p>
-        <div style="margin-top: 10px;">
-          <a href="{% url 'index' %}" style="color: var(--secondary-text); margin: 0 10px;">Home</a>
-          <a href="{% url 'school' %}" style="color: var(--secondary-text); margin: 0 10px;">School</a>
-          <a href="#" style="color: var(--secondary-text); margin: 0 10px;">FAQs</a>
-          <a href="{% url 'about' %}" style="color: var(--secondary-text); margin: 0 10px;">About</a>
-        </div>
-      </div>
-    </div>
-    
-    <!-- About Us Modal -->
-    <div id="aboutUsModal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>{% trans "About Us" %}</h2>
-          <button class="modal-close" onclick="closeModal('aboutUsModal')">&times;</button>
-        </div>
-        <div class="modal-body">
-          <h4>{% trans "name" %}</h4>
-          <p style="margin: 15px 0;">
-            GPE Club is a club formed by students at the Tsinghua International School that focuses on game development and AI programming, established since 2024.
-            <br><br>
-            Members: Andy, Will, Andrew, Jeffrey
-            <br><br>
-            Website made by Will and Andy
-          </p>
-          
-          <div class="img-container">
-            <img src="{% static 'imgs/will.jpg' %}" alt="Will Li" class="profile-img">
-          </div>
-          <p style="text-align: center;">
-            Will Li<br>
-            Email: Will.Li@gpeclub.com
-          </p>
-          
-          <div class="img-container">
-            <img src="{% static 'imgs/gandy.jpg' %}" alt="Andy Wang" class="profile-img">
-          </div>
-          <p style="text-align: center;">
-            Andy Wang<br>
-            Email: Alivehuman@outlook.com
-          </p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- GPEHub Modal -->
-    <div id="gpeHubModal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>GPEHub</h2>
-          <button class="modal-close" onclick="closeModal('gpeHubModal')">&times;</button>
-        </div>
-        <div class="modal-body">
-          <h3>Download GPEHub</h3>
-          <p style="margin: 15px 0; font-size: 16px;">
-            GPEHub is a desktop application created by Will and the GPE Club, a toolbox that contains the projects of
-            the GPEClub Website and more AI features.
-            <br><br>
-            Download GPEHub at the Github repository:
-            <a href="https://github.com/BroWo1/GPE-Hub/releases" style="color: var(--primary-button);">Release</a>
-            <br><br>
-            Or...<br>
-            MacOS Version:
-            <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.2.0/GPEHub-1.2.0-MacOS.dmg" style="color: var(--primary-button);">Download</a>
+
+        <p class="lead mb-4">
             <br>
-            Windows Version:
-            <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.2.0/GPEHub-1.2.0-Windows.exe" style="color: var(--primary-button);">Download</a>
-          </p>
+            {% trans "Official website of GPE Interactive" %} <br> {{ current_date }}
+        </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+          <a href="projects/search/"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Projects" %}</button></a>
+          <a ><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{% trans "About Us" %}</button></a>
+          <a ><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3" data-bs-toggle="modal" data-bs-target="#GPEHub">GPEHub</button></a>
+          <a href="{% url 'vocabList' %}"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Vocab" %}</button></a>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">{% trans "About Us" %}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h4>
+                  {% trans "name" %}
+              </h4>
+            <p>
+                <br>
+                GPE Club is a club formed by students at the Tsinghua International School that focuses on game development and AI programming, established since 2024.
+                <br><br>
+                Members: Andy, Will, Andrew, Jeffrey
+                <br><br>Website made by Will and Andy<br><br>
+            </p>
+              <div class="img1-parent">
+                  <img src="{% static 'imgs/will.jpg' %}" alt="" class="img1"/>
+              </div>
+                <p>
+                    Will Li<br>
+                    Email: Will.Li@gpeclub.com
+                </p>
+              <div class="img1-parent">
+                  <img src="{% static 'imgs/gandy.jpg' %}" alt="" class="img1"/>
+              </div>
+              <p>
+                    Andy Wang<br>Email: Alivehuman@outlook.com
+              </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
-    
-    <script>
-      // Simple carousel functionality
-      let slideIndex = 0;
-      const slides = document.querySelectorAll('.carousel-item');
-      
-      // Initially hide all slides except the first one
-      for (let i = 1; i < slides.length; i++) {
-        slides[i].style.display = 'none';
-      }
-      
-      function changeSlide(n) {
-        slideIndex += n;
-        
-        if (slideIndex >= slides.length) {
-          slideIndex = 0;
-        }
-        
-        if (slideIndex < 0) {
-          slideIndex = slides.length - 1;
-        }
-        
-        for (let i = 0; i < slides.length; i++) {
-          slides[i].style.display = 'none';
-          slides[i].className = slides[i].className.replace(" active", "");
-        }
-        
-        slides[slideIndex].style.display = 'block';
-        slides[slideIndex].className += " active";
-      }
-      
-      // Modal functionality
-      function openModal(modalId) {
-        document.getElementById(modalId).style.display = 'block';
-      }
-      
-      function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-      }
-      
-      // Close modal when clicking outside of it
-      window.onclick = function(event) {
-        if (event.target.className === 'modal') {
-          event.target.style.display = 'none';
-        }
-      }
-      
-      // Search functionality (stub - would need to be connected to backend)
-      document.getElementById('textForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const searchValue = document.getElementById('textInput').value;
-        const responseBox = document.getElementById('response-0');
-        
-        if (searchValue.trim() !== '') {
-          responseBox.style.display = 'block';
-          document.getElementById('loadingPlaceholder').style.display = 'block';
-          document.getElementById('actualResponse').style.display = 'none';
-          
-          // Simulate loading
-          setTimeout(function() {
-            document.getElementById('loadingPlaceholder').style.display = 'none';
-            document.getElementById('actualResponse').style.display = 'block';
-            document.getElementById('actualResponse').textContent = 'Search results for: ' + searchValue;
-          }, 1000);
-        }
-      });
-    </script>
-  </body>
+
+         <div class="modal fade" id="GPEHub" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="GPEHub" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="hubLabel">GPEHub</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <h2>
+                  Download GPEHub
+              </h2>
+            <p style="font-size: 18px">
+                <br>
+                GPEHub is a desktop application created by Will and the GPE Club, a toolbox that contains the projects of
+                the GPEClub Website and more AI features.
+                <br><br>
+                Download GPEHub at the Github repository:
+                <a href="https://github.com/BroWo1/GPE-Hub/releases/latest">Release</a>
+                <br>
+                <br>
+                Or... (Often outdated)<br>
+                MacOS Version:
+                <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.4.2/GPEHub-1.4.2-MacOS.dmg">Download</a>
+                <br>
+                Windows Version:
+                <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.4.2/GPEHub-1.4.2-Windows.exe">Download</a>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+         
+                 <iframe src="https://store.steampowered.com/widget/3327910/?t=Trigonomis%0AMade%20by%20Andy%20Wang%20and%20the%20whole%20GPE%20Club" frameborder="0" width="800" height="250"></iframe>
+
+    <div class="overflow-hidden" style="max-height: 100vh">
+        <div class="container px-4">
+    <div id="carouselExampleCaptions" class="carousel slide a1">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'imgs/mygame.png' %}" class="d-block w-100 d-block w-100 img-fluid border rounded-3 shadow-lg mb-4    " alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 style="">Trigonomis</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'imgs/aivocab2.png' %}" class="d-block w-100 img-fluid border rounded-3 shadow-lg mb-4" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>AI Vocab</h5>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+        </div>
+
+    </div>
+
+     <br>
+     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+         <h4>Join the club! </h4>
+         <!--a href="{% url 'vocabList' %}"><button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">{% trans "Apply" %}</button></a-->
+         <div>
+         <iframe src="
+         https://forms.office.com/r/zi4HGMPJya
+        " width="600px" height="600" style="border-radius: 8px; box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);">Loading...</iframe>
+         </div>
+     </div>
+
+  </div>
+
+
+<div class="b-example-divider"></div>
+<!--div class="b-example-divider" style="background-color:white; box-shadow:none; padding-top:10px; border:none;"></div-->
+
+
+
+  <!--div class="b-example-divider"></div-->
+<script type="module" src="{% static 'assets/js/search.js' %}"></script>
+<div class="" style="width:100%; padding-bottom:0; margin-bottom:0;">
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
+
+        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="32" height="32">
+                <img src="{% static 'imgs/logo.png' %}" width="32" height="32" loading="lazy">
+            </svg>
+        </a>
+
+        <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="{% url 'school' %}" class="nav-link px-2 text-body-secondary">School</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
+            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-body-secondary">About</a></li>
+        </ul>
+    </footer>
+</div>
+</div>
+
+</main>
+
+
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    </body>
 </html>
