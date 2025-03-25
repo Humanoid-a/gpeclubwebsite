@@ -25,7 +25,7 @@
         height: 100vh;
         overflow: hidden;
           font-family: "Roboto", sans-serif;
-          font-weight: 600;
+          font-weight: 500;
       }
 
       /* Sidebar */
@@ -33,7 +33,7 @@
         width: 260px;
         height: 100vh;
         background-color: var(var(--background-color));
-        padding: 15px;
+        padding: 20px;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
@@ -65,8 +65,7 @@
         padding: 10px 15px;
         border-radius: 5px;
         margin-bottom: 5px;
-        transition: background-color 0.2s;
-
+        transition: background-color 0.3s ease;
       }
 
       .sidebar-nav a:hover {
@@ -100,7 +99,7 @@
         padding: 8px 16px;
         border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.2s;
+        transition: background-color 0.3s ease;
       }
 
       .login-button:hover {
@@ -113,7 +112,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        max-width: 800px;
+        max-width: 1000px;
         margin: 0 auto;
         padding: 20px;
         text-align: center;
@@ -138,9 +137,12 @@
         border-radius: 5px;
         color: white;
         font-size: 14px;
+          transition: 0.3s ease all;
+      }
+      .search-input:hover, .search-input:focus {
+        background-color: var(--sidebar-color);
       }
 
-      /* Preserve the original search-bar styling for the AI search */
       .search-bar {
         width: 100%;
         height: 60px;
@@ -155,6 +157,7 @@
         background-color: var(--sidebar-color);
         transition: 0.3s ease all;
         margin-bottom: 10px;
+
       }
 
       .search-bar:focus, .search-bar:hover {
@@ -172,12 +175,12 @@
         box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
         color: #ffffff;
         outline: none;
-        background-color: var(--primary-button);
+        background-color: var(--primary-button-hover);
         border: none;
       }
 
       .button2:hover {
-        background-color: var(--primary-button-hover);
+        background-color: var(--primary-button);
       }
         #textForm {
   display: flex;
@@ -213,7 +216,7 @@
           margin-left: 15px;
           margin-right: 15px;
         cursor: pointer;
-        transition: background-color 0.2s;
+        transition: background-color 0.3s ease;
       }
 
       .action-button:hover {
@@ -373,7 +376,7 @@
 }
 
 .carousel-control-prev, .carousel-control-next {
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .carousel-control-prev:hover, .carousel-control-next:hover {
@@ -383,16 +386,17 @@
         display: flex;
         justify-content: center;
         margin: 20px 0;
+
       }
 
       .profile-img {
         width: 150px;
         height: 150px;
         border-radius: 15px;
-        transition: transform 0.3s;
+        transition: transform 0.3s ease;
       }
 
-      .img-container:hover .profile-img {
+      .profile-img:hover {
         transform: scale(1.25);
       }
 

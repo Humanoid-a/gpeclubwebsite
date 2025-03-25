@@ -23,8 +23,8 @@
     <!-- Sidebar -->
     <div class="sidebar">
       <div class="sidebar-header">
-        <img src="{% static 'imgs/logo.png' %}" alt="GPE Logo">
-        <span style="font-size: 24px;">{% trans "name" %}</span>
+        <img src="{% static 'imgs/gpe.png' %}" style="width: 40px; height: 40px" alt="GPE Logo">
+        <span style="font-size: 24px; font-weight: 600">{% trans "name" %}</span>
       </div>
 
       <div class="sidebar-nav">
@@ -67,14 +67,13 @@
 
       <div class="central-content">
         <a name="0"></a>
-        <h1 style="font-size: 40px">{% trans "index title" %}</h1><br>
+        <h1 style="font-size: 40px">{% trans "index title" %}</h1><br><br><br>
 
-        <img src="{% static 'imgs/aisearch.png' %}" alt="AI Search" style="max-width: 300px; margin: 20px 0;">
 
         <a name="1"></a>
         <div class="search-container">
           <form id="textForm">
-            <input type="search" class="search-bar" id="textInput" placeholder="Navigate through GPE website..." name="q">
+            <input type="search" class="search-bar" id="textInput" placeholder="Search the GPE website..." name="q">
             <button type="submit" class="button2">Search</button>
           </form>
 
@@ -116,11 +115,6 @@
           </div>
           <button class="carousel-control-prev" onclick="changeSlide(-1)">❮</button>
           <button class="carousel-control-next" onclick="changeSlide(1)">❯</button>
-        </div>
-
-        <h3 style="margin-top: 30px;">Join the club!</h3>
-        <div class="iframe-container">
-          <iframe src="https://forms.office.com/r/zi4HGMPJya" height="600"></iframe>
         </div>
       </div>
 
