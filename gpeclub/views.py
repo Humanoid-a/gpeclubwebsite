@@ -91,6 +91,10 @@ def index(request):
     current_date = datetime.now()
     return render(request, 'index.html', {'current_date': current_date})
 
+def old(request):
+    current_date = datetime.now()
+    return render(request, 'index_new.html', {'current_date': current_date} )
+
 from gpeclub.models import psl
 import time
 import os

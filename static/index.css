@@ -30,7 +30,7 @@
 
       /* Sidebar */
       .sidebar {
-        width: 260px;
+        width: 225px;
         height: 100vh;
         background-color: var(var(--background-color));
         padding: 20px;
@@ -208,19 +208,22 @@
       }
 
       .action-button {
-        background-color: var(--search-bg);
+          align-items: center;
+          justify-content: center;
+        background-color: var(--background-color);
         color: white;
         border: 1px solid var(--border-color);
         padding: 10px 15px;
-        border-radius: 5px;
-          margin-left: 15px;
-          margin-right: 15px;
+          height: 40px;
+        border-radius: 20px;
+          margin-left: 10px;
+          margin-right: 10px;
         cursor: pointer;
         transition: background-color 0.3s ease;
       }
 
       .action-button:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--search-bg);
       }
 
       .carousel {
@@ -428,3 +431,10 @@
           padding: 10px;
         }
       }
+
+.bottom-right{
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 1000;
+}

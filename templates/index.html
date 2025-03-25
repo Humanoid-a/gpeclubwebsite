@@ -65,13 +65,13 @@
         </svg>
       </a>
 
-      <div class="central-content">
+      <div class="central-content" style="margin-top: 100px;">
         <a name="0"></a>
-        <h1 style="font-size: 40px">{% trans "index title" %}</h1><br><br><br>
+        <h1 style="font-size: 40px">{% trans "index title" %}</h1>
 
 
         <a name="1"></a>
-        <div class="search-container">
+        <div class="search-container" style="margin-top: 100px;">
           <form id="textForm">
             <input type="search" class="search-bar" id="textInput" placeholder="Search the GPE website..." name="q">
             <button type="submit" class="button2">Search</button>
@@ -85,7 +85,7 @@
           </div>
         </div>
 
-        <p style="margin: 20px 0;">
+        <p style="margin-top: 50px;">
           {% trans "Official website of GPE Interactive" %} <br> {{ current_date }}
         </p>
 
@@ -118,6 +118,9 @@
         </div>
       </div>
 
+        <div class="bottom-right">
+          <button class="action-button" onclick="window.location.href='{% url 'old' %}'">Back to old UI</button>
+        </div>
       <div class="footer">
         <p>&copy; 2024 GPE Interactive</p>
         <div style="margin-top: 10px;">
