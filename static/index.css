@@ -116,6 +116,7 @@
         margin: 0 auto;
         padding: 20px;
         text-align: center;
+          margin-top: 100px;
       }
 
       .central-content h1 {
@@ -438,3 +439,147 @@
     right: 40px;
     z-index: 1000;
 }
+.sidebar-toggle {
+    position: absolute;
+    left: 225px; /* Aligns with the right edge of the sidebar */
+    top: 20px;
+    z-index: 100;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+
+  }
+
+  .sidebar-toggle:hover {
+    background-color: var(--sidebar-color);
+  }
+
+  /* Updated sidebar transition */
+  .sidebar {
+    transition: transform 0.3s ease, width 0.3s ease;
+    width: 225px;
+    position: relative;
+    /* Other existing styles remain */
+  }
+
+  /* Collapsed sidebar styles */
+  .sidebar.collapsed {
+    transform: translateX(-225px);
+    width: 0;
+  }
+
+  /* Main content styles when sidebar is collapsed */
+  .main-content {
+    transition: all 0.3s ease;
+    flex: 1;
+  }
+
+  .main-content.expanded {
+    margin-left: 0;
+  }
+
+  /* Center content when sidebar is collapsed */
+  .central-content {
+    transition: max-width 0.3s ease, margin 0.3s ease;
+    width: 100%;
+  }
+
+  body.sidebar-hidden .central-content {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Style for the toggle button when sidebar is collapsed */
+  .sidebar-toggle.active {
+      left: 20px;
+    /* transform: rotate(180deg); */
+  }
+
+  /* Mobile adjustments - enhanced for better mobile experience */
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+
+      .central-content{
+          margin-top: 50px;
+      }
+
+    .sidebar {
+      width: 100%;
+      height: auto;
+      max-height: 300px; /* Set an explicit starting height */
+      transform: translateY(0);
+      transition: all 0.3s ease; /* Use 'all' for a smoother transition */
+      overflow: hidden;
+
+    }
+
+    .sidebar.collapsed {
+      max-height: 0; /* Completely hide the sidebar when collapsed */
+      transform: translateX(0);
+      width: 100%;
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 0;
+      border-bottom: none;
+      opacity: 0.3;
+    }
+
+    .sidebar-nav {
+      padding-top: 20px;
+      transition: opacity 0.3s ease;
+    }
+
+    .sidebar.collapsed .sidebar-nav,
+    .sidebar.collapsed .sidebar-header {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sidebar-toggle {
+      position: fixed; /* Use fixed positioning to keep it in place */
+      top: 15px;
+      right: 15px;
+      left: auto;
+      width: 40px;
+      height: 40px;
+
+      /* transform: rotate(90deg); */
+      z-index: 999; /* Ensure it's always on top */
+      background-color: var(--background-color);
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s ease, left 0.3s ease, right 0.3s ease;
+    }
+
+    .sidebar-toggle.active {
+      /* transform: rotate(270deg); */
+      right: auto;
+      left: 15px;
+      /* Keep the same size and appearance when active */
+      width: 40px;
+      height: 40px;
+        background-color: var(--sidebar-color)
+    }
+
+    .main-content {
+      margin-left: 0;
+      transition: margin-top 0.3s ease;
+    }
+
+    .main-content.expanded {
+      margin-left: 0;
+      margin-top: 0; /* No negative margin needed since sidebar is hidden */
+    }
+  }
