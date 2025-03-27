@@ -195,7 +195,9 @@
   margin-bottom: 0; /* Remove bottom margin since we're using gap */
   width: auto; /* Let flexbox control the width */
 }
-
+.language-select{
+    background: var(--input-bg); color: white; border: 1px solid var(--input-border); padding: 8px; border-radius: 5px; width: 100%;
+}
 .button2 {
   /* Adjust height to match the search bar */
   height: 60px;
@@ -311,8 +313,9 @@
         display: none;
         position: fixed;
         z-index: 1000;
-        left: 0;
-        top: 0;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
         width: 100%;
         height: 100%;
         background-color: rgba(0,0,0,0.5);
@@ -325,7 +328,11 @@
         border-radius: 10px;
         max-width: 600px;
         max-height: 80vh;
-        overflow-y: auto;
+          display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Changed from overflow-y: auto */
+
+
       }
 
       .modal-header {
@@ -335,7 +342,17 @@
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 15px;
         margin-bottom: 15px;
+          position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: var(--sidebar-color);
+
       }
+      .modal-body {
+  overflow-y: auto;
+  padding: 15px;
+  flex: 1;
+}
 
       .modal-close {
         background: none;
@@ -442,7 +459,7 @@
 .sidebar-toggle {
     position: absolute;
     left: 225px; /* Aligns with the right edge of the sidebar */
-    top: 20px;
+    top: 30px;
     z-index: 100;
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
@@ -453,7 +470,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 
   }
@@ -464,7 +481,7 @@
 
   /* Updated sidebar transition */
   .sidebar {
-    transition: transform 0.3s ease, width 0.3s ease;
+    transition: 0.5s ease all;
     width: 225px;
     position: relative;
     /* Other existing styles remain */
@@ -478,7 +495,7 @@
 
   /* Main content styles when sidebar is collapsed */
   .main-content {
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
     flex: 1;
   }
 
@@ -488,7 +505,7 @@
 
   /* Center content when sidebar is collapsed */
   .central-content {
-    transition: max-width 0.3s ease, margin 0.3s ease;
+    transition: 0.5s ease all;
     width: 100%;
   }
 
@@ -502,8 +519,9 @@
 
   /* Style for the toggle button when sidebar is collapsed */
   .sidebar-toggle.active {
-      left: 20px;
+      left: 30px;
     /* transform: rotate(180deg); */
+      background-color: var(--sidebar-color)
   }
 
   /* Mobile adjustments - enhanced for better mobile experience */
@@ -519,9 +537,9 @@
     .sidebar {
       width: 100%;
       height: auto;
-      max-height: 300px; /* Set an explicit starting height */
+      max-height: 80vh;
       transform: translateY(0);
-      transition: all 0.3s ease; /* Use 'all' for a smoother transition */
+      transition: all 0.5s ease; /* Use 'all' for a smoother transition */
       overflow: hidden;
 
     }
@@ -539,7 +557,7 @@
 
     .sidebar-nav {
       padding-top: 20px;
-      transition: opacity 0.3s ease;
+      transition: 0.5s ease all;
     }
 
     .sidebar.collapsed .sidebar-nav,
@@ -550,9 +568,9 @@
 
     .sidebar-toggle {
       position: fixed; /* Use fixed positioning to keep it in place */
-      top: 15px;
-      right: 15px;
-      left: auto;
+      top: 30px;
+      right: 30px;
+        left: auto;
       width: 40px;
       height: 40px;
 
@@ -560,26 +578,84 @@
       z-index: 999; /* Ensure it's always on top */
       background-color: var(--background-color);
       border: 1px solid var(--border-color);
-      transition: transform 0.3s ease, left 0.3s ease, right 0.3s ease;
+      transition: 0.5s ease all;
     }
 
     .sidebar-toggle.active {
       /* transform: rotate(270deg); */
-      right: auto;
-      left: 15px;
-      /* Keep the same size and appearance when active */
-      width: 40px;
-      height: 40px;
+        right: 30px; /* Keep it on the right side */
+    left: auto; /* Override the left: 20px from outside the media query */
         background-color: var(--sidebar-color)
     }
 
     .main-content {
       margin-left: 0;
-      transition: margin-top 0.3s ease;
+      transition: all 0.5s ease;
     }
 
     .main-content.expanded {
       margin-left: 0;
       margin-top: 0; /* No negative margin needed since sidebar is hidden */
     }
+    .main-content.blur{
+        filter: blur(5px);
+        transition: 0.5s ease all;
+    }
+    .header-actions {
+        justify-content: flex-start;
+      }
+    .sidebar-header{
+        margin-bottom: 0;
+    }
+    .language-select {
+        margin-top: 10px;
+    }
+    .modal-content{
+        max-width: 90vw;
+    }
   }
+
+.loading-dots:after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60% {
+    content: '...';
+  }
+  80%, 100% {
+    content: '';
+  }
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border: 3px solid rgba(16, 163, 127, 0.3);
+  border-radius: 50%;
+  border-top-color: #10a37f;
+  animation: spin 1s linear infinite;
+  vertical-align: middle; /* Add this line */
+}
+
+.loading-dots {
+  display: inline-block;
+  vertical-align: middle; /* Add this line */
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

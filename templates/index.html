@@ -35,7 +35,7 @@
         <div style="margin-top: auto;">
           <form action="{% url 'set_language' %}" method="post">
             {% csrf_token %}
-            <select name="language" onchange="this.form.submit()" style="background: var(--input-bg); color: white; border: 1px solid var(--input-border); padding: 8px; border-radius: 5px; width: 100%;">
+            <select name="language" onchange="this.form.submit()" class="language-select">
               {% get_current_language as CURRENT_LANGUAGE %}
               {% get_available_languages as AVAILABLE_LANGUAGES %}
               {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
@@ -80,11 +80,10 @@
             <button type="submit" class="button2">Search</button>
           </form>
 
-          <div id="response-0" class="response-box" style="display: none; margin-top: 20px; padding: 15px; background-color: var(--search-bg); border-radius: 8px;">
-            <p id="loadingPlaceholder" class="placeholder-glow" style="display: none;">
-              <span class="placeholder col-12"></span><span class="placeholder col-12"></span>
+          <div id="response-0" class="response-box" style="display: none; margin-top: 20px; padding: 15px; background-color: var(--search-bg); border-radius: 8px; text-align: left">
+            <p id="loadingPlaceholder" class="placeholder-glow" style="display: none; ">
             </p>
-            <p id="actualResponse" style="display: none;"></p>
+            <p id="actualResponse" style="display: none; font-weight: 400"></p>
           </div>
         </div>
 
@@ -145,9 +144,9 @@
         <div class="modal-body">
           <h4>{% trans "name" %}</h4>
           <p style="margin: 15px 0;">
-            GPE Club is a club formed by students at the Tsinghua International School that focuses on game development and AI programming, established since 2024.
+            GPE Club is a club formed by students at the Tsinghua International School that focuses on software programming and game development, established since 2024.
             <br><br>
-            Members: Andy, Will, Andrew, Jeffrey
+            Members: Will, Andy, Andrew, Jeffrey
             <br><br>
             Website made by Will and Andy
           </p>
@@ -199,22 +198,23 @@
     </div>
 
     <script>
-      // Updated carousel initialization and functions
 let slideIndex = 0;
 const slides = document.querySelectorAll('.carousel-item');
+let slideInterval; // To store the interval ID
 
-// Initialize carousel - no direct style manipulation
-function initCarousel() {
-  // Set the first slide as active
-  slides[0].classList.add('active');
-
-  // Make sure other slides are properly set up for transitions
-  for (let i = 1; i < slides.length; i++) {
-    slides[i].classList.remove('active');
-  }
+// Add this function to automatically advance slides
+function startAutoSlide() {
+  // Set interval to change slides every 5 seconds (5000ms)
+  slideInterval = setInterval(() => {
+    changeSlide(1);
+  }, 5000);
 }
 
+// Modify your changeSlide function to reset the timer when manually changed
 function changeSlide(n) {
+  // Reset the interval timer when manually changing slides
+  clearInterval(slideInterval);
+
   // Remove active class from current slide
   slides[slideIndex].classList.remove('active');
 
@@ -229,9 +229,24 @@ function changeSlide(n) {
 
   // Add active class to new slide
   slides[slideIndex].classList.add('active');
+
+  // Restart the automatic sliding
+  startAutoSlide();
 }
 
-// Initialize the carousel when the page loads
+// Update your initCarousel function to start the auto-sliding
+function initCarousel() {
+  // Set the first slide as active
+  slides[0].classList.add('active');
+
+  // Make sure other slides are properly set up for transitions
+  for (let i = 1; i < slides.length; i++) {
+    slides[i].classList.remove('active');
+  }
+
+  // Start automatic sliding
+  startAutoSlide();
+}
 document.addEventListener('DOMContentLoaded', initCarousel);
 
       function openModal(modalId) {
@@ -242,7 +257,6 @@ document.addEventListener('DOMContentLoaded', initCarousel);
     modal.classList.add('show');
   }, 10);
 }
-
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   modal.classList.remove('show');
@@ -268,19 +282,32 @@ function closeModal(modalId) {
 
     // Check if sidebar state is stored in localStorage
     const sidebarState = localStorage.getItem('sidebarCollapsed');
-    if (sidebarState === 'true') {
+    console.log('sidebarState:', sidebarState); // Debugging line
+          /*
+          if (sidebarState === 'true') {
       sidebar.classList.add('collapsed');
       mainContent.classList.add('expanded');
       centralContent.classList.add('centered');
       sidebarToggle.classList.add('active');
+    }else{
+        mainContent.classList.add('blur');
     }
+           */
 
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('collapsed');
+      mainContent.classList.add('expanded');
+      centralContent.classList.add('centered');
+      sidebarToggle.classList.add('active');
+    }
     // Toggle sidebar when the button is clicked
     sidebarToggle.addEventListener('click', function() {
       sidebar.classList.toggle('collapsed');
       mainContent.classList.toggle('expanded');
+      mainContent.classList.toggle('blur');
       sidebarToggle.classList.toggle('active');
       document.body.classList.toggle('sidebar-hidden');
+
 
       // Store sidebar state in localStorage
       const isCollapsed = sidebar.classList.contains('collapsed');
@@ -289,6 +316,7 @@ function closeModal(modalId) {
       // Force a reflow to ensure animations work properly on mobile
       if (window.innerWidth <= 768) {
         sidebar.offsetHeight; // This triggers a reflow
+
       }
     });
 
