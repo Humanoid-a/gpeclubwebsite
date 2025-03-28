@@ -4,12 +4,33 @@
         --text-color: #ffffff;
         --secondary-text: #ececf1;
         --border-color: #424242;
-        --primary-button: #10a37f;
-        --primary-button-hover: #0e8f6f;
+        --primary-button: #40414f;
+        --primary-button-hover: #3a3a3a;
         --input-bg: #40414f;
         --input-border: #565869;
         --search-bg: #343541;
+    --sidebar-hover: rgba(255, 255, 255, 0.1);
+    --hover-light: rgba(255, 255, 255, 0.05);
+    --hover-heavy: rgba(255, 255, 255, 0.2);
+    --text-color-light: #898989;
+
       }
+[data-theme="light"] {
+  --background-color: #ffffff;
+  --sidebar-color: #ffffff;
+  --text-color: #1e1e1e;
+  --secondary-text: #303030;
+  --border-color: #c4c4c4;
+  --primary-button: #e6e6e6;
+  --primary-button-hover: #f5f5f5;
+  --input-bg: #e6e6e6;
+  --input-border: #b0b0b0;
+  --search-bg: #f0f0f0;
+    --text-color-light: #898989;
+    --sidebar-hover: rgba(0, 0, 0, 0.05);
+    --hover-light: rgba(0, 0, 0, 0.025);
+    --hover-heavy: rgba(0, 0, 0, 0.1);
+}
 
       * {
         margin: 0;
@@ -69,11 +90,11 @@
       }
 
       .sidebar-nav a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--sidebar-hover);
       }
 
       .sidebar-nav a.active {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--sidebar-hover);
       }
 
       /* Main Content */
@@ -133,15 +154,16 @@
       .search-input {
         width: 100%;
         padding: 8px 12px;
-        background-color: var(--input-bg);
+        background-color: var(--sidebar-color);
         border: 1px solid var(--input-border);
         border-radius: 5px;
         color: white;
         font-size: 14px;
           transition: 0.3s ease all;
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
       }
       .search-input:hover, .search-input:focus {
-        background-color: var(--sidebar-color);
+        background-color: var(--input-bg);
       }
 
       .search-bar {
@@ -150,11 +172,11 @@
         padding: 0 20px;
         font-size: 18px;
         max-width: 700px;
-        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
-        border: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--input-border);
         outline: none;
         border-radius: 12px;
-        color: white;
+        color: var(--text-color);
         background-color: var(--sidebar-color);
         transition: 0.3s ease all;
         margin-bottom: 10px;
@@ -173,11 +195,12 @@
         cursor: pointer;
         border-radius: 10px;
         transition: 0.3s ease all;
-        box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
-        color: #ffffff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        color: var(--text-color-light);
         outline: none;
         background-color: var(--primary-button-hover);
-        border: none;
+        border: 1px solid var(--input-border);
+          font-size: 16px;
       }
 
       .button2:hover {
@@ -196,7 +219,7 @@
   width: auto; /* Let flexbox control the width */
 }
 .language-select{
-    background: var(--input-bg); color: white; border: 1px solid var(--input-border); padding: 8px; border-radius: 5px; width: 100%;
+    background: var(--background-color); color: var(--text-color); border: 1px solid var(--input-border); padding: 8px; border-radius: 5px; width: 100%;
 }
 .button2 {
   /* Adjust height to match the search bar */
@@ -214,7 +237,7 @@
           align-items: center;
           justify-content: center;
         background-color: var(--background-color);
-        color: white;
+        color: var(--text-color);
         border: 1px solid var(--border-color);
         padding: 10px 15px;
           height: 40px;
@@ -223,6 +246,7 @@
           margin-right: 10px;
         cursor: pointer;
         transition: background-color 0.3s ease;
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
       }
 
       .action-button:hover {
@@ -458,26 +482,37 @@
 }
 .sidebar-toggle {
     position: absolute;
-    left: 225px; /* Aligns with the right edge of the sidebar */
+    left: 225px;
     top: 30px;
     z-index: 100;
-    background-color: var(--background-color);
-    border: 1px solid var(--border-color);
+    background: none;
+    border: none;
     color: var(--text-color);
     cursor: pointer;
-    padding: 8px;
-    border-radius: 5px;
+    padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.5s ease;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background: var(--hover-light);
+    transition: background-color 0.3s ease, left 0.5s ease;
+}
 
-  }
+.sidebar-toggle:hover {
+    background-color: var(--hover-heavy);
+}
 
-  .sidebar-toggle:hover {
-    background-color: var(--sidebar-color);
-  }
+/* Update active state styling */
+.sidebar-toggle.active {
+    left: 30px;
+    background-color: var(--sidebar-hover);
+}
+
+.sidebar-toggle.active:hover {
+    background-color: var(--hover-heavy);
+}
 
   /* Updated sidebar transition */
   .sidebar {
@@ -517,12 +552,6 @@
     padding-right: 20px;
   }
 
-  /* Style for the toggle button when sidebar is collapsed */
-  .sidebar-toggle.active {
-      left: 30px;
-    /* transform: rotate(180deg); */
-      background-color: var(--sidebar-color)
-  }
 
   /* Mobile adjustments - enhanced for better mobile experience */
   @media (max-width: 768px) {
@@ -567,26 +596,25 @@
     }
 
     .sidebar-toggle {
-      position: fixed; /* Use fixed positioning to keep it in place */
-      top: 30px;
-      right: 30px;
+        position: fixed;
+        top: 30px;
+        right: 30px;
         left: auto;
-      width: 40px;
-      height: 40px;
-
-      /* transform: rotate(90deg); */
-      z-index: 999; /* Ensure it's always on top */
-      background-color: var(--background-color);
-      border: 1px solid var(--border-color);
-      transition: 0.5s ease all;
+        width: 35px;
+        height: 35px;
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     .sidebar-toggle.active {
-      /* transform: rotate(270deg); */
-        right: 30px; /* Keep it on the right side */
-    left: auto; /* Override the left: 20px from outside the media query */
-        background-color: var(--sidebar-color)
+        right: 30px;
+        left: auto;
+        background-color: rgba(255, 255, 255, 0.1);
     }
+    .sidebar-toggle:hover, .sidebar-toggle.active:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+
 
     .main-content {
       margin-left: 0;
@@ -658,4 +686,42 @@
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  margin-right: 15px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  background: var(--hover-light);
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--hover-heavy);
+}
+
+.moon-icon, .sun-icon {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+[data-theme="dark"] .sun-icon,
+[data-theme="light"] .moon-icon {
+  opacity: 0;
+  position: absolute;
+  transform: scale(0.5);
+}
+
+[data-theme="dark"] .moon-icon,
+[data-theme="light"] .sun-icon {
+  opacity: 1;
+  transform: scale(1);
 }

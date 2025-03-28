@@ -60,9 +60,25 @@
     <div class="main-content">
       <div class="header-actions">
 
-        <form role="search" action="projects/search/" method="get" style="width: 250px;">
+        <form role="search" action="projects/search/" method="get" style="width: 250px; margin-right: 20px;">
           <input type="search" class="search-input" style="height: 36px; font-size: 14px;" placeholder="{% trans "Search..." %}" aria-label="Search" name="query" value="{{ query }}">
         </form>
+          <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+</button>
       </div>
 
 
@@ -328,7 +344,46 @@ function closeModal(modalId) {
       }
     });
   });
+document.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.getElementById('themeToggle');
+  const logoImage = document.querySelector('.sidebar-header img');
+  
+  // Function to update the logo based on theme
+  function updateLogo(theme) {
+    if (theme === 'light') {
+      logoImage.src = logoImage.src.replace('gpe.png', 'logo.png');
+    } else {
+      logoImage.src = logoImage.src.replace('logo.png', 'gpe.png');
+    }
+  }
 
+  // Check for saved theme preference or use device preference
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+  // Set initial theme
+  let initialTheme;
+  if (savedTheme) {
+    initialTheme = savedTheme;
+  } else if (prefersDarkScheme.matches) {
+    initialTheme = 'dark';
+  } else {
+    initialTheme = 'light';
+  }
+  
+  document.documentElement.setAttribute('data-theme', initialTheme);
+  updateLogo(initialTheme);
+
+  // Toggle theme when button is clicked
+  themeToggle.addEventListener('click', function() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateLogo(newTheme);
+  });
+});
     </script>
 
     <!-- Include the original search script to maintain AI search functionality -->
