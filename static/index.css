@@ -12,7 +12,7 @@
     --sidebar-hover: rgba(255, 255, 255, 0.1);
     --hover-light: rgba(255, 255, 255, 0.05);
     --hover-heavy: rgba(255, 255, 255, 0.2);
-    --text-color-light: #898989;
+    --text-color-light: white;
 
       }
 [data-theme="light"] {
@@ -63,7 +63,7 @@
       .sidebar-header {
         display: flex;
         align-items: center;
-        padding: 15px 0;
+        padding: 10px 0;
         margin-bottom: 20px;
       }
 
@@ -111,6 +111,7 @@
         display: flex;
         justify-content: flex-end;
         padding: 10px 20px;
+          gap: 20px;
       }
 
       .login-button {
@@ -289,6 +290,7 @@
         right: 0;
         background-color: rgba(0,0,0,0.7);
         padding: 10px;
+          color: white;
       }
 
       .carousel-control-prev, .carousel-control-next {
@@ -606,7 +608,6 @@
   border: none;
   color: var(--text-color);
   cursor: pointer;
-  margin-right: 15px;
   padding: 5px;
   display: flex;
   align-items: center;
@@ -616,6 +617,7 @@
   height: 35px;
   background: var(--hover-light);
   transition: background-color 0.3s ease;
+    margin-right: 0;
 }
 
 .theme-toggle:hover {
@@ -637,6 +639,10 @@
 [data-theme="light"] .sun-icon {
   opacity: 1;
   transform: scale(1);
+}
+
+.descript{
+    margin-top: 50px;
 }
   /* Mobile adjustments - enhanced for better mobile experience */
   @media (max-width: 768px) {
@@ -687,16 +693,16 @@
         left: auto;
         width: 35px;
         height: 35px;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--hover-light);
     }
 
     .sidebar-toggle.active {
         right: 30px;
         left: auto;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: var(--sidebar-hover);
     }
     .sidebar-toggle:hover, .sidebar-toggle.active:hover {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: var(--hover-heavy);
     }
 
 
@@ -716,6 +722,7 @@
     }
     .header-actions {
         justify-content: flex-start;
+
       }
     .sidebar-header{
         margin-bottom: 0;
@@ -727,12 +734,25 @@
         max-width: 90vw;
     }
     .theme-toggle{
-        margin-right: 40px;
+        margin-left: auto;
+        margin-right: 15px;
     }
     .search-container {
-    margin-top: 75px;
+    margin-top: 50px;
     }
     .button2{
         padding: 10px;
+    }
+    .header-actions{
+        padding-right: 40px;
+        padding-left: 10px;
+        gap: 10px;
+    }
+    .descript{
+        margin-top: 25px;
+    }
+    .action-buttons {
+        margin-top: 20px;
+        margin-bottom: 0;
     }
   }

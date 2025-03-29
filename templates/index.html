@@ -60,8 +60,8 @@
     <div class="main-content">
       <div class="header-actions">
 
-        <form role="search" action="projects/search/" method="get" style="width: 250px; margin-right: 20px;">
-          <input type="search" class="search-input" style="height: 36px; font-size: 14px;" placeholder="{% trans "Search..." %}" aria-label="Search" name="query" value="{{ query }}">
+        <form role="search" action="projects/search/" method="get" style="width: 250px; ">
+          <input type="search" class="search-input" style="height: 36px; font-size: 14px; color: var(--text-color)" placeholder="{% trans "Search..." %}" aria-label="Search" name="query" value="{{ query }}">
         </form>
           <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
@@ -96,14 +96,14 @@
             <button type="submit" class="button2">Search</button>
           </form>
 
-          <div id="response-0" class="response-box" style="display: none; margin-top: 20px; padding: 15px; background-color: var(--search-bg); border-radius: 8px; text-align: left">
+          <div id="response-0" class="response-box" style="display: none; margin-top: 20px; padding: 15px; background-color: var(--search-bg); border-radius: 8px; text-align: left; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); border: 1px solid var(--input-border);">
             <p id="loadingPlaceholder" class="placeholder-glow" style="display: none; ">
             </p>
             <p id="actualResponse" style="display: none; font-weight: 400"></p>
           </div>
         </div>
 
-        <p style="margin-top: 50px;">
+        <p class="descript">
           {% trans "Official website of GPE Interactive" %} <br> {{ current_date }}
         </p>
 
@@ -112,9 +112,7 @@
           <button class="action-button" onclick="openModal('gpeHubModal')">GPEHub</button>
         </div>
 
-        <div class="iframe-container">
-          <iframe src="https://store.steampowered.com/widget/3327910/?t=Trigonomis%0AMade%20by%20Andy%20Wang%20and%20the%20whole%20GPE%20Club" height="250"></iframe>
-        </div>
+
 
         <div class="carousel">
           <div class="carousel-inner">
@@ -134,7 +132,11 @@
           <button class="carousel-control-prev" onclick="changeSlide(-1)">❮</button>
           <button class="carousel-control-next" onclick="changeSlide(1)">❯</button>
         </div>
+          <div class="iframe-container">
+          <iframe src="https://store.steampowered.com/widget/3327910/?t=Trigonomis%0AMade%20by%20Andy%20Wang%20and%20the%20whole%20GPE%20Club" height="250"></iframe>
+        </div>
       </div>
+
 
         <div class="bottom-right">
           <button class="action-button" onclick="window.location.href='{% url 'old' %}'">Back to old UI</button>
@@ -200,14 +202,14 @@
             the GPEClub Website and more AI features.
             <br><br>
             Download GPEHub at the Github repository:
-            <a href="https://github.com/BroWo1/GPE-Hub/releases/latest" style="color: var(--primary-button);">Release</a>
+            <a href="https://github.com/BroWo1/GPE-Hub/releases/latest" style="color: var(--text-color);">Release</a>
             <br><br>
             Or...<br>
             MacOS Version:
-            <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.4.2/GPEHub-1.4.2-MacOS.dmg" style="color: var(--primary-button);">Download</a>
+            <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.4.2/GPEHub-1.4.2-MacOS.dmg" style="color: var(--text-color);">Download</a>
             <br>
             Windows Version:
-            <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.4.2/GPEHub-1.4.2-Windows.exe" style="color: var(--primary-button);">Download</a>
+            <a href="https://github.com/BroWo1/GPE-Hub/releases/download/v1.4.2/GPEHub-1.4.2-Windows.exe" style="color: var(--text-color);">Download</a>
           </p>
         </div>
       </div>

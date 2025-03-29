@@ -1,236 +1,356 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="en">
   <head>
       {% load static %}
       {% load i18n %}
-      <script src="{%  static 'assets/js/color-modes.js' %}"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Vocabulary Set</title>
-      <link rel="shortcut icon" href = "{% static 'imgs/logo.ico' %}"></link>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-  <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
-      <link href="{% static 'basestyles.css' %}" rel="stylesheet">
-    <script type="text/javascript" id="MathJax-script" async
-      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-    </script>
-    <style>
-        a{
-            text-decoration: none !important;
-
-        }
-        .button1{
-            position: fixed;
-            bottom: 100px;
-            right: 75px;
-            z-index: 9999;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-
-        }
-        @media (max-width: 500px) {
-          .button1{
-                position: fixed;
-                bottom: 50px;
-                right: 25px;
-                z-index: 9999;
-              box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-
-          }
-        }
-        .page{
-            position: fixed;
-              top: 90%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-        }
-        
-
-    </style>
-
-
-    
-    <!-- Custom styles for this template -->
-    <link href="{% static 'heroes.css' %}" rel="stylesheet">
+    <meta name="description" content="GPE Interactive - Vocabulary Sets">
+    <title>{% trans "Vocabulary Sets" %}</title>
+    <link rel="shortcut icon" href="{% static 'imgs/logo.ico' %}"></link>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'index.css' %}"></link>
   </head>
   <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+  <a href="{% url 'index' %}" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+    <img src="{% static 'imgs/gpe.png' %}" style="width: 40px; height: 40px" alt="GPE Logo">
+    <span style="font-size: 24px; font-weight: 600">{% trans "name" %}</span>
+  </a>
+</div>
 
-
-
-
-<main>
-    <a name="0"></a>
-    <div class="shadow" style="width:100%;">
-    <div class="button1">
-        <a href="#0" class="btn btn-primary">
-            <svg t="1735554699762" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4238" width="30" height="40"><path d="M960 541.4H682.3v389.3H341.7V541.4H64l448-448 448 448zM633.6 882V492.7h208.9L512 162.2 181.5 492.7h208.9V882h243.2z" fill="#ffffff" p-id="4239"></path></svg>
-        </a>
-    </div>
-        <!-- <div class="container fixed-top" > -->
-        <div class="container" >
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom ">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                    <svg class="bi me-2" width="32" height="32">
-                        <!--<use href="{% static 'imgs/logo.png' %}"/>-->
-                        <img src="{% static 'imgs/logo.png' %}" width="32" height="32" loading="lazy">
-                    </svg>
-                    <span class="fs-4">{% trans "name" %}</span>
-                </a>
-
-    
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="projects/search/" method="get">
-                    <div style="display:flex;" class="">
-                        <!--input type="search" class="form-control" placeholder="Search..." aria-label="Search" name="query" value="{{ query }}"/-->
-                        <input type="search" class="form-control" placeholder="{% trans "Search..." %}" aria-label="Search" name="query" value="{{ query }}"/>
-                        <!--a type="submit" class="button"><img src="{% static 'imgs/search.png' %}" width="30px" height="30px"/></a-->
-                    </div>
-                </form>
-    
-                <ul class="nav nav-pills ">
-
-                    {% get_current_language as CURRENT_LANGUAGE %}
-                    {% get_available_languages as AVAILABLE_LANGUAGES %}
-
-                    <form action="{% url 'set_language' %}" method="post" style = "padding-right: 15px">
-                      {% csrf_token %}
-                      <select name="language" class="form-select" onchange="this.form.submit()" >
-                        {% get_current_language as CURRENT_LANGUAGE %}
-                        {% get_available_languages as AVAILABLE_LANGUAGES %}
-                        {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
-                          <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
-                            {{ lang_name }}
-                          </option>
-                        {% endfor %}
-                      </select>
-                    </form>
-                    <li class="nav-item"><a href="{% url 'index' %}" class="nav-link" aria-current="page">{% trans "Home" %}</a></li>
-                    <li class="nav-item"><a href="{% url 'search' %}" class="nav-link">{% trans "Projects" %}</a></li>
-                    <li class="nav-item"><a href="{% url 'vocabList' %}" class="nav-link active">{% trans "Vocab" %}</a></li>
-                    <li class="nav-item"><a href="{% url 'school' %}" class="nav-link">{% trans "School" %}</a></li>
-                </ul>
-            </header>
+      <div class="sidebar-nav">
+        <a href="{% url 'index' %}">{% trans "Home" %}</a>
+        <a href="{% url 'search' %}">{% trans "Projects" %}</a>
+        <a href="{% url 'vocabList' %}" class="active">{% trans "Vocab" %}</a>
+        <a href="{% url 'school' %}">{% trans "School" %}</a>
+        <div style="margin-top: auto;">
+          <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <select name="language" onchange="this.form.submit()" class="language-select">
+              {% get_current_language as CURRENT_LANGUAGE %}
+              {% get_available_languages as AVAILABLE_LANGUAGES %}
+              {% for lang_code, lang_name in AVAILABLE_LANGUAGES %}
+                <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
+                  {{ lang_name }}
+                </option>
+              {% endfor %}
+            </select>
+          </form>
         </div>
-    </div>
-    <div class="px-4 pt-5 my-5 text-center border-bottom">
-        <h1>SAT Vocabulary Sets</h1>
-        <br>
-    <div class="overflow-hidden" style="max-height: 100vh">
-
-      <div class="container px-5">
-        <img src="{% static 'aivocab.png' %}" class="img-fluid border rounded-3 shadow-lg" alt="AIVocab" width="800" height="auto" loading="lazy">
       </div>
     </div>
-    <br>
-        <div class="col-lg-2 mx-auto">
-        <div class="form-check" style="padding-bottom: 25px">
-            <label class="form-check-label" for="AIMode">
-                <h3>Mode Selection</h3>
-            </label>
-            <select class="form-select" id="AIMode">
-                <option value="off">Flashcards</option>
-                <option value="on">AI</option>
-                <option value="mcq">MCQ</option>
-            </select>
-        </div>
-            <br>
+    <button id="sidebarToggle" class="sidebar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
 
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="header-actions">
+        <form role="search" action="projects/search/" method="get" style="width: 250px; ">
+          <input type="search" class="search-input" style="height: 36px; font-size: 14px;" placeholder="{% trans "Search..." %}" aria-label="Search" name="query" value="{{ query }}">
+        </form>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="central-content">
+        <a name="0"></a>
+        <h1 style="font-size: 40px">SAT Vocabulary Sets</h1>
+
+        <div class="img-container" style="margin-top: 30px; max-width: 800px;">
+          <img src="{% static 'aivocab.png' %}" alt="AI Vocab" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
         </div>
-        <div class="col-lg-5 mx-auto">
-          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle btn-lg px-4 me-sm-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Vocab Set 1-10
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        {% for vocabSet in vocabSets|slice:":10" %}
-                            <li><a class="dropdown-item" href="{% url 'vocabSet' set_name=vocabSet %}">{{ vocabSet }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle btn-lg px-4 me-sm-3" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                        Vocab Set 11-20
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                        {% for vocabSet in vocabSets|slice:"10:20" %}
-                            <li><a class="dropdown-item" href="{% url 'vocabSet' set_name=vocabSet %}">{{ vocabSet }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle btn-lg px-4 me-sm-3" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
-                        Vocab Set 21-33
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                        {% for vocabSet in vocabSets|slice:"20:33" %}
-                            <li><a class="dropdown-item" href="{% url 'vocabSet' set_name=vocabSet %}">{{ vocabSet }}</a></li>
-                        {% endfor %}
-                    </ul>
+
+        <div style="margin: 40px auto; max-width: 600px;">
+          <h4>Mode Selection</h4>
+          <select id="AIMode" class="search-bar" style="height: 50px; margin-top: 15px;">
+            <option value="off">Flashcards</option>
+            <option value="on">AI</option>
+            <option value="mcq">MCQ</option>
+          </select>
+        </div>
+
+        <div class="action-buttons" style="margin-top: 30px; flex-wrap: wrap; gap: 15px;">
+          <div class="dropdown">
+            <button class="action-button" type="button" id="dropdownMenuButton1" onclick="toggleDropdown('dropdown1')">
+              Vocab Set 1-10
+            </button>
+            <div id="dropdown1" class="dropdown-content" style="display: none;">
+              {% for vocabSet in vocabSets|slice:":10" %}
+                <a href="{% url 'vocabSet' set_name=vocabSet %}" class="dropdown-link">{{ vocabSet }}</a>
+              {% endfor %}
             </div>
           </div>
-       </div>
-    </div>
-    <!--nav aria-label="Page navigation example" class="page">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link disabled" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link active" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="unit2/">2</a></li>
-        <li class="page-item"><a class="page-link" href="unit2/">Next</a></li>
-      </ul>
-    </nav-->
-    <div class="b-example-divider"></div>
-    <!--div class="b-example-divider" style="background-color:white; box-shadow:none; padding-top:10px; border:none;"></div-->
 
+          <div class="dropdown">
+            <button class="action-button" type="button" id="dropdownMenuButton2" onclick="toggleDropdown('dropdown2')">
+              Vocab Set 11-20
+            </button>
+            <div id="dropdown2" class="dropdown-content" style="display: none;">
+              {% for vocabSet in vocabSets|slice:"10:20" %}
+                <a href="{% url 'vocabSet' set_name=vocabSet %}" class="dropdown-link">{{ vocabSet }}</a>
+              {% endfor %}
+            </div>
+          </div>
 
-  <!--div class="b-example-divider"></div-->
+          <div class="dropdown">
+            <button class="action-button" type="button" id="dropdownMenuButton3" onclick="toggleDropdown('dropdown3')">
+              Vocab Set 21-33
+            </button>
+            <div id="dropdown3" class="dropdown-content" style="display: none;">
+              {% for vocabSet in vocabSets|slice:"20:33" %}
+                <a href="{% url 'vocabSet' set_name=vocabSet %}" class="dropdown-link">{{ vocabSet }}</a>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
 
-<div class="" style="width:100%; padding-bottom:0; margin-bottom:0;">
-<div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-body-secondary">&copy; 2024 GPE Interactive</p>
-
-        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <svg class="bi me-2" width="32" height="32">
-                <img src="{% static 'imgs/logo.png' %}" width="32" height="32" loading="lazy">
+        <div class="bottom-right">
+          <button class="action-button" onclick="window.location.href='#0'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
             </svg>
-        </a>
+          </button>
+        </div>
+      </div>
 
-        <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="{% url 'school' %}" class="nav-link px-2 text-body-secondary">School</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-body-secondary">About</a></li>
-        </ul>
-    </footer>
-</div>
-</div>
+      <div class="footer">
+        <p>&copy; 2024 GPE Interactive</p>
+        <div style="margin-top: 10px;">
+          <a href="{% url 'index' %}" style="color: var(--secondary-text); margin: 0 10px;">Home</a>
+          <a href="{% url 'school' %}" style="color: var(--secondary-text); margin: 0 10px;">School</a>
+          <a href="#" style="color: var(--secondary-text); margin: 0 10px;">FAQs</a>
+          <a href="{% url 'about' %}" style="color: var(--secondary-text); margin: 0 10px;">About</a>
+        </div>
+      </div>
+    </div>
 
-</main>
+    <style>
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
 
+      .dropdown-content {
+        position: absolute;
+        background-color: var(--sidebar-color);
+        min-width: 160px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        margin-top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-height: 250px;
+        overflow-y: auto;
+      }
 
+      .dropdown-content.upward {
+  bottom: 100%;
+  top: auto;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
 
-<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+      .dropdown-link {
+        color: var(--text-color);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+        transition: background-color 0.3s;
+      }
+
+      .dropdown-link:hover {
+        background-color: var(--hover-light);
+      }
+      :root {
+  --scrollbar-thumb: #888;
+  --scrollbar-track: transparent;
+  --scrollbar-hover: #555;
+}
+
+[data-theme="dark"] {
+  --scrollbar-thumb: #555;
+  --scrollbar-track: transparent;
+  --scrollbar-hover: #777;
+}
+
+/* For WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* Apply to dropdown-content specifically */
+.dropdown-content {
+  scrollbar-width: thin;
+}
+    </style>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.querySelector('.sidebar');
+        const mainContent = document.querySelector('.main-content');
+        const centralContent = document.querySelector('.central-content');
+
+        if (window.innerWidth <= 768) {
+          sidebar.classList.add('collapsed');
+          mainContent.classList.add('expanded');
+          centralContent.classList.add('centered');
+          sidebarToggle.classList.add('active');
+        }
+
+        sidebarToggle.addEventListener('click', function() {
+          sidebar.classList.toggle('collapsed');
+          mainContent.classList.toggle('expanded');
+          mainContent.classList.toggle('blur');
+          sidebarToggle.classList.toggle('active');
+          document.body.classList.toggle('sidebar-hidden');
+
+          const isCollapsed = sidebar.classList.contains('collapsed');
+          localStorage.setItem('sidebarCollapsed', isCollapsed);
+
+          if (window.innerWidth <= 768) {
+            sidebar.offsetHeight;
+          }
+        });
+
+        const themeToggle = document.getElementById('themeToggle');
+        const logoImage = document.querySelector('.sidebar-header img');
+
+        function updateLogo(theme) {
+          if (theme === 'light') {
+            logoImage.src = logoImage.src.replace('gpe.png', 'logo.png');
+          } else {
+            logoImage.src = logoImage.src.replace('logo.png', 'gpe.png');
+          }
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        let initialTheme;
+        if (savedTheme) {
+          initialTheme = savedTheme;
+        } else if (prefersDarkScheme.matches) {
+          initialTheme = 'dark';
+        } else {
+          initialTheme = 'light';
+        }
+
+        document.documentElement.setAttribute('data-theme', initialTheme);
+        updateLogo(initialTheme);
+
+        themeToggle.addEventListener('click', function() {
+          const currentTheme = document.documentElement.getAttribute('data-theme');
+          const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+          document.documentElement.setAttribute('data-theme', newTheme);
+          localStorage.setItem('theme', newTheme);
+          updateLogo(newTheme);
+        });
+
+        // Vocab Mode Selection
         const dropdown = document.getElementById('AIMode');
-        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        const dropdownLinks = document.querySelectorAll('.dropdown-link');
 
         dropdown.addEventListener('change', function() {
-            dropdownItems.forEach(item => {
-                const vocabSet = item.textContent.trim();
-                if (dropdown.value === 'on') {
-                    item.href = "{% url 'ai' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
-                } else if (dropdown.value === 'off'){
-                    item.href = "{% url 'vocabSet' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
-                }else{
-                    item.href = "{% url 'mcq' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
-                }
-            });
+          dropdownLinks.forEach(item => {
+            const vocabSet = item.textContent.trim();
+            if (dropdown.value === 'on') {
+              item.href = "{% url 'ai' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
+            } else if (dropdown.value === 'off') {
+              item.href = "{% url 'vocabSet' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
+            } else {
+              item.href = "{% url 'mcq' set_name='PLACEHOLDER' %}".replace('PLACEHOLDER', vocabSet);
+            }
+          });
         });
-    });
-    </script>
+      });
 
-    </body>
+      function toggleDropdown(id) {
+  const dropdown = document.getElementById(id);
+  const button = document.getElementById('dropdownMenuButton' + id.replace('dropdown', ''));
+  const isVisible = dropdown.style.display === 'block';
+
+  // Close all dropdowns first
+  document.querySelectorAll('.dropdown-content').forEach(el => {
+    el.style.display = 'none';
+    el.classList.remove('upward');
+  });
+
+  if (!isVisible) {
+    // Calculate if there's enough space below
+    const buttonRect = button.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - buttonRect.bottom;
+    const dropdownHeight = Math.min(dropdown.scrollHeight || 250, 250); // Limit to max height
+
+    if (spaceBelow < dropdownHeight && buttonRect.top > dropdownHeight) {
+      dropdown.classList.add('upward');
+    } else {
+      dropdown.classList.remove('upward');
+    }
+
+    // Show the dropdown
+    dropdown.style.display = 'block';
+  }
+}
+
+      // Close dropdowns when clicking outside
+      window.onclick = function(event) {
+        if (!event.target.matches('.action-button')) {
+          document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+            dropdown.style.display = 'none';
+          });
+        }
+      }
+    </script>
+  </body>
 </html>
