@@ -501,6 +501,7 @@
     height: 35px;
     background: var(--hover-light);
     transition: background-color 0.3s ease, left 0.5s ease;
+    backdrop-filter: blur(5px);
 }
 
 .sidebar-toggle:hover {
