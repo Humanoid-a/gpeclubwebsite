@@ -187,17 +187,17 @@ def run_crawltest(request):
     return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
 
-
-import openai
-from openai import OpenAI
-from django.conf import settings
+import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import json
+from .route_mapper import RouteMapper
+from openai import OpenAI
 import logging
+import re
 
 # Set up logging
 logger = logging.getLogger(__name__)
+
 
 @csrf_exempt  # Use with caution; prefer proper CSRF protection
 def get_openai_response(request):
@@ -206,22 +206,54 @@ def get_openai_response(request):
             data = json.loads(request.body)
             prompt = data.get('prompt', '').strip()
             user_input = data.get('input', '').strip()
-            model= data.get('model', 'gpt-4o-mini')
+            model = data.get('model', 'gpt-4o-mini')
+            max_tokens = int(data.get('max_tokens', 150))
 
             if not prompt or not user_input:
                 return JsonResponse({'error': 'Both prompt and input are required.'}, status=400)
 
+            # Initialize the route mapper
+            route_mapper = RouteMapper()
+            possible_route = route_mapper.get_route(user_input)
+
+            # Enhance the prompt with website info and navigation capabilities
+            website_info = """
+            The GPE Club website has the following pages and features:
+
+            - Home page (/): The main landing page with general information about GPE Club
+            - Projects (/projects/search/): Browse various projects created by GPE Club
+            - Vocab List (/vocab/list): List of vocabulary sets for practice
+            - Vocab AI (/vocab/ai/set1/): AI-powered vocabulary practice
+            - Vocab MCQ (/vocab/mcq/set1/): Multiple choice vocabulary questions
+            - School (/projects/school/): School-related tools and resources
+            - PowerSchool (/projects/powerschool/): PowerSchool grade viewer
+            - About (/about/): Information about GPE Club and its members
+
+            Special projects include:
+            - Trigonomis (/projects/trigonomis/): A math-based game available on Steam
+            - Super Tic Tac Toe (/projects/supertictactoe/): An advanced version of Tic Tac Toe
+            - Politics Quiz (/politics/): A political orientation test
+
+            If the user is asking about a specific page or feature, include a line at the END of your response in this EXACT format:
+            NAVIGATE: /path/to/page
+
+            For example: NAVIGATE: /vocab/list
+
+            Make sure the URL path is exact, with no spaces or extra characters.
+            Keep your response concise and focused on answering the user's question.
+            """
+
+            enhanced_prompt = f"{prompt}\n\n{website_info}"
+
             # Define the messages structure for OpenAI Chat API
             client = OpenAI()
             completion = client.chat.completions.create(
-                model="{model}".format(model=model),
+                model=model,
                 messages=[
-                    {"role": "system", "content": prompt},
-                    {
-                        "role": "user",
-                        "content": user_input
-                    }
-                ]
+                    {"role": "system", "content": enhanced_prompt},
+                    {"role": "user", "content": user_input}
+                ],
+                max_tokens=max_tokens
             )
 
             # Extract the assistant's reply
@@ -232,10 +264,36 @@ def get_openai_response(request):
             logger.debug(f"Model: {model}")
             logger.debug(f"AI response: {ai_response}")
 
-            return JsonResponse({'response': ai_response})
+            # Check if the response includes navigation instructions
+            navigate_to = None
+
+            # Look for NAVIGATE: instruction with proper regex
+            nav_regex = re.compile(r'NAVIGATE:\s*(\S+)$', re.MULTILINE)
+            nav_match = nav_regex.search(ai_response)
+
+            if nav_match:
+                navigate_to = nav_match.group(1).strip()
+                # Remove the navigation instruction from the response
+                ai_response = nav_regex.sub('', ai_response).strip()
+            # If no explicit navigation but we found a route from the query
+            elif possible_route:
+                navigate_to = possible_route
+
+            # Verify the navigation URL looks valid
+            if navigate_to and not navigate_to.startswith('/'):
+                navigate_to = '/' + navigate_to
+
+            # Log what we're returning
+            logger.debug(f"Final response: {ai_response}")
+            logger.debug(f"Navigate to: {navigate_to}")
+
+            return JsonResponse({
+                'response': ai_response,
+                'navigate_to': navigate_to
+            })
+
         except Exception as e:
             logger.error(f"Error processing request: {e}")
-            return JsonResponse({'error': str(e)}, status=500)
+            return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
-

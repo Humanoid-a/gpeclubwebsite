@@ -18,6 +18,10 @@
 
 
     </style>
+      <script type="module">
+  import * as webllm from "https://esm.run/@mlc-ai/web-llm";
+  window.webllm = webllm; // Make it globally accessible
+</script>
   </head>
   <body>
     <!-- Sidebar -->
@@ -92,7 +96,10 @@
 
         <a name="1"></a>
         <div class="search-container" >
+                        <p style="text-align: center; padding-bottom: 15px; font-size: 16px">✨NEW: Updated search and navigation inside the website</p>
+
           <form id="textForm">
+
             <input type="search" class="search-bar" id="textInput" placeholder="Search the GPE website..." name="q">
             <button type="submit" class="button2">Search</button>
           </form>
@@ -138,10 +145,7 @@
         </div>
       </div>
 
-
-        <div class="bottom-right">
-          <button class="action-button" onclick="window.location.href='{% url 'old' %}'">Back to old UI</button>
-        </div>
+        
       <div class="footer">
         <p>&copy; 2024 GPE Interactive</p>
         <div style="margin-top: 10px;">
